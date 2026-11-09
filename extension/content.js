@@ -37,7 +37,7 @@
   const defaults = {
     welcomeComplete:false,ecosystem:'google',searxngInstance:'',engine:'google',motionIntensity:'vivid',worldClock:true,focusTimer:true,worldZone:'UTC',focusMinutes:25,font:'manrope',theme: 'paper', appearance: 'system', animations: true, accent: '#c65332', name: '', clock: true, focus: true, shortcutsVisible: true,
     weatherEnabled: true, newsEnabled: true, autoLocation:true, localNews:true, newsLanguageAuto:true, colorfulWeather:true, newsImages:true, newsSource:'bing', city: null, units: 'celsius', newsRegion: 'US', newsLanguage: 'en', newsTopic: 'local', newsQuery: '', newsCount: 6,
-    homeCard:'hardware',suggestionImages:true,resultsTheme:true, hour24: true, newTab: false, newTabHome: false, compact: false, suggestions:true, note: '', photo: '', activeGroup:'personal',
+    homeCard:'hardware',suggestionImages:true,resultsTheme:true, hour24: true, newTab: false, newTabHome: false, cleanAddressBar: false, compact: false, suggestions:true, note: '', photo: '', activeGroup:'personal',
     shortcuts: [
       {name: 'Gmail', url: 'https://mail.google.com/', color: '#b95a42', glyph: 'M'},
       {name: 'YouTube', url: 'https://www.youtube.com/', color: '#bd4646', glyph: '▶'},
@@ -84,7 +84,7 @@
     if (['light','dark','system'].includes(input.appearance)) s.appearance=input.appearance;
     else if(input.theme==='midnight')s.appearance='dark';
     if (/^#[0-9a-f]{6}$/i.test(input.accent)&&!(s.theme==='aztec'&&input.accent.toLowerCase()==='#8c9a70')) s.accent = input.accent;
-    for (const key of ['clock', 'focus', 'shortcutsVisible', 'hour24', 'newTab', 'newTabHome', 'compact','animations','weatherEnabled','newsEnabled','autoLocation','localNews','newsLanguageAuto','suggestions','colorfulWeather','newsImages','suggestionImages','resultsTheme']) if (typeof input[key] === 'boolean') s[key] = input[key];
+    for (const key of ['clock', 'focus', 'shortcutsVisible', 'hour24', 'newTab', 'newTabHome', 'cleanAddressBar', 'compact','animations','weatherEnabled','newsEnabled','autoLocation','localNews','newsLanguageAuto','suggestions','colorfulWeather','newsImages','suggestionImages','resultsTheme']) if (typeof input[key] === 'boolean') s[key] = input[key];
     if(['hardware','note'].includes(input.homeCard))s.homeCard=input.homeCard;
     if(['google','bing','bbc','guardian'].includes(input.newsSource))s.newsSource=input.newsSource;
     if(['celsius','fahrenheit'].includes(input.units))s.units=input.units;
@@ -120,7 +120,7 @@
   let settings, mode = 'all', activeTab='home', classic = false, saveQueue = Promise.resolve(), noteTimer, clockTimer, saveTimer;
   let saveWaiters = [], shortcutDrag = null;
   const repoURL = 'https://github.com/youval1234/Searchscape';
-  const version = preview ? '2.3.0' : chrome.runtime.getManifest().version;
+  const version = preview ? '2.3.1' : chrome.runtime.getManifest().version;
   const dateFormatter = new Intl.DateTimeFormat('en', {weekday:'long',month:'long',day:'numeric'});
   const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone.replaceAll('_',' ').replaceAll('/',' / ');
   const hiddenSiblings = new Map();
@@ -163,6 +163,7 @@
     <section class="data-panel" id="panel-news" role="tabpanel" aria-labelledby="tab-news" hidden><div class="data-card"><div class="data-heading"><div><h2>A wider perspective.</h2><p class="hint">The latest headlines, on your terms.</p></div><button class="button" id="refresh-news">Refresh headlines</button></div><div class="news-controls"><select id="news-topic" aria-label="News topic">${['local','top','world','technology','business','science','sports','health','entertainment','custom'].map(x=>`<option value="${x}">${x==='local'?'Near you':x==='top'?'Top stories':x==='custom'?'My topic':x[0].toUpperCase()+x.slice(1)}</option>`).join('')}</select><button class="button" id="news-customize">News preferences</button></div><div class="data-status" id="news-status" role="status"></div><div class="news-grid" id="news-content"></div><div class="news-pagination"><button class="button" id="more-news" hidden>Show more articles ${icon('plus')}</button><span id="news-count-label" class="hint"></span></div><p class="source-note"><a href="https://news.google.com/" target="_blank" rel="noopener noreferrer">Headlines via Google News</a> · <span id="news-updated">Articles open at their source.</span></p></div></section></main>
     <footer><div class="footer-left"><span class="small-sun">✳</span><a class="version-link" href="${repoURL}/releases/tag/v${version}" target="_blank" rel="noopener noreferrer" aria-label="Searchscape version ${version}">v${version}</a><button class="text-button" id="open-commands" title="Open command palette (Ctrl+K)">A quieter corner. &nbsp; Ctrl K</button></div><button class="customize" id="customize">${icon('sliders')} Customize</button></footer></div>
     <dialog class="drawer" id="settings" aria-labelledby="settings-title"><div class="dialog-head"><h2 id="settings-title">Customize Searchscape</h2><button class="close" data-close aria-label="Close customization">${icon('close')}</button></div><div class="panel-content"><p class="hint">A few small changes. A space that feels like you.<br>Everything saves automatically in this browser.</p><section class="group private-settings" id="private-settings"><h3>Private tabs</h3><label class="toggle">Open Searchscape automatically in private new tabs<input type="checkbox" data-setting="newTabHome"></label><p class="hint" id="new-tab-hint">Enable Allow in Private in Brave’s extension details, then turn this on and grant the optional tab-address permission. Newly opened private start pages will navigate to Searchscape. Links, searches and existing tabs are left alone. After changing Allow in Private, fully exit and restart Brave if it does not take effect.</p><button class="button" id="private-access-settings">Open Searchscape’s extension details</button></section><div class="settings-reset"><button class="button" id="reset">Reset settings to default</button><p class="hint" id="reset-hint" role="status">Restore the original theme, layout, shortcuts and preferences.</p></div>
+      <section class="group" aria-labelledby="new-tab-settings-title"><h3 id="new-tab-settings-title">New tabs</h3><label class="toggle">Clean address bar<input type="checkbox" data-setting="cleanAddressBar" aria-describedby="clean-address-bar-hint"></label><p class="hint" id="clean-address-bar-hint">Applies to newly opened regular tabs. Uses the browser's native New Tab layout, which may show the Customize Brave footer. Your bookmarks bar follows Brave's Appearance settings.</p></section>
       <div class="group"><h3>Light, dark, or in sync</h3><div class="appearance" aria-label="Appearance mode">${['light','dark','system'].map(x=>`<button data-appearance-choice="${x}" aria-pressed="false">${x[0].toUpperCase()+x.slice(1)}</button>`).join('')}</div><p class="appearance-note">Every theme works in light and dark mode.</p></div>
       <div class="group"><h3>Find your atmosphere</h3><div class="theme-tools"><label class="theme-search-label">Search themes<input id="theme-search" type="search" placeholder="Try ocean, space, snow…" autocomplete="off" maxlength="80"></label><label>Browse a collection<select id="theme-collection"><option value="">All themes</option>${[...new Set(themes.map(t=>t.group))].map(group=>`<option value="${group}">${group}</option>`).join('')}</select></label></div><p id="theme-results" class="hint" role="status" aria-live="polite">${themes.length} themes · ${new Set(themes.map(t=>t.group)).size} collections</p><div class="themes">${themes.map((t,i)=>((!i||themes[i-1].group!==t.group)?`<div class="theme-category" data-theme-heading="${t.group}">${t.group}</div>`:'')+`<button class="theme" data-theme-choice="${t.id}" aria-pressed="false"><span class="theme-sample" data-world="${t.world}" style="--sample:${t.light[0]};--sample-fg:${t.light[1]}"></span>${t.name}</button>`).join('')}</div><p id="theme-empty" class="hint" hidden>No themes match. Try a different name or collection.</p></div>
       <div class="group"><h3>A touch of color</h3><div class="swatches">${['#c65332','#67815b','#587ea0','#8b6b9b','#b38a34'].map(c=>`<button class="swatch" style="--swatch:${c}" data-accent="${c}" aria-label="Accent ${c}" aria-pressed="false"></button>`).join('')}<input id="accent" type="color" aria-label="Custom accent color"></div></div>
@@ -858,7 +859,11 @@
     scheduleClock();
     if(!settings.welcomeComplete)openDialog('#welcome-dialog');
     else if(params.get('still')==='customize')openSettings(params.get('section'));
-    if(extensionHome){const address=new URL(location.href);for(const key of ['standalone','still','section'])address.searchParams.delete(key);history.replaceState(history.state,'',address.href);}
+    if (extensionHome && ['standalone', 'still', 'section'].some(key => params.has(key))) {
+      const address = new URL(location.href);
+      for (const key of ['standalone', 'still', 'section']) address.searchParams.delete(key);
+      history.replaceState(history.state, '', address.href);
+    }
   }
   start();
 })();

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.1 — 2026-11-09
+
+- Add an optional Clean address bar mode for regular new tabs. Brave manages the address bar and bookmarks row in this mode.
+- Keep the footer-free standalone layout as the default. Avoid rewriting the browser-managed New Tab address when there are no setup parameters to remove.
+
 ## 2.3.0 — 2026-11-07
 
 - Expand the service catalog to 110 entries, add app search and improve SharePoint access.

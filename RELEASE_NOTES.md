@@ -1,12 +1,9 @@
-# Searchscape v2.3.0
+# Searchscape v2.3.1
 
-- Expand all nine service collections to 110 links. SharePoint is near the top of Microsoft’s launcher; To Do, Forms, Planner, Loop, Copilot, Power Automate, Lists, work Outlook and Admin center are included.
-- Add service search with counts, empty-state feedback and Escape-to-clear. Include more Google, Apple, Proton, Amazon, Adobe, Zoho, Meta and Yahoo apps with bundled icons. SharePoint uses Microsoft’s work-account launcher; no organization URL is inferred.
-- Clean startup/settings parameters out of the visible homepage address, retain a branded favicon, and keep reloads and settings deep links working. The extension ID remains browser-controlled.
-- Theme the language-suggestion card’s pastel-yellow surface as well as its text. Disabling results theming restores the original styling.
-- Cache the private-redirect opt-in and permission status to reduce repeated lookups, with event-driven updates and a navigation-race check.
-- Add Open private Searchscape to the popup. It targets the extension URL from the outset. Brave’s normal private-window shortcut can still paint its protected start page before the redirect event; that flash cannot be guaranteed away by this extension.
+- In **Customize → New tabs**, enable **Clean address bar** and open a fresh regular tab. Searchscape uses Brave’s native New Tab layout, so Brave can show its usual address bar instead of the long extension URL.
+- Brave may show its **Customize Brave** footer in this mode. Turn the setting off to return to the footer-free layout. The toggle defaults to off.
+- Keep the bookmarks row below the address bar by selecting **Always** under **Appearance → Show bookmarks bar** in Brave.
 
-Validation includes bundled icons for every catalog entry in light/dark mode, service search, clean URLs and reloads, language-prompt styling/restoration, popup launch requests and private-redirect event logic. A complete live private-redirect end-to-end test remains unverified as documented in SECURITY_REVIEW.md. No new permissions, dependencies, URL storage or polling.
+Popup and private launches still use the standalone extension page. The setting is stored locally and uses existing permissions.
 
-Reload the extension and open a fresh tab. To enter a private window directly at Searchscape, use its toolbar popup → Open private Searchscape (Allow in Private must be enabled).
+Replace the files in your existing unpacked extension folder, reload Searchscape at `brave://extensions`, and open a fresh tab.

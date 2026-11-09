@@ -15,5 +15,47 @@ const profile=fs.mkdtempSync(path.join(__dirname,'.test-profile-home-'));let con
   assert.equal(await page.locator('#engine-quick').inputValue(),'google');
  }
  await page.locator('#ecosystem-choice').selectOption('proton');await page.waitForTimeout(300);await page.reload();await page.getByRole('button',{name:'Open services',exact:true}).click();assert.equal(await page.locator('#ecosystem-choice').inputValue(),'proton');console.log('PASS Ecosystem switches show official destinations, preserve the engine choice and survive reload');
+ await page.keyboard.press('Escape');
+ await page.getByRole('button',{name:'Customize',exact:true}).click();
+ const cleanAddressBar=page.getByRole('checkbox',{name:'Clean address bar',exact:true});
+ async function setCleanAddressBar(enabled){
+  await page.evaluate(expected=>{
+   window.cleanAddressBarSaved=new Promise((resolve,reject)=>{
+    const timeout=setTimeout(()=>{chrome.storage.onChanged.removeListener(saved);reject(new Error('Clean address bar setting did not save'));},5000);
+    function saved(changes,area){
+     if(area!=='local'||changes.stillSettings?.newValue?.cleanAddressBar!==expected)return;
+     clearTimeout(timeout);
+     chrome.storage.onChanged.removeListener(saved);
+     resolve();
+    }
+    chrome.storage.onChanged.addListener(saved);
+   });
+  },enabled);
+  await cleanAddressBar.setChecked(enabled);
+  await page.evaluate(()=>window.cleanAddressBarSaved);
+ }
+ assert.equal(await cleanAddressBar.isChecked(),false);
+ await setCleanAddressBar(true);
+
+ const nativeTab=await context.newPage();
+ const cdp=await context.newCDPSession(nativeTab);
+ await nativeTab.goto('chrome://newtab/');
+ await nativeTab.locator('#still-home').waitFor();
+ const {entries,currentIndex}=await cdp.send('Page.getNavigationHistory');
+ assert.equal(entries[currentIndex].userTypedURL,'chrome://newtab/');
+ assert.equal(await nativeTab.evaluate(()=>sessionStorage.getItem('searchscape-standalone')),null);
+ await nativeTab.getByRole('searchbox',{name:'Search Google',exact:true}).waitFor();
+ await nativeTab.close();
+ console.log('PASS Clean address bar keeps the browser-managed New Tab navigation');
+
  await page.goto(home+'?standalone=1&still=customize&section=private');await page.locator('#settings').waitFor({state:'visible'});const box=await page.locator('[data-setting=newTabHome]').boundingBox();assert.ok(box.y>=0&&box.y+box.height<=await page.evaluate(()=>innerHeight));assert.ok(await page.locator('[data-setting=newTabHome]').evaluate(e=>e===e.getRootNode().activeElement));assert.equal(new URL(page.url()).search,'');await page.reload();await page.locator('#still-home').waitFor();assert.equal(new URL(page.url()).search,'');console.log('PASS Private-tab deep link focuses its setting, cleans the address, and reloads without setup parameters');
+ await page.getByRole('button',{name:'Customize',exact:true}).click();
+ assert.equal(await cleanAddressBar.isChecked(),true);
+ await setCleanAddressBar(false);
+ const standaloneTab=await context.newPage();
+ await standaloneTab.goto('chrome://newtab/');
+ await standaloneTab.waitForFunction(()=>sessionStorage.getItem('searchscape-standalone')==='1');
+ await standaloneTab.waitForURL(home);
+ assert.deepEqual(errors,[]);
+ console.log('PASS Turning Clean address bar off restores standalone new tabs');
 })().catch(e=>{console.error(e);process.exitCode=1;}).finally(async()=>{if(context)await context.close();fs.rmSync(profile,{recursive:true});});

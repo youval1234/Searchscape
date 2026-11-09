@@ -19,7 +19,9 @@
 
 ## A popup that matches your theme
 
-Open the homepage, customize it, or jump directly to private-tab setup. The popup displays the selected engine, theme and ecosystem, and follows the saved light/dark appearance. Setup parameters are removed from the visible homepage address after loading; Brave still shows the required extension origin.
+Open the homepage, customize it, or jump directly to private-tab setup. The popup displays the selected engine, theme and ecosystem, and follows the saved light/dark appearance.
+
+For a cleaner address on regular new tabs, turn on **Customize → New tabs → Clean address bar** and open a fresh tab. This uses Brave’s native New Tab layout, which may show its **Customize Brave** footer. The bookmarks row follows Brave’s own settings. To keep it visible, set **Appearance → Show bookmarks bar** to **Always** in Brave. Popup and private launches still open the standalone homepage with its extension address.
 
 <p>
   <img src="docs/v230/popup-dark.png" width="300" alt="Searchscape toolbar popup in dark mode">
@@ -28,7 +30,7 @@ Open the homepage, customize it, or jump directly to private-tab setup. The popu
 
 ## Install or update
 
-1. Download **Searchscape-v2.3.0.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
+1. Download **Searchscape-v2.3.1.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
 2. Open `brave://extensions`, enable **Developer mode**, and choose **Load unpacked**.
 3. Select the extracted folder containing `manifest.json`, then open a new tab. Brave may ask you to confirm the new-tab change.
 
