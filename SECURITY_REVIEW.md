@@ -1,3 +1,7 @@
+## v2.3.5 follow-up
+
+Adds scoped CSS timing overrides for native composer entrance states observed on the live Google results page. Provider hidden/disabled states and native input handling remain intact. Existing results-theme opt-out removes the timing override. No additional scripts, permissions, requests, stored data or dependencies are introduced. Controlled Brave checks verify visibility on the first animation frame, placeholder timing, typing, provider states and restoration when theming is disabled. Google controls when it delivers the native field.
+
 ## v2.3.4 follow-up
 
 Removes the injected AI continuation and its destination scanning. Neutral CSS gradients use the page background consistently for background-image and background shorthand declarations. Existing native links and conversation URLs are preserved. No new permissions, providers, stored identifiers or dependencies are added. Controlled Brave checks cover grid layout, fade colors in both appearances, native AI navigation and composer input, streamed styles and restoration when theming is disabled. The live provider check encountered Google's verification challenge.

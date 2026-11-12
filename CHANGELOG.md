@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.5 — 2026-11-12
+
+- Remove the native AI prompt's entrance fade and slide delay while results theming is enabled.
+- Apply the same immediate timing to its placeholder and entering composer controls, preserving provider visibility and disabled states.
+
 ## 2.3.4 — 2026-11-12
 
 - Remove the duplicate Continue in AI Mode button, which could occupy an extra column or stretch beside Google's answers.

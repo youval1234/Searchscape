@@ -93,6 +93,58 @@ let context;
   assert.equal(new URL(page.url()).searchParams.get('mstk'), nativeAI.searchParams.get('mstk'));
   console.log('PASS Native navigation preserves AI context, themed answer text and the follow-up composer');
 
+  const entrance = await page.evaluate(async () => {
+    const css = document.createElement('style');
+    css.textContent = `
+      @keyframes srp-to-aim-fade-in{from{opacity:0}to{opacity:1}}
+      @keyframes page-enter-ease-in{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
+      @keyframes expanded-page-enter-input-plate{from{opacity:0}to{opacity:1}}
+      @keyframes show-on-expand{0%,17%{opacity:0}100%{opacity:1}}
+      .y4VEUd.QtNC8b{animation:srp-to-aim-fade-in .3s .1s both}
+      .awLKaf .AgWCw{animation:page-enter-ease-in .3s .2s both}
+      .f8NOwb .AgWCw{animation:expanded-page-enter-input-plate .9s both}
+      .f8NOwb.UAbVe .Txyg0d,.UAbVe .NKu3uf{animation:show-on-expand .9s both}
+      .Rc0vkf .ITIRGe::placeholder{animation:show-on-expand .6s both}
+      #native-hidden-composer{display:none}
+    `;
+    document.head.append(css);
+    const host = document.createElement('div');
+    host.id = 'composer-entrance-fixture';
+    host.innerHTML = `<div class="y4VEUd QtNC8b"><div class="f8NOwb UAbVe Rc0vkf">
+      <div class="AgWCw"><div class="Txyg0d"><textarea class="ITIRGe" aria-label="Immediate follow-up" placeholder="Ask anything"></textarea></div>
+      <button class="NKu3uf" disabled>Unavailable action</button></div>
+    </div></div><div class="awLKaf"><div class="AgWCw">Native entry</div></div>
+    <div id="native-hidden-composer">Hidden provider state</div>`;
+    document.body.append(host);
+    await new Promise(requestAnimationFrame);
+    const states = [...host.querySelectorAll('.QtNC8b,.AgWCw,.Txyg0d,.NKu3uf')].map(node => {
+      const style = getComputedStyle(node);
+      return {duration:style.animationDuration,delay:style.animationDelay,opacity:style.opacity};
+    });
+    const placeholder = getComputedStyle(host.querySelector('textarea'),'::placeholder');
+    return {states,placeholderDuration:placeholder.animationDuration,disabled:host.querySelector('button').disabled,hidden:getComputedStyle(host.querySelector('#native-hidden-composer')).display};
+  });
+  for (const state of entrance.states) {
+    assert.equal(state.duration,'0s');
+    assert.equal(state.delay,'0s');
+    assert.equal(state.opacity,'1');
+  }
+  assert.equal(entrance.placeholderDuration,'0s');
+  assert.equal(entrance.disabled,true);
+  assert.equal(entrance.hidden,'none');
+  await page.getByRole('textbox',{name:'Immediate follow-up',exact:true}).fill('Typed immediately');
+  assert.equal(await page.getByRole('textbox',{name:'Immediate follow-up',exact:true}).inputValue(),'Typed immediately');
+  console.log('PASS Native prompt and placeholder entrance animations finish on the first frame while input and provider states remain intact');
+
+  await settings({resultsTheme:false});
+  await page.waitForFunction(()=>!document.documentElement.dataset.grTheme);
+  assert.equal(await page.locator('#composer-entrance-fixture .QtNC8b').evaluate(node=>getComputedStyle(node).animationDuration),'0.3s');
+  assert.equal(await page.locator('#composer-entrance-fixture textarea').evaluate(node=>getComputedStyle(node,'::placeholder').animationDuration),'0.6s');
+  await settings({theme:'sage',appearance:'light',resultsTheme:true});
+  await page.waitForFunction(()=>getComputedStyle(document.documentElement).colorScheme==='light');
+  assert.equal(await page.locator('#composer-entrance-fixture .QtNC8b').evaluate(node=>getComputedStyle(node).animationDuration),'0s');
+  console.log('PASS Composer timing follows the results setting and re-enabling it restores immediate appearance');
+
   await page.goto(search.href);
   await page.locator('#gr-results-home').waitFor();
   await page.locator('.answer-copy').evaluate(node => {

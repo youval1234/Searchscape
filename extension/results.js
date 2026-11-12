@@ -15,6 +15,9 @@
     html[data-gr-theme] :is(.MjjYud,.mnr-c,.kp-wholepage,.related-question-pair,.WZ8Tjf){border-color:var(--gr-line)!important}
     html[data-gr-theme] :is(.erkvQe,.sbct:hover,.sbhl){background-color:var(--gr-soft)!important}
     html[data-gr-theme] ::selection{background:var(--gr-link)!important;color:var(--gr-bg)!important}
+    /* Google delays these composer entrance states with opacity/slide animations. */
+    html[data-gr-theme] :is(.y4VEUd.QtNC8b,.awLKaf .AgWCw,.f8NOwb .AgWCw,.f8NOwb.UAbVe .Txyg0d,.f8NOwb.UAbVe .o8Wipc,.f8NOwb.UAbVe .xm5Wye,.UAbVe .NKu3uf,.UAbVe:not(.YBkage) .o8Wipc,.Rc0vkf .DoMzQb:not(:empty),.Rc0vkf .JRDpTd),
+    html[data-gr-theme] .Rc0vkf .ITIRGe::placeholder{animation-duration:0s!important;animation-delay:0s!important}
     #gr-results-home{position:fixed;right:18px;bottom:17px;z-index:2147482000;display:flex;gap:8px;align-items:center;padding:9px 13px;border-radius:12px;background:var(--gr-panel);color:var(--gr-fg);border:1px solid var(--gr-line);font:11px var(--gr-font,'GR Manrope'),sans-serif;text-decoration:none;box-shadow:0 4px 20px #0002}
     #gr-results-home svg{width:22px;height:22px;color:var(--gr-accent)}
   `;

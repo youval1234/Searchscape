@@ -1,11 +1,9 @@
-# Searchscape v2.3.4
+# Searchscape v2.3.5
 
-- Remove the duplicate **Continue in AI Mode** button added by Searchscape. It could appear at the left edge or stretch into a large empty block beside an answer.
-- Correct the answer fade so its colors blend into the selected page background in light and dark mode, including streamed inline gradients.
-- Preserve Google's native AI Mode tab, answer expansion, conversation links and follow-up input.
+The native AI follow-up prompt now skips its entrance fade and slide delay when Searchscape results theming is enabled. Its placeholder and entering composer controls receive the same immediate timing.
 
-Controlled Brave tests passed for the answer layout, fade colors, native AI navigation, composer input, contrast and restoring native styles. A live Google check reached a verification challenge, so verification against the account-specific live layout remains limited.
+The change uses the native composer selectors and animation rules inspected on the live Google results page. Regression checks in Brave verify the first animation frame, typing, provider hidden/disabled states, and restoring native timing when results theming is switched off. Google controls when it delivers the native field.
 
-To update from v2.3.2 or v2.3.3, replace the files in the existing unpacked extension folder, reload Searchscape at brave://extensions, and refresh the Google results tab.
+To update from v2.3.2 or later, replace the files in the existing unpacked extension folder, reload Searchscape at brave://extensions, and refresh the Google results tab.
 
-If upgrading from v2.3.1 or earlier, export your settings before installing. This release retains the fixed extension identity for cross-computer sync. See SYNC_UPGRADE.md in the ZIP or the repository's browser-sync guide.
+If upgrading from v2.3.1 or earlier, export your settings before installing. See SYNC_UPGRADE.md in the ZIP or the repository's browser-sync guide.
