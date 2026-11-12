@@ -26,13 +26,26 @@
   const serial=fn=>{const next=queue.catch(()=>{}).then(fn);queue=next;return next;};
   const readState=async()=>({enabled:false,...(await chrome.storage.local.get(stateKey))[stateKey]});
   const saveState=state=>chrome.storage.local.set({[stateKey]:state});
+  function baseline(state){
+    try{return preferences(JSON.parse(state.fingerprint));}catch{return null;}
+  }
   async function receive(bundle){
     const state=await readState();if(!state.enabled||bundle?.schema!==1||!Number.isFinite(bundle.at)||!bundle.preferences)return;
     const prefs=preferences(bundle.preferences),fingerprint=JSON.stringify(prefs);
-    if(!Object.keys(prefs).length||bundle.at<=(state.lastStamp||0)||fingerprint===state.fingerprint)return;
+    if(!Object.keys(prefs).length||bundle.at<=(state.lastStamp||0))return;
     const local=(await chrome.storage.local.get('stillSettings')).stillSettings||{};
-    await saveState({...state,fingerprint,lastStamp:bundle.at,lastReceived:Date.now(),error:''});
-    await chrome.storage.local.set({stillSettings:{...local,...prefs}});
+    const previous=baseline(state),pending=preferences(local),merged={...prefs};
+    // Retain edits made here since the last accepted snapshot, including edits
+    // still waiting for the debounce or a retry after a failed browser write.
+    if(previous)for(const [name,value]of Object.entries(pending)){
+      if(JSON.stringify(value)!==JSON.stringify(previous[name]))merged[name]=value;
+    }
+    // Advance the clock even for an identical snapshot, or an older delivery
+    // could roll the settings back later. Commit settings and baseline together.
+    await chrome.storage.local.set({
+      [stateKey]:{...state,fingerprint,lastStamp:bundle.at,lastReceived:Date.now(),error:''},
+      stillSettings:{...local,...merged}
+    });
   }
   async function publish(){
     const state=await readState();if(!state.enabled)return;
@@ -46,26 +59,31 @@
       await saveState({...state,fingerprint,lastStamp:bundle.at,lastSaved:Date.now(),error:''});
     }catch(error){await saveState({...state,error:error.message||'Browser sync could not save. Try again later.'});}
   }
-  async function status(){const state=await readState();return {ok:true,data:{enabled:state.enabled,available:!!chrome.storage.sync,id:chrome.runtime.id,lastSaved:state.lastSaved||null,lastReceived:state.lastReceived||null,error:state.error||''}};}
+  async function status(){const state=await readState();return {ok:true,data:{enabled:state.enabled,available:!!chrome.storage.sync,id:chrome.runtime.id,stableIdentity:!!chrome.runtime.getManifest().key,lastSaved:state.lastSaved||null,lastReceived:state.lastReceived||null,error:state.error||''}};}
+  async function reconcile(){
+    const state=await readState();if(!state.enabled)return;
+    try{
+      if(!chrome.storage.sync)throw new Error('This browser does not expose settings sync. Use Export / Import instead.');
+      const bundle=(await chrome.storage.sync.get(key))[key];
+      if(bundle&&bundle.schema!==1)throw new Error('Update Searchscape on this device before syncing newer preferences.');
+      if(bundle)await receive(bundle);
+      await publish();
+    }catch(error){await saveState({...await readState(),error:error.message||'Browser sync is unavailable.'});}
+  }
   async function request(message){
     return serial(async()=>{
       if(message.type==='browserSyncEnable'){
         if(typeof message.enabled!=='boolean')throw new Error('Choose whether to enable browser sync.');
         const state=await readState();await saveState({...state,enabled:message.enabled,error:''});
       }
-      if(message.type!=='browserSyncStatus'){
-        const state=await readState();if(state.enabled){
-          try{const bundle=(await chrome.storage.sync.get(key))[key];if(bundle)await receive(bundle);await publish();}
-          catch(error){await saveState({...await readState(),error:error.message||'Browser sync is unavailable.'});}
-        }
-      }
+      if(message.type!=='browserSyncStatus')await reconcile();
       return status();
     });
   }
   chrome.storage.onChanged.addListener((changes,area)=>{
-    if(area==='sync'&&changes[key]?.newValue)serial(()=>receive(changes[key].newValue));
-    if(area==='local'&&changes.stillSettings){clearTimeout(timer);timer=setTimeout(()=>serial(publish),650);}
+    if(area==='sync'&&changes[key]?.newValue)serial(reconcile);
+    if(area==='local'&&changes.stillSettings){clearTimeout(timer);timer=setTimeout(()=>serial(reconcile),650);}
   });
-  serial(async()=>{const state=await readState();if(!state.enabled)return;try{const bundle=(await chrome.storage.sync.get(key))[key];if(bundle)await receive(bundle);await publish();}catch(error){await saveState({...await readState(),error:error.message||'Browser sync is unavailable.'});}});
+  serial(reconcile);
   globalThis.SearchscapeSync={request,preferences};
 })();

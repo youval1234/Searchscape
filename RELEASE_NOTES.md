@@ -1,9 +1,21 @@
-# Searchscape v2.3.1
+# Searchscape v2.3.2
 
-- In **Customize → New tabs**, enable **Clean address bar** and open a fresh regular tab. Searchscape uses Brave’s native New Tab layout, so Brave can show its usual address bar instead of the long extension URL.
-- Brave may show its **Customize Brave** footer in this mode. Turn the setting off to return to the footer-free layout. The toggle defaults to off.
-- Keep the bookmarks row below the address bar by selecting **Always** under **Appearance → Show bookmarks bar** in Brave.
+Settings sync now uses a fixed unpacked extension ID across computers and
+installation folders. Incoming settings retain edits that are still waiting to
+be sent, and newer identical updates prevent older settings from rolling back.
 
-Popup and private launches still use the standalone extension page. The setting is stored locally and uses existing permissions.
+**Before upgrading from v2.3.1 or earlier, export your settings from the old
+copy.** The fixed ID is a new extension identity. Install the new copy, disable
+the old one, and import your export. Keep your old folder and export until you
+have checked the result. [Step-by-step migration](docs/browser-sync.md)
 
-Replace the files in your existing unpacked extension folder, reload Searchscape at `brave://extensions`, and open a fresh tab.
+On both desktop computers, join the same Brave Sync chain, enable its
+**Extensions** category, and enable Searchscape's **Customize → Across your
+devices → Use browser settings sync** once. Future allowed preference changes
+are sent automatically. Notes, photos, name, location, and SearXNG addresses
+remain local.
+
+Brave Sync cannot install or update an unpacked GitHub ZIP automatically. Each
+computer needs a one-time installation; a Chrome Web Store listing is required
+for the supported automatic-install/update path. “Saved to browser sync
+storage” confirms a browser write, not delivery to another PC.

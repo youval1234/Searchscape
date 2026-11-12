@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Searchscape",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Your personal homepage with themes, shortcuts and your choice of search engine.",
   "permissions": [
     "storage",
@@ -104,5 +104,6 @@
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "home.html"
-  }
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmvEuTN+4hERqyNAjiIg5jshURD4jDPTUIwBz8h/wM8OvMgEcUqPOGaIMGgk+tpoiUIWOx/4N5thI+BYBnxjjAvI/hpFF8DqsQwh1uSYHxvy7JwdR9sc+R3l3W3lkN7yqC6/rnwW5Bt3HxoqjENICMMo6VufVzWr5xWuTFTPZ10eJTum3j7YSV0xexXrWKoPC/DtKabFYbEUmp0XmSMMfyuLJ2QApx3T7D940Q3A6XqCVgrISGx9PVswzTtR8ato1+R8Va5jtJ8jyJmW0GQnrwBiGIlhEOpcm2jNatATPSKRMp7GcGo3ud8ND1FVNQJwA+9kLb1JYPp57L/q4zgZAaQIDAQAB"
 }
