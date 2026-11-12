@@ -22,7 +22,7 @@ async function launch(folder,profile){
  await page.goto(`chrome-extension://${b.id}/home.html?still=customize`);await page.locator('#settings').waitFor({state:'visible'});
  await page.waitForFunction(()=>!document.querySelector('#still-home').shadowRoot.querySelector('#browser-sync').disabled);
  assert.equal(await page.locator('#browser-sync').isChecked(),true);assert.match(await page.locator('#sync-id').innerText(),/Fixed across unpacked installation folders/);
- assert.match(await page.locator('#sync-now').locator('..').innerText(),/cannot be installed or updated automatically/);
+ assert.match(await page.locator('#sync-now').locator('..').innerText(),/Brave Sync does not copy unpacked extension files/);
  console.log('PASS Homepage explains one-time opt-in, installation limits and the fixed ID');
  await a.worker.evaluate(async()=>{const settings=(await chrome.storage.local.get('stillSettings')).stillSettings;await chrome.storage.local.set({stillSettings:{...settings,theme:'solar',font:'outfit'}});});
  await new Promise(resolve=>setTimeout(resolve,900));

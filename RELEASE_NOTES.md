@@ -15,7 +15,6 @@ devices → Use browser settings sync** once. Future allowed preference changes
 are sent automatically. Notes, photos, name, location, and SearXNG addresses
 remain local.
 
-Brave Sync cannot install or update an unpacked GitHub ZIP automatically. Each
-computer needs a one-time installation; a Chrome Web Store listing is required
-for the supported automatic-install/update path. “Saved to browser sync
-storage” confirms a browser write, not delivery to another PC.
+Each computer needs a one-time installation of the same fixed-ID build.
+Preference changes then use your existing Brave Sync chain. “Saved to browser sync storage” confirms a browser write, not delivery
+to another PC.

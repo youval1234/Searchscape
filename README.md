@@ -48,9 +48,10 @@ your devices → Use browser settings sync** once on each. Preference changes
 then sync automatically. v2.3.2 pins the unpacked extension ID to
 `lhllfnnfbpnoihkfocciliakpjpkplfg` regardless of installation folder.
 
-**Brave Sync cannot automatically install or update the GitHub ZIP.** That needs
-a Chrome Web Store release. Saving to browser sync storage does not itself
-confirm delivery to another computer. [Setup, migration, and troubleshooting](docs/browser-sync.md)
+Load the same fixed-ID build once on each computer. Preference changes then use
+your existing Brave Sync chain. Saving to browser
+sync storage does not itself confirm delivery to another computer.
+[Setup, migration, and troubleshooting](docs/browser-sync.md)
 
 ## Private windows
 

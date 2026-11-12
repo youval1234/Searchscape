@@ -53,24 +53,19 @@ Future unpacked updates can replace files in the same folder and use Reload.
 Keep the manifest key unchanged. Disabling Searchscape sync stops sending and
 receiving; it does not delete the existing browser sync copy.
 
-## Automatic installation on other computers
+## Use on your two computers
 
-A Chrome Web Store release is required for the supported automatic-install and
-automatic-update path in Brave. The current GitHub ZIP still needs one manual
-installation on each computer. Adding a key or `storage.sync` code cannot remove
-this browser restriction.
+Load the same fixed-ID build once on each computer and enable preference sync
+on both. Preferences then use your existing Brave Sync chain.
 
-For publication, upload the packaged extension through your Chrome Web Store
-developer account and use the **public key assigned by that listing** in future
-unpacked builds. The store determines the installed extension ID; uploading this
-ZIP does not promise the unpacked ID above will be retained. Plan one settings
-export/import when moving to the store ID and keep that listing/key stable.
-Do not add a fake store update URL or distribute a signing private key.
+Brave Sync does not copy unpacked extension files between computers, so each
+computer needs that one-time installation. Keep the fixed manifest key unchanged
+on both computers.
 
 ## Troubleshooting and scope
 
-- **No extension appeared:** install the GitHub ZIP manually, or use the store
-  listing once one exists. Searchscape cannot install itself on another PC.
+- **No extension appeared:** load the same fixed-ID build on that computer once.
+  Searchscape cannot install itself on another PC.
 - **Different IDs:** install the same fixed-ID release. Old settings must be
   exported from their old identity and imported into the new one.
 - **Off:** turn on the Searchscape switch on each computer as well as Brave's
@@ -95,7 +90,7 @@ are separate browser features.
 - [Chromium extension sync eligibility](https://source.chromium.org/chromium/chromium/src/+/main:chrome/common/extensions/sync_helper.cc)
   excludes unpacked installation locations.
 - [Manifest key documentation](https://developer.chrome.com/docs/extensions/reference/manifest/key)
-  explains stable development IDs and obtaining a store listing's public key.
+  explains stable unpacked extension IDs.
 - [Extension storage documentation](https://developer.chrome.com/docs/extensions/reference/api/storage)
   describes storage namespaces, offline behavior, and quotas.
 - [Brave Sync setup](https://support.brave.app/hc/en-us/articles/360021218111-How-do-I-set-up-Sync)

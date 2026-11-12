@@ -5,7 +5,7 @@
 - Pin unpacked installations to one public-key extension ID so different computer/folder paths share the same preference-sync namespace.
 - Preserve pending local edits when receiving updates, retry them after worker restarts or failed writes, and reject stale snapshots after identical newer deliveries.
 - Preserve unknown newer sync schemas and show an update notice instead of overwriting them.
-- Explain one-time opt-in, ID migration, and the Web Store requirement for automatic installation. Export before upgrading from a folder-based ID.
+- Explain one-time installation and opt-in on each computer, and ID migration. Export before upgrading from a folder-based ID.
 - Add deterministic multi-device regressions and native Brave tests for different installation folders and live page updates with simulated delivery.
 
 ## 2.3.1 — 2026-11-09
