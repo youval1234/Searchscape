@@ -17,8 +17,13 @@
     html[data-gr-theme] ::selection{background:var(--gr-link)!important;color:var(--gr-bg)!important}
     #gr-results-home{position:fixed;right:18px;bottom:17px;z-index:2147482000;display:flex;gap:8px;align-items:center;padding:9px 13px;border-radius:12px;background:var(--gr-panel);color:var(--gr-fg);border:1px solid var(--gr-line);font:11px var(--gr-font,'GR Manrope'),sans-serif;text-decoration:none;box-shadow:0 4px 20px #0002}
     #gr-results-home svg{width:22px;height:22px;color:var(--gr-accent)}
+    #gr-results-ai{display:inline-flex;align-items:center;gap:9px;margin:16px 0;padding:11px 17px;border:1px solid var(--gr-line);border-radius:24px;background:var(--gr-panel);color:var(--gr-link);font:600 14px/1.5 var(--gr-font,'GR Manrope'),Arial,sans-serif;text-decoration:none}
+    #gr-results-ai:hover{background:var(--gr-soft)}
+    #gr-results-ai:focus-visible{outline:2px solid var(--gr-accent);outline-offset:3px}
   `;
   const button=document.createElement('a');button.id='gr-results-home';button.href=location.origin+'/?still=customize';button.innerHTML=Searchscape.logo+'<span>Searchscape</span>';button.title='Customize your Searchscape theme';
+  const aiLink=document.createElement('a');aiLink.id='gr-results-ai';aiLink.textContent='Continue in AI Mode →';
+  aiLink.title='Open Google AI Mode to ask follow-up questions';
   let current={},enabled=true,scanScheduled=false;
   const originals=new Map(),inlineOriginals=new Map();
   const rgb=hex=>[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)).join(', ');
@@ -27,7 +32,7 @@
     if(!document.documentElement)return;
     enabled=settings.resultsTheme!==false;
     const html=document.documentElement;
-    if(!enabled){delete html.dataset.grTheme;style.remove();bridge.remove();button.remove();for(const [key,saved]of originals){if(saved.value)html.style.setProperty(key,saved.value,saved.priority);else html.style.removeProperty(key);}originals.clear();for(const [node,values]of inlineOriginals)for(const [key,saved]of values){if(saved.value)node.style.setProperty(key,saved.value,saved.priority);else node.style.removeProperty(key);}inlineOriginals.clear();return;}
+    if(!enabled){delete html.dataset.grTheme;style.remove();bridge.remove();button.remove();aiLink.remove();for(const [key,saved]of originals){if(saved.value)html.style.setProperty(key,saved.value,saved.priority);else html.style.removeProperty(key);}originals.clear();for(const [node,values]of inlineOriginals)for(const [key,saved]of values){if(saved.value)node.style.setProperty(key,saved.value,saved.priority);else node.style.removeProperty(key);}inlineOriginals.clear();return;}
     const {theme,dark,colors,accent}=Searchscape.palette(settings);
     html.style.setProperty('--gr-font',Searchscape.loadFont(settings.font));html.dataset.grTheme=theme.id;html.style.setProperty('--gr-scheme',dark?'dark':'light');
     const variables={'--gr-bg':colors[0],'--gr-fg':colors[1],'--gr-muted':dark?colors[2]:'#4b5563','--gr-line':colors[3],'--gr-soft':colors[4],'--gr-panel':dark?colors[4]:'#ffffff','--gr-link':dark?'#b6caff':'#2447a6','--gr-accent':accent,'--gr-bg-rgb':rgb(colors[0]),'--gr-panel-rgb':rgb(dark?colors[4]:'#ffffff')};
@@ -37,6 +42,27 @@
     mount();scheduleScan();
   }
   const nativeVariables={}; // Google's private variable names can serve multiple roles. Keep their definitions intact.
+  function updateAIContinuation(){
+    const current=new URL(location.href);
+    if(!current.searchParams.get('q')||current.searchParams.has('udm')||current.searchParams.has('tbm')){aiLink.remove();return;}
+    const overview=[...document.querySelectorAll('[data-attrid="SGEAnswer"],[data-attrid="VisualDigestGeneratedDescription"],[data-mcpr]')].find(node=>node.getBoundingClientRect().height>0&&getComputedStyle(node).visibility!=='hidden'&&!node.closest('[inert]'));
+    function destination(root,sameQuery=false){
+      for(const link of root.querySelectorAll('a[href]')){
+        if(link===aiLink)continue;
+        try{
+          const url=new URL(link.getAttribute('href'),location.href);
+          if(url.protocol==='https:'&&['www.google.com','google.com','www.google.co.il','google.co.il'].includes(url.hostname)&&!url.username&&!url.password&&!url.port&&url.pathname==='/search'&&url.searchParams.get('udm')==='50'&&(!sameQuery||url.searchParams.get('q')===current.searchParams.get('q')))return url.href;
+        }catch{}
+      }
+    }
+    // Reuse Google's complete URL, including any context carried by its AI continuation.
+    const target=(overview&&destination(overview))||destination(document,true);
+    const container=overview||document.querySelector('#search,#rso,main,[role="main"]');
+    if(!target||!container){aiLink.remove();return;}
+    if(aiLink.href!==target)aiLink.href=target;
+    if(overview){if(aiLink.previousElementSibling!==overview)overview.after(aiLink);}
+    else if(aiLink.parentElement!==container)container.prepend(aiLink);
+  }
   function neutralToken(token,target){
     if(token.includes('var('))return token;
     let channels,alpha=1;
@@ -52,6 +78,7 @@
   const colors=/#(?:[a-f\d]{8}|[a-f\d]{6}|[a-f\d]{4}|[a-f\d]{3})\b|rgba?\([^)]*\)/gi;
   function scanSurfaces(){
     scanScheduled=false;if(!enabled)return;
+    updateAIContinuation();
     const rules=[],sources=[],definitions=new Map();let visited=0,inspected=0;
     const properties=['background-color','background-image','background','border-color','color'];
     const targetFor=property=>property==='color'?'--gr-fg':property==='border-color'?'--gr-line':property==='background-image'?'--gr-bg':'--gr-panel';
@@ -126,11 +153,12 @@
   new MutationObserver(records=>{
     for(const record of records){
       if(record.target===style||record.target===bridge)continue;
-      if(record.type==='attributes'){const value=record.target.getAttribute('style')||'';if(/background|color|--/.test(value)){scheduleScan();return;}continue;}
+      if(record.type==='attributes'){if(record.attributeName==='href'){if(record.target!==aiLink)scheduleScan();continue;}const value=record.target.getAttribute('style')||'';if(/background|color|--/.test(value)){scheduleScan();return;}continue;}
       if(record.target.tagName==='STYLE'){scheduleScan();return;}
       for(const node of record.addedNodes)if(node!==style&&node!==bridge&&node.nodeType===1&&(node.tagName==='STYLE'||node.tagName==='LINK'||node.textContent?.trim()||node.hasAttribute('style')||node.querySelector?.('style,[style]'))){scheduleScan();return;}
     }
-  }).observe(document,{childList:true,subtree:true,attributes:true,attributeFilter:['style']});
+  }).observe(document,{childList:true,subtree:true,attributes:true,attributeFilter:['style','href']});
+  addEventListener('popstate',scheduleScan);
   chrome.storage.onChanged.addListener((changes,area)=>{if(area==='local'&&changes.stillSettings){current=changes.stillSettings.newValue||{};apply(current);}});
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(Searchscape.appearance(current)==='system')apply(current);});
 })();

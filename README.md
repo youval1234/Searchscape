@@ -32,7 +32,7 @@ For a cleaner address on regular new tabs, turn on **Customize → New tabs → 
 
 **Upgrading from v2.3.1 or earlier? Export your settings before replacing files.** v2.3.2 adds a fixed extension ID, so Brave treats it as a new identity. Follow the [one-time migration guide](docs/browser-sync.md#upgrade-from-v231-or-earlier-without-losing-settings) to preserve your settings.
 
-1. Download **Searchscape-v2.3.2.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
+1. Download **Searchscape-v2.3.3.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
 2. Open `brave://extensions`, enable **Developer mode**, and choose **Load unpacked**.
 3. Select the extracted folder containing `manifest.json`, then open a new tab. Brave may ask you to confirm the new-tab change.
 

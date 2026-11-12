@@ -66,7 +66,7 @@ async function check(name,fn){await fn();checks.push(name);console.log('PASS '+n
  });
  await check('All themes and both appearance modes remain selectable',async()=>{
    await page.getByRole('button',{name:'Customize',exact:true}).click();assert.equal(await page.locator('[data-theme-choice]').count(),52);
-   for(const theme of await page.locator('[data-theme-choice]').all()){await theme.click();for(const appearance of ['light','dark']){await page.locator(`[data-appearance-choice=${appearance}]`).click();assert.equal(await page.locator('.app').getAttribute('data-appearance'),appearance);}}
+   for(const theme of await page.locator('[data-theme-choice]').all()){await theme.click();for(const appearance of ['light','dark']){await page.locator(`[data-appearance-choice=${appearance}]`).click();await page.waitForFunction(expected=>document.querySelector('#still-home').shadowRoot.querySelector('.app').dataset.appearance===expected,appearance);assert.equal(await page.locator('.app').getAttribute('data-appearance'),appearance);}}
    await page.getByRole('button',{name:'Aurora',exact:true}).click();await page.getByRole('button',{name:'Dark',exact:true}).click();await page.getByRole('combobox',{name:'Homepage font',exact:true}).selectOption('manrope');await page.getByRole('button',{name:'Close customization'}).click();
  });
  await check('Mystic and Solar use distinct palettes and animated atmospheres',async()=>{

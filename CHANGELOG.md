@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.3 — 2026-11-12
+
+- Add a visible Continue in AI Mode link to Google results when Google supplies an AI Mode destination. Prefer its native answer continuation URL to preserve any conversation context.
+- Refresh the link as answers stream or native destinations change, and keep Google’s AI Mode composer available after navigation.
+
+
 ## 2.3.2 — 2026-11-12
 
 - Pin unpacked installations to one public-key extension ID so different computer/folder paths share the same preference-sync namespace.
