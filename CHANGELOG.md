@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.4 — 2026-11-12
+
+- Remove the duplicate Continue in AI Mode button, which could occupy an extra column or stretch beside Google's answers.
+- Blend neutral answer gradients into the page background consistently, including CSS background shorthands and streamed inline styles.
+- Keep Google's native AI Mode navigation, answer expansion and follow-up composer usable.
+
 ## 2.3.3 — 2026-11-12
 
 - Add a visible Continue in AI Mode link to Google results when Google supplies an AI Mode destination. Prefer its native answer continuation URL to preserve any conversation context.

@@ -120,7 +120,7 @@
   let settings, mode = 'all', activeTab='home', classic = false, saveQueue = Promise.resolve(), noteTimer, clockTimer, saveTimer;
   let saveWaiters = [], shortcutDrag = null;
   const repoURL = 'https://github.com/youval1234/Searchscape';
-  const version = preview ? '2.3.3' : chrome.runtime.getManifest().version;
+  const version = preview ? '2.3.4' : chrome.runtime.getManifest().version;
   const dateFormatter = new Intl.DateTimeFormat('en', {weekday:'long',month:'long',day:'numeric'});
   const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone.replaceAll('_',' ').replaceAll('/',' / ');
   const hiddenSiblings = new Map();

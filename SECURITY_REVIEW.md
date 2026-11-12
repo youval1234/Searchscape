@@ -1,3 +1,7 @@
+## v2.3.4 follow-up
+
+Removes the injected AI continuation and its destination scanning. Neutral CSS gradients use the page background consistently for background-image and background shorthand declarations. Existing native links and conversation URLs are preserved. No new permissions, providers, stored identifiers or dependencies are added. Controlled Brave checks cover grid layout, fade colors in both appearances, native AI navigation and composer input, streamed styles and restoration when theming is disabled. The live provider check encountered Google's verification challenge.
+
 ## v2.3.3 follow-up
 
 The AI continuation action copies only HTTPS Google search destinations with `udm=50` from the current page. Result-navigation destinations must carry the current query, and answer-specific links take priority. The link is inserted as a normal page element and leaves native controls available. The change adds no permission, provider, background request or stored query. Controlled tests cover context preservation, dynamic changes, composer input, theming and lookalike-host rejection. A live Google request encountered a provider verification challenge, so account-specific availability remains unverified. The supplied private video and extracted frames stay in ignored local test output.

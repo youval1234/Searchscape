@@ -16,94 +16,98 @@ let context;
   });
   const worker = context.serviceWorkers()[0] || await context.waitForEvent('serviceworker');
   const settings = value => worker.evaluate(value => chrome.storage.local.set({ stillSettings: value }), value);
-  await settings({ theme: 'paper', appearance: 'dark', resultsTheme: true });
-  const query = 'sample question & שלום';
+  await settings({ theme: 'sage', appearance: 'dark', resultsTheme: true });
   const search = new URL('https://www.google.com/search');
-  search.searchParams.set('q', query);
+  search.searchParams.set('q', 'sample question & test');
   const nativeAI = new URL(search);
   nativeAI.searchParams.set('udm', '50');
   nativeAI.searchParams.set('mstk', 'synthetic-context_%2B/only');
-  const fixture = `<!doctype html><html><body>
+  const fixture = `<!doctype html><html><head><style>
+    body{background:#202124;color:#e8eaed}
+    #search{display:grid;grid-template-columns:240px minmax(0,1fr);align-items:stretch}
+    .answer{grid-column:2;position:relative;min-width:0}
+    .answer-copy{max-height:140px;overflow:hidden;position:relative}
+    .fade{position:absolute;inset:auto 0 0;height:80px;pointer-events:none;
+      background:linear-gradient(0deg,#303134 20%,rgba(48,49,52,0) 100%)}
+  </style></head><body>
     <nav><a id="ai-tab">AI Mode</a></nav>
-    <main id="search"><section data-attrid="SGEAnswer" style="max-height:100px;overflow:hidden">
-      <h2>AI Overview</h2><p>A synthetic AI answer.</p>
-      <div id="answer-actions"><button id="native-action">Native action</button></div>
+    <main id="search"><section class="answer" data-attrid="SGEAnswer">
+      <div class="answer-copy"><h2>AI Overview</h2>
+        <p>A synthetic AI answer.</p><p>More answer text.</p><p>The rest of the answer.</p>
+        <div class="fade"></div>
+      </div>
+      <button id="show-more">Show more</button>
+      <div id="answer-actions"><a id="native-continuation">Dive deeper in AI Mode</a></div>
     </section></main>
   </body></html>`;
   await context.route('https://www.google.com/**', route => route.fulfill({
     contentType: 'text/html',
     body: new URL(route.request().url()).searchParams.get('udm') === '50'
-      ? '<!doctype html><main id="search"><textarea aria-label="Ask anything"></textarea><button>Send</button></main>'
+      ? '<!doctype html><html><body><main id="search"><p id="ai-answer">An AI answer.</p><textarea aria-label="Ask anything"></textarea><button>Send</button></main></body></html>'
       : fixture
   }));
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(search.href);
-  await page.waitForFunction(() => document.documentElement.dataset.grTheme);
-  assert.equal(await page.locator('#gr-results-ai').count(), 0);
-
   await page.locator('#ai-tab').evaluate((node, href) => node.href = href, nativeAI.href);
-  const continuation = page.getByRole('link', { name: 'Continue in AI Mode →', exact: true });
-  await continuation.waitFor();
-  assert.equal(await continuation.getAttribute('href'), nativeAI.href);
-  assert.equal(await continuation.evaluate(node => {
-    const box = node.getBoundingClientRect();
-    return node.contains(document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2));
-  }), true);
-  await expectNativeControls();
-  console.log('PASS Missing follow-up entry gains a visible AI Mode link using Google’s complete URL');
+  await page.locator('#native-continuation').evaluate((node, href) => node.href = href, nativeAI.href);
+  await page.waitForFunction(() => document.documentElement.dataset.grTheme);
+  await page.locator('#gr-results-home').waitFor();
+  assert.equal(await page.locator('#gr-results-ai').count(), 0);
+  assert.equal(await page.locator('#search > *').count(), 1);
+  assert.equal(await page.locator('#native-continuation').getAttribute('href'), nativeAI.href);
+  assert.equal(await page.getByRole('button', { name: 'Show more', exact: true }).isVisible(), true);
+  console.log('PASS Results keep native AI links and the answer grid without a duplicate continuation block');
 
-  const thread = new URL(nativeAI);
-  thread.searchParams.set('mstk', 'updated-context');
-  await page.locator('#answer-actions').evaluate((node, href) => {
-    const link = document.createElement('a');
-    link.id = 'native-continuation';
-    link.href = href;
-    link.textContent = 'Dive deeper in AI Mode';
-    node.append(link);
-  }, thread.href);
-  await page.waitForFunction(href => document.getElementById('gr-results-ai')?.href === href, thread.href);
-  assert.equal(await page.locator('#gr-results-ai').count(), 1);
-  console.log('PASS Streamed native continuation takes priority and preserves its conversation context');
+  for (const appearance of ['dark', 'light']) {
+    await settings({ theme: 'sage', appearance, resultsTheme: true });
+    await page.waitForFunction(mode => getComputedStyle(document.documentElement).colorScheme === mode, appearance);
+    await page.waitForFunction(() => {
+      const color = getComputedStyle(document.body).backgroundColor;
+      return getComputedStyle(document.querySelector('.fade')).backgroundImage.includes(color);
+    });
+    assert.equal(await page.locator('.fade').evaluate(node => {
+      const box = node.getBoundingClientRect();
+      const answer = document.querySelector('.answer').getBoundingClientRect();
+      return box.left >= answer.left && box.right <= answer.right;
+    }), true);
+  }
+  await page.locator('#show-more').evaluate(node => {
+    node.onclick = () => {
+      document.querySelector('.answer-copy').style.maxHeight = 'none';
+      document.querySelector('.fade').hidden = true;
+    };
+  });
+  await page.getByRole('button', { name: 'Show more', exact: true }).click();
+  assert.equal(await page.locator('.fade').isVisible(), false);
+  console.log('PASS Collapsed-answer gradients blend into the page in both appearances and expansion stays usable');
 
-  thread.searchParams.set('mstk', 'href-only-update');
-  await page.locator('#native-continuation').evaluate((node, href) => node.href = href, thread.href);
-  await page.waitForFunction(href => document.getElementById('gr-results-ai')?.href === href, thread.href);
-  await settings({ theme: 'paper', appearance: 'light', resultsTheme: true });
-  await page.waitForFunction(() => getComputedStyle(document.documentElement).colorScheme === 'light');
-  await continuation.waitFor();
-  await continuation.click();
-  await page.waitForURL(thread.href);
+  await page.getByRole('link', { name: 'Dive deeper in AI Mode', exact: true }).click();
+  await page.waitForURL(nativeAI.href);
+  await page.locator('#gr-results-home').waitFor();
   await page.getByRole('textbox', { name: 'Ask anything' }).fill('A follow-up question');
+  assert.equal(await page.locator('#ai-answer').isVisible(), true);
   assert.equal(await page.locator('#gr-results-ai').count(), 0);
   assert.equal(await page.getByRole('textbox', { name: 'Ask anything' }).inputValue(), 'A follow-up question');
-  console.log('PASS Link navigation reaches AI Mode and leaves its native follow-up composer usable');
+  assert.equal(new URL(page.url()).searchParams.get('mstk'), nativeAI.searchParams.get('mstk'));
+  console.log('PASS Native navigation preserves AI context, themed answer text and the follow-up composer');
 
   await page.goto(search.href);
-  await page.locator('#ai-tab').evaluate((node, href) => node.href = href, nativeAI.href);
-  await continuation.waitFor();
+  await page.locator('#gr-results-home').waitFor();
+  await page.locator('.answer-copy').evaluate(node => {
+    const fade = document.createElement('div');
+    fade.id = 'streamed-fade';
+    fade.style.background = 'linear-gradient(to top, rgb(48, 49, 52), rgba(48, 49, 52, 0))';
+    node.append(fade);
+  });
+  await page.waitForFunction(() => getComputedStyle(document.getElementById('streamed-fade')).backgroundImage.includes(getComputedStyle(document.body).backgroundColor));
   await settings({ resultsTheme: false });
-  await page.waitForFunction(() => !document.getElementById('gr-results-ai'));
-  await expectNativeControls();
-  await settings({ resultsTheme: true });
-  await continuation.waitFor();
-  await page.locator('[data-attrid="SGEAnswer"]').evaluate(node => node.hidden = true);
-  await page.locator('#ai-tab').evaluate(node => node.href += '&new-layout=1');
-  await page.waitForFunction(() => document.getElementById('gr-results-ai')?.parentElement?.id === 'search');
-  assert.equal(await continuation.isVisible(), true);
-  await page.locator('#ai-tab').evaluate(node => node.href = 'https://www.google.com/search?q=unrelated&udm=50');
-  await page.waitForFunction(() => !document.getElementById('gr-results-ai'));
-  await page.locator('#ai-tab').evaluate(node => node.href = 'https://www.google.com.evil.test/search?q=sample&udm=50');
-  assert.equal(await page.locator('#gr-results-ai').count(), 0);
+  await page.waitForFunction(() => !document.documentElement.dataset.grTheme);
+  assert.equal(await page.locator('.fade').evaluate(node => getComputedStyle(node).backgroundImage.includes('rgb(48, 49, 52)')), true);
+  assert.equal(await page.locator('#streamed-fade').evaluate(node => node.style.backgroundImage.includes('rgb(48, 49, 52)')), true);
   assert.deepEqual(errors, []);
-  console.log('PASS Disabling results enhancements restores Google’s native controls');
-  console.log('PASS Hidden answer layouts use the visible results area and unrelated or lookalike links are ignored');
-
-  async function expectNativeControls() {
-    assert.equal(await page.locator('#native-action').isVisible(), true);
-    assert.equal(await page.locator('#native-action').evaluate(node => !!node.closest('[inert],[aria-hidden="true"]')), false);
-  }
+  console.log('PASS Streamed inline fades receive the same repair and disabling theming restores native gradients');
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;
