@@ -1,6 +1,6 @@
 {
   "name": "searchscape",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "private": true,
   "description": "A customizable search homepage extension for Brave and Chromium.",
   "scripts": {

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.1 — 2026-11-19
+
+- Redraw GTA VI · Miami as a painted Vice City boulevard with animated traffic, helicopter patrol, brake lights, petals and puddles. Portrait layouts frame the motel and supercar.
+
 ## 2.4.0 — 2026-11-19
 
 - Add GTA VI · Miami to Coastal Escapes, bringing the catalog to 53 themes.

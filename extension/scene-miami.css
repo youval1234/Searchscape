@@ -1,38 +1,87 @@
-/* Sunset and neon hues complement the user's light/dark preference. */
-.app[data-theme=miami]{--miami-pink:#db719e;--miami-cyan:#277e91;--miami-peach:#b87560;--miami-ink:#3e3456;--miami-stone:#e4b3c1;--miami-palm:#365b61}
-.app[data-theme=miami][data-appearance=dark]{--miami-pink:#f581c6;--miami-cyan:#66d9d5;--miami-peach:#ffd3ab;--miami-ink:#171c35;--miami-stone:#76526f;--miami-palm:#162f3b}
-.app[data-theme=miami] .scene{opacity:.95}
-.app[data-theme=miami] .wash{background:radial-gradient(ellipse at 100% 30%,color-mix(in srgb,var(--miami-pink) 13%,transparent),transparent 51%),linear-gradient(170deg,var(--bg),color-mix(in srgb,var(--bg) 94%,var(--miami-cyan)))!important}
-.theme[data-theme-choice=miami] .theme-sample{background:linear-gradient(155deg,#32223e 20%,#dc81ae 62%,#64bcbf)!important}
-.theme[data-theme-choice=miami] .theme-emblem{color:#fff0f3;letter-spacing:-2px;font:bold 25px/1 'GR Outfit',Arial,sans-serif}
-.app[data-theme=miami] .miami-flight{transform:translate(0,140px)}
-.app[data-motion=on] .miami-fronds{animation:miami-breeze 10s var(--miami-phase,0s) ease-in-out infinite alternate;transform-origin:0 0}
-.app[data-motion=on] .miami-clouds{animation:miami-cloud-drift 38s ease-in-out infinite alternate}
-.app[data-motion=on] .miami-sun{animation:miami-sun-breathe 18s ease-in-out infinite alternate;transform-origin:1400px 337px}
-.app[data-motion=on] .miami-sun-reflections{animation:miami-reflect 8s ease-in-out infinite alternate}
-.app[data-motion=on] .miami-ripple{animation:miami-water 9s var(--miami-phase,0s) ease-in-out infinite alternate}
-.app[data-motion=on] .miami-window-lights{animation:miami-nightfall 17s var(--miami-phase,0s) ease-in-out infinite alternate}
-.app[data-motion=on] .miami-marquee{animation:miami-neon 8s ease-in-out infinite alternate}
-.app[data-motion=on] .miami-car-a{animation:miami-drive 17s -3s linear infinite}
-.app[data-motion=on] .miami-car-b{animation:miami-drive 23s -14s linear infinite reverse}
-.app[data-motion=on] .miami-boat{animation:miami-cruise 29s -9s ease-in-out infinite}
-.app[data-motion=on] .miami-flamingo{animation:miami-bird 7s ease-in-out infinite alternate;transform-origin:0 10px}
-.app[data-motion=on][data-theme=miami] .miami-flight{animation:miami-overflight 85s -23s linear infinite}
-.app[data-motion=on] .miami-navigation-light{animation:miami-beacon 4s ease-in-out infinite}
-.app[data-theme=miami][data-motion-intensity=subtle] .scene{opacity:.55}
-@keyframes miami-breeze{from{transform:rotate(-2deg) skewX(-1deg)}to{transform:rotate(3deg) skewX(1deg)}}
-@keyframes miami-cloud-drift{from{transform:translateX(-14px)}to{transform:translateX(22px)}}
-@keyframes miami-sun-breathe{from{opacity:.8;transform:translateY(-3px)}to{opacity:1;transform:translateY(5px)}}
-@keyframes miami-reflect{from{transform:translateX(-8px) scaleX(.99);opacity:.5}to{transform:translateX(9px) scaleX(1.01);opacity:.85}}
-@keyframes miami-water{from{transform:translateX(-7px);opacity:.45}to{transform:translateX(9px);opacity:.9}}
-@keyframes miami-nightfall{from{opacity:.45}to{opacity:.95}}
-@keyframes miami-neon{from{opacity:.72}to{opacity:1}}
-@keyframes miami-drive{0%{transform:translateX(-90px);opacity:0}8%,85%{opacity:1}100%{transform:translateX(420px);opacity:0}}
-@keyframes miami-cruise{0%{transform:translate(0,0);opacity:0}12%{opacity:1}50%{transform:translate(115px,-2px)}85%{opacity:1}100%{transform:translate(235px,0);opacity:0}}
-@keyframes miami-bird{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
-@keyframes miami-overflight{0%{transform:translate(-80px,155px);opacity:0}7%,90%{opacity:.7}100%{transform:translate(1650px,107px);opacity:0}}
-@keyframes miami-beacon{0%,35%,55%,100%{opacity:.25}45%{opacity:1}}
-@media(max-width:650px){
-  .app[data-theme=miami] .theme-art{opacity:.55}
-  .app[data-theme=miami] .miami-hotel{opacity:.55}
+.app[data-theme=miami] {
+  --miami-veil: #ffeddf;
+  --miami-edge: .15;
+}
+.app[data-theme=miami][data-appearance=dark] {
+  --miami-veil: #201428;
+  --miami-edge: .23;
+}
+.app[data-theme=miami] .theme-art {
+  container-type: size;
+  overflow: hidden;
+  mask-image: none;
+  opacity: 1;
+}
+.app[data-theme=miami] .theme-art > svg {
+  position: absolute;
+  width: max(100cqw, 160cqh);
+  height: max(100cqh, 62.5cqw);
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  background: url("miami-boulevard.webp") center / 100% 100% no-repeat;
+}
+.app[data-theme=miami] .theme-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 45% 51% at 50% 41%, var(--miami-veil) 3%, color-mix(in srgb, var(--miami-veil) 91%, transparent) 42%, transparent 100%),
+    linear-gradient(to bottom, color-mix(in srgb, var(--miami-veil) 95%, transparent), transparent 17%, transparent 91%, color-mix(in srgb, var(--miami-veil) 56%, transparent)),
+    rgb(from var(--miami-veil) r g b / var(--miami-edge));
+}
+.app[data-theme=miami][data-motion-intensity=subtle] .scene { opacity: .55; }
+.app[data-theme=miami].has-photo .theme-art { opacity: .35; }
+.app[data-theme=miami] .modes, .app[data-theme=miami] .section-head {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-radius: 12px;
+}
+.app[data-theme=miami] .modes { width: fit-content; margin-inline: auto; padding: 3px; }
+.app[data-theme=miami] .section-head { padding: 6px 12px; }
+.app[data-theme=miami] .shortcut, .app[data-theme=miami] .shortcut.add { background: color-mix(in srgb,var(--bg) 93%,transparent); }
+.theme[data-theme-choice=miami] .theme-sample {
+  background: linear-gradient(155deg,#482849 15%,#ef638c 52%,#ffb16d 80%,#62d5cb)!important;
+}
+.theme[data-theme-choice=miami] .theme-emblem {
+  color: white; font: italic 800 26px/1 'GR Outfit',sans-serif; letter-spacing: -2px; text-shadow: 1px 2px #8e3e78;
+}
+.miami-flight { transform: translate(1120px,205px); }
+.miami-marquee, .miami-brakes { opacity: .25; }
+.miami-petal, .miami-ripple { opacity: 0; }
+.app[data-motion=on] .miami-flight { animation: miami-patrol 38s -6s linear infinite; }
+.app[data-motion=on] .miami-helicopter { animation: miami-hover 3.4s ease-in-out infinite alternate; }
+.app[data-motion=on] .miami-rotor { transform-origin: 0 -12px; animation: miami-rotor .19s linear infinite alternate; }
+.app[data-motion=on] .miami-beacon { animation: miami-beacon 3.2s infinite; }
+.app[data-motion=on] .miami-marquee { animation: miami-neon 7s ease-in-out infinite; }
+.app[data-motion=on] .miami-brakes { animation: miami-idle 11s -3s ease-in-out infinite; }
+.app[data-motion=on] .miami-ripple { animation: miami-ring 5.8s var(--phase) ease-out infinite; }
+.app[data-motion=on] .miami-petal { animation: miami-drift 10s var(--phase) linear infinite; }
+.app[data-motion=on] .miami-traffic { animation: miami-approach 13s -5s cubic-bezier(.55,.1,.85,.48) infinite; }
+@keyframes miami-patrol {
+  0% { transform: translate(316px,295px) scale(.74); opacity: 0; }
+  8%,88% { opacity: .9; }
+  100% { transform: translate(1500px,110px) scale(1.06); opacity: 0; }
+}
+@keyframes miami-hover { to { transform: translateY(3px) rotate(-2deg); } }
+@keyframes miami-rotor { to { transform: scaleX(.2); } }
+@keyframes miami-beacon { 0%,16%,28%,100% {opacity: .12} 20%,31% {opacity: 1} }
+@keyframes miami-neon { 0%,26%,35%,100% { opacity: .15; } 30%,58%,82% { opacity: .8; } }
+@keyframes miami-idle { 0%,35%,74%,100% { opacity: .08; } 43%,64% { opacity: .98; } }
+@keyframes miami-ring { 0% { transform: scale(.12); opacity: 0; } 9% { opacity: .88; } 67%,100% { transform: scale(1.5); opacity: 0; } }
+@keyframes miami-drift {
+  0% { transform: translate(-15px,-10px) rotate(0); opacity: 0; }
+  11%,72% { opacity: .9; }
+  40% { transform: translate(18px,49px) rotate(95deg); }
+  100% { transform: translate(81px,138px) rotate(255deg); opacity: 0; }
+}
+@keyframes miami-approach {
+  0% { transform: translate(0,0) scale(.2); opacity: 0; }
+  10%,98% { opacity: 1; }
+  100% { transform: translate(880px,165px) scale(8); opacity: 0; }
+}
+@media (max-aspect-ratio: 4/5) {
+  .app[data-theme=miami] .theme-art > svg { left: 0; translate: -5% -50%; }
+  .app[data-theme=miami] .theme-art::after {
+    background: linear-gradient(to bottom, var(--miami-veil) -18%, color-mix(in srgb,var(--miami-veil) 85%,transparent) 25%, color-mix(in srgb,var(--miami-veil) 58%,transparent) 48%, transparent 83%);
+  }
 }
