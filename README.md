@@ -9,6 +9,7 @@
 ## Make your browser feel like yours
 
 - **53 animated themes** in nine collections, each with light and dark palettes. Search themes, choose an accent, add a local photo, and select from 12 fonts.
+- **Le Rouge** opens onto a crimson couture salon with porcelain mannequins, drifting silk moths and warm light on polished marble. [See the theme](docs/v242/lerouge-dark.png).
 - **GTA VI · Miami** adds a painted Vice City boulevard with a coral supercar, glowing hotel marquees, a patrolling helicopter and traffic reflected on wet asphalt. Find it in **Customize → Coastal Escapes**.
 - **Six search options:** Google, DuckDuckGo, Brave Search, Bing, Ecosia, and a configurable SearXNG instance. This controls Searchscape searches; your address-bar engine stays in Brave settings.
 - **Up to 60 shortcuts** with drag-to-reorder, touch grips, keyboard movement, custom names and icons, and Personal/Work/Study groups. Ordering saves automatically.
@@ -33,7 +34,7 @@ For a cleaner address on regular new tabs, turn on **Customize → New tabs → 
 
 **Upgrading from v2.3.1 or earlier? Export your settings before replacing files.** v2.3.2 adds a fixed extension ID, so Brave treats it as a new identity. Follow the [one-time migration guide](docs/browser-sync.md#upgrade-from-v231-or-earlier-without-losing-settings) to preserve your settings.
 
-1. Download **Searchscape-v2.4.1.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
+1. Download **Searchscape-v2.4.2.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
 2. Open `brave://extensions`, enable **Developer mode**, and choose **Load unpacked**.
 3. Select the extracted folder containing `manifest.json`, then open a new tab. Brave may ask you to confirm the new-tab change.
 

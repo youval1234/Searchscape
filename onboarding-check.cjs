@@ -83,6 +83,15 @@ const nativeHTML='<!doctype html><html lang="he" dir="rtl"><head><title>Google f
  await check('Le Rouge and Fashion have detailed local artwork in both appearances with bounded visible motion',async()=>{
   for(const theme of artworkThemes)for(const appearance of ['dark','light']){
    await prefs({theme,appearance,animations:true});await page.locator(`.theme-art svg[data-scene=${theme}]`).waitFor();await page.waitForTimeout(process.env.GR_CAPTURE_PREVIEWS==='1'?1200:100);
+   if(theme==='lerouge'){
+    const size=await page.locator('.theme-art > svg').evaluate(async svg=>{
+     const image=new Image();
+     image.src=getComputedStyle(svg).backgroundImage.slice(5,-2);
+     await image.decode();
+     return [new URL(image.src).protocol,image.naturalWidth,image.naturalHeight];
+    });
+    assert.deepEqual(size,['chrome-extension:',1586,992]);
+   }
    const art=await page.locator('.theme-art').evaluate(e=>{const a=e.getAnimations({subtree:true});const read=x=>{const s=getComputedStyle(x.effect.target);return [s.transform,s.opacity,s.strokeDashoffset,s.d].join('|');};const before=a.map(read);for(const x of a)x.currentTime=(x.currentTime||0)+3600;return {nodes:e.querySelectorAll('*').length,count:a.length,changed:a.some((x,i)=>read(x)!==before[i]&&x.effect.target.getBoundingClientRect().width>0)};});
    assert.ok(art.nodes>100&&art.nodes<550,theme+' detailed but bounded scene');assert.ok(art.count>0&&art.count<100,theme+' bounded animations');assert.ok(art.changed,theme+' perceptible motion');console.log(`  ${theme} ${appearance}: ${art.nodes} nodes / ${art.count} animations`);
    if(process.env.GR_CAPTURE_PREVIEWS==='1'){fs.mkdirSync(path.join(__dirname,'docs/v161'),{recursive:true});await page.frameLocator('#hardware-frame').locator('#cpu-value').filter({hasText:'25%'}).waitFor({timeout:10000});await page.locator('.app').evaluate(e=>e.dataset.paused='true');await page.screenshot({path:path.join(__dirname,`docs/v161/${theme}-${appearance}.png`),animations:'allow'});await page.locator('.app').evaluate(e=>e.dataset.paused='false');}

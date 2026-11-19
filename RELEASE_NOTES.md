@@ -1,5 +1,5 @@
-# Searchscape v2.4.1
+# Searchscape v2.4.2
 
-GTA VI · Miami now opens on a rain-polished Vice City boulevard. A coral supercar sits beneath the motel sign while a helicopter patrols overhead, brake lights brighten and reflect in puddles, and traffic approaches from downtown.
+Le Rouge opens after hours on a horned porcelain mannequin in a crimson gown. Across the aisle, brass pendant lamps illuminate a silk-wrapped torso and shelves of oxblood handbags. Silk moths flutter through the display, highlights travel along the gown's folds, and lamplight reflects in the marble floor.
 
-Choose **Customize → Coastal Escapes → GTA VI · Miami**. Existing Miami selections pick up the redesign automatically. The bundled scene works offline, adapts to portrait screens and follows your motion preferences.
+Choose **Customize → Fantasy & Mystery → Le Rouge**. Existing Le Rouge selections pick up the design on update. The art is bundled for offline use and supports light, dark, portrait layouts and reduced motion.

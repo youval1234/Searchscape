@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.2 — 2026-11-19
+
+- Repaint Le Rouge as a couture department store with a horned porcelain mannequin, an ivory display bust and original lighting, fabric and moth animations.
+
 ## 2.4.1 — 2026-11-19
 
 - Redraw GTA VI · Miami as a painted Vice City boulevard with animated traffic, helicopter patrol, brake lights, petals and puddles. Portrait layouts frame the motel and supercar.
