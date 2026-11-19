@@ -1,3 +1,7 @@
+## v2.4.0 follow-up
+
+Adds an original bundled Miami SVG/CSS scene and a local palette entry. The active scene contains 466 vector elements, below the existing 550-element artwork budget, and 45 bounded CSS animations. Palm leaflets share paths to limit DOM memory. Artwork is loaded locally through the existing scene mechanism, and only the selected scene is mounted. No permissions, providers, identifiers, dependencies or external image requests are added. Native Brave checks cover the picker, persistence, light/dark appearance, normal Google homepage and new-tab integration, mobile layout, cleanup, animation off, Subtle intensity, reduced motion and pause. Documentation previews hide name, location and hardware widgets.
+
 ## v2.3.5 follow-up
 
 Adds scoped CSS timing overrides for native composer entrance states observed on the live Google results page. Provider hidden/disabled states and native input handling remain intact. Existing results-theme opt-out removes the timing override. No additional scripts, permissions, requests, stored data or dependencies are introduced. Controlled Brave checks verify visibility on the first animation frame, placeholder timing, typing, provider states and restoration when theming is disabled. Google controls when it delivers the native field.

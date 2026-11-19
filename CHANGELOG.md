@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.4.0 — 2026-11-19
+
+- Add GTA VI · Miami to Coastal Escapes, bringing the catalog to 53 themes.
+- Draw an original Art Deco hotel, bayfront skyline, striped sunset, detailed palms, coastal traffic, boat and beach cabana.
+- Animate the palm fronds, water, sunset reflections, windows, neon marquee, cars, boat and distant flight with bounded CSS motion.
+- Include light/dark palettes and support animation off, Subtle intensity, reduced motion and hidden-tab pause.
+
 ## 2.3.5 — 2026-11-12
 
 - Remove the native AI prompt's entrance fade and slide delay while results theming is enabled.
