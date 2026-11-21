@@ -17,6 +17,26 @@ let context,checks=0;const check=async(label,fn)=>{await fn();console.log('PASS 
   for(const id of changed)assert.ok(meta.Searchscape.themes.some(t=>t.id===id));
   for(const t of meta.Searchscape.themes){assert.equal(t.light.length,6);assert.equal(t.dark.length,6);await prefs({theme:t.id});assert.equal(await page.locator('.theme-art > svg').getAttribute('data-scene'),t.id);}
  });
+ await check('Monochrome picker symbols and reactor tool contact',async()=>{
+  for(const id of ['radioactive','magical','city','lerouge','miami','military']){
+   assert.equal(await page.locator('[data-theme-choice="'+id+'"] .theme-emblem[aria-hidden=true] svg').count(),1,id);
+  }
+  await prefs({theme:'radioactive',animations:true});
+  const drift=await page.locator('.theme-art').evaluate(art=>{
+   const point=(selector,x,y)=>new DOMPoint(x,y).matrixTransform(art.querySelector(selector).getScreenCTM());
+   const moving=art.getAnimations({subtree:true});
+   let maximum=0;
+   for(let time=0;time<=8000;time+=125){
+    moving.forEach(animation=>{animation.pause();animation.currentTime=time;});
+    const center=point('.rx-sample',0,0);
+    const tools=[point('.rx-lift',119,43),point('.rx-receive',107.652,56.716)];
+    maximum=Math.max(maximum,Math.min(...tools.map(p=>Math.hypot(p.x-center.x,p.y-center.y))));
+   }
+   moving.forEach(animation=>animation.play());
+   return maximum;
+  });
+  assert.ok(drift<1,'Capsule drift in CSS pixels: '+drift);
+ });
  await check('Theme search, collection filters, empty results and selection persistence work together',async()=>{
   await page.getByRole('button',{name:'Customize',exact:true}).click();await page.locator('#theme-search').fill('BLACK HOLE');assert.equal(await page.locator('[data-theme-choice]:visible').count(),1);assert.equal(await page.locator('[data-theme-heading]:visible').count(),1);await page.getByRole('button',{name:'Black Hole',exact:true}).click();assert.equal(await page.locator('.app').getAttribute('data-theme'),'blackhole');
   await page.locator('#theme-search').fill('');await page.locator('#theme-collection').selectOption('Coastal Escapes');assert.equal(await page.locator('[data-theme-choice]:visible').count(),6);await page.locator('#theme-search').fill('no-such-theme');assert.equal(await page.locator('[data-theme-choice]:visible').count(),0);assert.equal(await page.locator('#theme-empty').isVisible(),true);

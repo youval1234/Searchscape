@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.6.1 — 2026-11-21
+
+- Redraw the Radioactive crew’s respirators and gloved grips. The capsule stays on the carrying tool through the handoff.
+- Rebuild Miami’s Ocean Drive hotel with corner balconies, a lit lobby, café furniture and a brass luggage cart.
+- Use small, single-color symbols in the picker for the six revised themes.
+
 ## 2.6.0 — 2026-11-21
 
 - Redraw Radioactive, City Skyline and Magical around a reactor crew, an elevated railway and a moon atlas.

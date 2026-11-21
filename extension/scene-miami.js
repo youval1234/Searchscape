@@ -6,6 +6,17 @@
         <linearGradient id="m-car" x2=".2" y2="1"><stop stop-color="#ffd1a5"/><stop offset=".38" stop-color="#e98c80"/><stop offset="1" stop-color="#a95268"/></linearGradient>
         <linearGradient id="m-glass" x2="1" y2="1"><stop stop-color="#95ccc4"/><stop offset="1" stop-color="#47687a"/></linearGradient>
         <linearGradient id="m-hotel" x2="1" y2=".6"><stop stop-color="var(--m-stucco)"/><stop offset="1" stop-color="var(--m-shadow)"/></linearGradient>
+        <linearGradient id="m-night-glass" x2=".35" y2="1"><stop stop-color="#33505b"/><stop offset=".44" stop-color="#698c96"/><stop offset="1" stop-color="#465d71"/></linearGradient>
+        <linearGradient id="m-lobby" x2="0" y2="1"><stop stop-color="#eebf8e"/><stop offset=".55" stop-color="#b67c76"/><stop offset="1" stop-color="#675267"/></linearGradient>
+        <g id="m-balcony">
+          <path d="M1 5Q1 0 13 0h97v18H1Z" fill="url(#m-night-glass)"/>
+          <path d="M9 2h22l-7 7H7Zm46 0h15l-7 7H48Z" fill="#c7d6cb" opacity=".42"/>
+          <path d="M17 1v16m25-16v16m25-16v16m25-16v16" stroke="var(--m-shadow)" stroke-width="2"/>
+          <path d="M-3 14q1-3 12-3h102v2H9q-8 0-12 3Z" fill="#e7b7a4"/>
+          <path d="M4 13v7m18-8v8m25-8v8m25-8v8m23-8v8" stroke="#b99293" stroke-width="1.4"/>
+          <path d="M-6 20q3-3 15-3h105v5H9q-12 0-15 3Z" fill="var(--m-shadow)"/>
+          <path d="M-6 19q4-4 15-4h105v3H9q-12 0-15 3Z" fill="#edb6a2"/>
+        </g>
         <path id="m-frond" d="M0 0Q31-49 86-29Q65-33 53-22L50-26 37-15 35-19 23-8 22-12Z"/>
         <g id="m-palm"><path d="M-7 0Q-9-84 19-163L25-163Q2-80 6 0Z" fill="var(--m-palm)"/><g transform="translate(22 -162)"><g class="miami-leaves" fill="var(--m-palm)">
           <use href="#m-frond"/><use href="#m-frond" transform="rotate(28)"/><use href="#m-frond" transform="rotate(62) scale(.85)"/><use href="#m-frond" transform="scale(-1 1) rotate(4)"/><use href="#m-frond" transform="scale(-1 1) rotate(44)"/><use href="#m-frond" transform="rotate(-39) scale(.8)"/>
@@ -39,19 +50,57 @@
           <path class="miami-glint" d="M20 46Q121 27 210 30" fill="none" stroke="#ffe8c8" stroke-width="3" pathLength="100"/>
         </g>`)}
       ${plate('right',`
-        <g fill="var(--m-distant)"><path d="M124 423V280h37v143m8 0V321h34v102m9 0V256h48v167Z"/></g>
-        <path d="M73 461V306Q73 283 97 279l116-12v-27l84-7v-24l66-7 57 6v253Z" fill="url(#m-hotel)"/>
-        <path d="m298 234 64-8 58 5v230h-58V252l-64 5Z" fill="var(--m-shadow)"/>
-        <g fill="none" stroke-linecap="round">
-          <path d="m83 306 131-14m-131 26 131-14m8-36 66-7m20-34 45-6" stroke="#f6b09f" stroke-width="4"/>
-          <path d="M100 343l89-8m-89 29 89-8m-89 30 89-8m90-71v102m13-104v102m13-103v103" stroke="var(--m-glass)" stroke-width="8"/>
+        <path d="M88 445V325h18v-29h19v29h20v-61h35v-12h10v13h18v180Z" fill="var(--m-distant)" opacity=".72"/>
+        <path d="M61 464v-142q0-34 31-40l112-12v-33l61-6v-45l44-5 15 5v42l64 7 32 14v215Z" fill="url(#m-hotel)"/>
+        <path d="m309 181 15 5v42l64 7 32 14v215h-44V249l-67-8Z" fill="var(--m-shadow)"/>
+        <path d="m259 239 6-54 44-5 17 5v7l-17-5-39 4-3 47Z" fill="#d39d9e"/>
+        <g transform="translate(272 189) skewY(-5)">
+          <path d="M0 44V-5h6v49Zm10 0V-13h7v57Zm11 0V-4h5v48Z" fill="#ecb2a0"/>
+          <path d="M2 36V0m11 32V-8m10 42V1" stroke="#ad7e82" stroke-width="1.4"/>
         </g>
-        <path d="M195 459v-42q0-13 13-15l38-3q12-1 12 11v49Z" fill="var(--m-glass)"/>
-        <path d="m81 409 104-9 11 11-115 11Z" fill="#d79a9a"/><path d="m81 421 114-10v5q-5 5-10 0-5 6-11 1-5 6-11 1-5 6-11 1-5 6-11 1-5 5-11 1-5 6-11 1-5 6-11 1-6 6-12 1-6 6-15 2Z" fill="#9a677b"/>
-        <path d="m89 429 37-3v31H89Zm43-4 44-4v36h-44Z" fill="var(--m-glass)"/><path d="m95 451 12-17m42 17 17-23" stroke="#d0c8c2" opacity=".5" stroke-width="2.5"/>
-        <path d="m270 443 21-1-4 17h-14Z" fill="#bb857d"/><path d="M280 444q-2-15-13-19 12 1 15 12 3-15 13-19-2 14-14 25Z" fill="var(--m-palm)"/>
-        <rect x="208" y="249" width="29" height="129" rx="13" fill="var(--m-palm)" stroke="#df9d96" stroke-width="2"/>
-        <g class="miami-marquee" fill="#ffd9be" font-family="sans-serif" font-size="14" text-anchor="middle">${[...'OCEAN'].map((c,i)=>`<text x="222.5" y="${272+21*i}">${c}</text>`).join('')}</g>
+        <path d="M61 314q0-28 31-32l115-13m-145 53q0-24 30-27l114-12m0-45 62-7m56-3 62 7 34 14" fill="none" stroke="#e3a99d" stroke-width="2.4"/>
+        <g transform="translate(74 320) skewY(-5)">
+          <use href="#m-balcony"/><use href="#m-balcony" y="28"/><use href="#m-balcony" y="56"/>
+        </g>
+        <g transform="translate(253 260) skewY(-5)">
+          <path d="M0 0h94v117H0Z" fill="var(--m-shadow)"/>
+          <path d="M6 5h82v106H6Z" fill="url(#m-night-glass)"/>
+          <path d="M10 8h14v22H10Zm30 43h16v24H40Zm31 35h13v21H71Z" fill="#d3a18c" opacity=".84"/>
+          <path d="M7 34h80M7 77h80" stroke="var(--m-shadow)" stroke-width="5"/>
+          <path d="M29 0v117m33-117v117" stroke="var(--m-stucco)" stroke-width="5"/>
+          <path d="M31 0v117m33-117v117" stroke="#efb09b" stroke-width="1.6"/>
+        </g>
+        <path d="m371 256 49 15v59l-49-11Zm0 74 49 11v62l-49-8Z" fill="var(--m-glass)"/>
+        <path d="m371 281 49 14m-49 58 49 10m-29-100v135" stroke="var(--m-shadow)" stroke-width="3"/>
+        <g transform="translate(72 407) skewY(-5)">
+          <path d="M0 0h111l8 8H-4Z" fill="#dfa29b"/><path d="M-4 8h123v5H-3Z" fill="#a56e7c"/>
+          <path d="M4 15h103v40H4Z" fill="url(#m-night-glass)"/>
+          <path d="M12 18h84v4H12Z" fill="#e6bc94"/><path d="M26 15v39m34-39v39m25-39v39" stroke="var(--m-stucco)" stroke-width="2.4"/>
+          <g fill="#d7a385" stroke="#5d6671" stroke-width="1.4">
+            <path d="M8 41q-2-6 3-6h5v9h-6Zm28 0q2-6-3-6h-5v9h6Z"/><path d="M10 43h6l-1 7m16-7-1 7" fill="none"/>
+            <ellipse cx="22" cy="40" rx="8" ry="1.7"/><path d="M22 42v8m-5 1h10" fill="none"/>
+            <path d="M75 20v7" fill="none"/><path d="M70 30q1-6 5-6t5 6Z" fill="#ffd4a4"/>
+          </g>
+        </g>
+        <path d="M194 461v-43q0-24 32-28l47-5q18-1 18 18v58Z" fill="var(--m-shadow)"/>
+        <path d="M206 459v-40q0-16 19-19l45-4q8 0 8 10v53Z" fill="url(#m-lobby)"/>
+        <path d="M210 440q5-3 15-3h15v6h-30Z" fill="#946761"/><path d="M210 442h28v12h-28Z" fill="#826064"/>
+        <path d="M261 421v8m-5 1h10l-2-5h-6Z" fill="#f5cc9e" stroke="#ad8076" stroke-width=".9"/>
+        <path d="m209 418 68-6m-34 3-18-14m18 14 11-17m-11 17 27-15m-27 15-33-6m16 8v42m34-46v46" fill="none" stroke="#755c62" stroke-width="2.3"/>
+        <path d="m194 458 98-1 5 3-108 2Zm-7 5 113-1 6 4H180Z" fill="#c49690"/>
+        <path d="m185 393 104-11 15 9-113 13-14-5Z" fill="#d29792"/><path d="m177 399 14 5 113-13v6l-113 12-14-6Z" fill="var(--m-shadow)"/>
+        <path class="miami-canopy-light" d="m192 405 108-12" fill="none" stroke="#ffcf9e" stroke-width="2.2"/>
+        <path d="m194 261 12-1m-12 85 12-1" stroke="var(--m-shadow)" stroke-width="5"/>
+        <rect x="201" y="241" width="36" height="139" rx="15" fill="#49566a" stroke="#bd8991" stroke-width="3"/>
+        <rect x="205" y="245" width="28" height="131" rx="12" fill="#395c64" stroke="#f5bb9d" stroke-width="1.5"/>
+        <g class="miami-marquee" fill="#ffdfb8" font-family="sans-serif" font-size="15" text-anchor="middle">${[...'OCEAN'].map((c,i)=>`<text x="219" y="${269+22*i}">${c}</text>`).join('')}</g>
+        <g transform="translate(339 423)" stroke-linecap="round">
+          <path d="M-10 33V12q0-10 10-10t10 10v21M-1 2V0" fill="none" stroke="#d3ad8d" stroke-width="2"/>
+          <rect x="-7" y="21" width="16" height="11" rx="2" fill="#885c63" stroke="#5f5161"/>
+          <path d="M-4 21v-2h5v2m2 1v9" fill="none" stroke="#c99584" stroke-width="1.5"/>
+          <path d="M-13 34h26" stroke="#c7a18c" stroke-width="2.5"/><path d="M-8 36v1m17-1v1" stroke="#515461" stroke-width="3"/>
+        </g>
+        <path d="M306 440h20l-3 19h-14Z" fill="#bd877d"/><path d="M316 442q-14-6-15-16 10 2 15 10-3-15 6-23 3 13-5 23 8-10 16-10-3 10-17 16Z" fill="var(--m-palm)"/>
         <use href="#m-palm" transform="translate(383 474) scale(-.78 .78)"/>
         <path d="M58 466h362" fill="none" stroke="var(--m-shadow)" stroke-width="4"/>`)}`
   }));

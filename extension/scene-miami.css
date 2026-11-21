@@ -12,3 +12,5 @@
 .app[data-motion=on] .miami-spokes { animation:miami-wheel 2.8s linear infinite; }
 @keyframes miami-drive { to { stroke-dashoffset:71; } }
 @keyframes miami-wheel { to { transform:rotate(360deg); } }
+.app[data-motion=on][data-motion-intensity=vivid] .miami-canopy-light { animation:miami-lobby-glow 5s -1s ease-in-out infinite alternate; }
+@keyframes miami-lobby-glow { from {opacity:.55} to {opacity:1} }

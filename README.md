@@ -9,10 +9,10 @@
 ## Make your browser feel like yours
 
 - **54 animated themes** in nine collections, each with light and dark palettes. Search themes, choose an accent, add a local photo, and select from 12 fonts.
-- **Radioactive**. Two workers in sealed yellow suits pass a glowing capsule beside a ribbed reactor. The capsule lights the transfer while the dial and green contours move inside the reactor bay. [Animated preview](docs/v260/radioactive-motion.webp)
+- **Radioactive**. Two workers in sealed yellow suits pass a glowing capsule beside a ribbed reactor. The capsule lights the transfer while the dial and green contours move inside the reactor bay. [Animated preview](docs/v261/radioactive-detail.webp)
 - **City Skyline**. A coral commuter train crosses an arched viaduct beneath stepped copper towers, brick rooftops and water tanks. [Animated preview](docs/v260/city-motion.webp)
 - **Magical**. A jeweled brass orrery turns above an open atlas as a folded-paper owl glides over castle turrets. [Animated preview](docs/v260/magical-motion.webp)
-- **GTA VI · Miami**. Chrome wheels roll past lane markings along a palm-lined Art Deco hotel with a scalloped awning. [Animated preview](docs/v260/miami-motion.webp)
+- **GTA VI · Miami**. A coral coupe cruises past a palm-lined Ocean Drive hotel with curved balconies, a glowing glass lobby and a sidewalk café. [Animated preview](docs/v261/miami-detail.webp)
 - **Le Rouge**. A loose silk ribbon unfurls from a masked couture gown across from an antique mirror and handbag display. [Animated preview](docs/v260/lerouge-motion.webp)
 - **Military**. A tank crosses the ridge behind a parked vehicle with strapped stowage. Two soldiers study a folded map beside a field radio and a turning dish. [Animated preview](docs/v260/military-motion.webp)
 - **Six search options:** Google, DuckDuckGo, Brave Search, Bing, Ecosia, and a configurable SearXNG instance. This controls Searchscape searches; your address-bar engine stays in Brave settings.
@@ -38,7 +38,7 @@ For a cleaner address on regular new tabs, turn on **Customize → New tabs → 
 
 **Upgrading from v2.3.1 or earlier? Export your settings before replacing files.** v2.3.2 adds a fixed extension ID, so Brave treats it as a new identity. Follow the [one-time migration guide](docs/browser-sync.md#upgrade-from-v231-or-earlier-without-losing-settings) to preserve your settings.
 
-1. Download **Searchscape-v2.6.0.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
+1. Download **Searchscape-v2.6.1.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
 2. Open `brave://extensions`, enable **Developer mode**, and choose **Load unpacked**.
 3. Select the extracted folder containing `manifest.json`, then open a new tab. Brave may ask you to confirm the new-tab change.
 

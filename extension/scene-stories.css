@@ -16,19 +16,20 @@
 .app[data-theme=magical][data-appearance=dark] {
   --studio-ground:#302b44; --mg-niche:#473c58; --mg-line:#8e7785; --mg-cover:#67506c; --scene-haze:#42364f;
 }
-.app[data-motion=on] .rx-lift, .app[data-motion=on] .rx-receive { transform-origin:20px 57px; animation:rx-handoff 8s ease-in-out infinite; }
-.app[data-motion=on] .rx-receive { animation-name:rx-catch; }
+.rx-lift, .rx-receive { transform-origin:20px 57px; }
+.rx-lift { transform:rotate(12deg); }
+.rx-receive { transform:rotate(-7deg); }
+.app[data-motion=on] .rx-lift { animation:rx-handoff 8s ease-in-out infinite; }
+.app[data-motion=on] .rx-receive { animation:rx-catch 8s ease-in-out infinite; }
 .app[data-motion=on] .rx-glow { animation:rx-luminous 3.5s -1.5s ease-in-out infinite alternate; }
 .app[data-motion=on][data-motion-intensity=vivid] .rx-needle { transform-origin:374px 291px; animation:rx-meter 4s ease-in-out infinite alternate; }
 .app[data-motion=on][data-motion-intensity=vivid] .rx-rings { animation:rx-contours 4s ease-in-out infinite; }
-/* The capsule follows the tongs to the tray, rides down, then comes back. */
-.rx-sample { transform:translate(209px,296px) rotate(-23deg); }
-.app[data-motion=on] .rx-sample { animation:rx-transfer 8s ease-in-out infinite; }
-@keyframes rx-transfer {
-  0%,100% {transform:translate(204px,276px) rotate(-25deg)}
-  31%,72% {transform:translate(208px,318px) rotate(-10deg)}
-  49%,55% {transform:translate(205px,335px) rotate(1deg)}
-}
+/* Both arms meet at the illustrated contact pose. The nested rotations keep
+   the capsule on the carrying tool throughout its arc, including at rest. */
+.app[data-motion=on] .rx-carry { transform-origin:97.6px 311.41px; animation:rx-carry 8s ease-in-out infinite; }
+.app[data-motion=on] .rx-tray-ride { transform-origin:293.8px 329.72px; animation:rx-tray-ride 8s ease-in-out infinite; }
+@keyframes rx-carry { 0%,100% { transform:rotate(-22deg); } 31%,72% { transform:rotate(0deg); } }
+@keyframes rx-tray-ride { 0%,31%,72%,100% { transform:rotate(0deg); } 49%,55% { transform:rotate(-12deg); } }
 @keyframes rx-handoff { 0%,49%,55%,100% {transform:rotate(-10deg)} 31%,72% {transform:rotate(12deg)} }
 @keyframes rx-catch { 0%,49%,55%,100% {transform:rotate(5deg)} 31%,72% {transform:rotate(-7deg)} }
 @keyframes rx-luminous { from {opacity:.55} to {opacity:1} }

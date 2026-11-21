@@ -1,10 +1,5 @@
-# Searchscape v2.6.0
+# Searchscape v2.6.1
 
-Six animated SVG scenes use separate foreground and landscape layers to frame the search box. Choose **Vivid** for the secondary movements or **Subtle** for a quieter page. All six respect reduced motion.
-
-- **Radioactive**. Two workers in sealed yellow suits pass a glowing capsule beside a ribbed reactor. The capsule lights the transfer while the dial and green contours move inside the reactor bay. [Animated preview](https://github.com/youval1234/Searchscape/blob/v2.6.0/docs/v260/radioactive-motion.webp)
-- **City Skyline**. A coral commuter train crosses an arched viaduct beneath stepped copper towers, brick rooftops and water tanks. [Animated preview](https://github.com/youval1234/Searchscape/blob/v2.6.0/docs/v260/city-motion.webp)
-- **Magical**. A jeweled brass orrery turns above an open atlas as a folded-paper owl glides over castle turrets. [Animated preview](https://github.com/youval1234/Searchscape/blob/v2.6.0/docs/v260/magical-motion.webp)
-- **GTA VI · Miami**. Chrome wheels roll past lane markings along a palm-lined Art Deco hotel with a scalloped awning. [Animated preview](https://github.com/youval1234/Searchscape/blob/v2.6.0/docs/v260/miami-motion.webp)
-- **Le Rouge**. A loose silk ribbon unfurls from a masked couture gown across from an antique mirror and handbag display. [Animated preview](https://github.com/youval1234/Searchscape/blob/v2.6.0/docs/v260/lerouge-motion.webp)
-- **Military**. A tank crosses the ridge behind a parked vehicle with strapped stowage. Two soldiers study a folded map beside a field radio and a turning dish. [Animated preview](https://github.com/youval1234/Searchscape/blob/v2.6.0/docs/v260/military-motion.webp)
+- **Radioactive** has curved visors, dark rubber face seals and angled filter cartridges. Gloved hands grip the tongs and support the tray as the capsule passes between workers. [Watch the handoff](https://github.com/youval1234/Searchscape/blob/v2.6.1/docs/v261/radioactive-detail.webp)
+- **GTA VI · Miami** has a redesigned Ocean Drive hotel with corner balconies, a fanlight over the entrance, a sidewalk café and a brass luggage cart. [See the hotel](https://github.com/youval1234/Searchscape/blob/v2.6.1/docs/v261/miami-detail.webp)
+- **Customize** now uses monochrome picker symbols for Radioactive, Magical, City Skyline, Miami, Le Rouge and Military. [See the six icons](https://github.com/youval1234/Searchscape/blob/v2.6.1/docs/v261/picker-icons.png)
