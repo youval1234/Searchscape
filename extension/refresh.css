@@ -6,6 +6,7 @@
 @import url("scene-fashion.css");
 @import url("scene-miami.css");
 @import url("scene-military.css");
+@import url("scene-stories.css");
 :host{font-family:var(--gr-font,'GR Manrope'),'Segoe UI Variable','Segoe UI',sans-serif;font-synthesis:none}
 .brand{gap:11px;letter-spacing:-.65px;font-size:20px;font-weight:700}
 .brand-name{white-space:nowrap}.brand-name strong{font-weight:600;color:var(--accent)}
@@ -189,7 +190,7 @@ input[type=file]::file-selector-button{background:var(--soft);color:var(--fg);bo
 .app[data-motion=on] .v-rose-bloom{animation:v-rose-open 9s -3s ease-in-out infinite alternate;transform-origin:0 0}
 .app[data-motion=on] .v-circuit{animation:v-circuit-breathe 6s ease-in-out infinite alternate}
 .app[data-motion=on] .v-scanline{animation:v-scan 14s linear infinite}
-.app[data-motion=on] :is(.v-mystic-dust,.v-magic-motes,.v-fairy-lights){animation:v-motes-rise 12s ease-in-out infinite alternate}
+.app[data-motion=on] :is(.v-mystic-dust,.v-fairy-lights){animation:v-motes-rise 12s ease-in-out infinite alternate}
 .app[data-motion=on] .v-rustic-light{animation:v-window-beam 16s ease-in-out infinite alternate}
 .app[data-motion=on] .v-hanging-herbs{animation:v-herb-sway 9s ease-in-out infinite alternate;transform-origin:130px 0}
 .app[data-motion=on] .v-solar-haze{animation:v-heat-haze 10s ease-in-out infinite alternate}
@@ -319,9 +320,6 @@ input[type=file]::file-selector-button{background:var(--soft);color:var(--fg);bo
 .app[data-motion=on] .v-science-bubble{animation:v-lab-bubble 7s var(--phase,0s) ease-in-out infinite}
 .app[data-motion=on] .v-science-helix{animation:v-lab-helix 14s ease-in-out infinite alternate;transform-origin:1440px 400px}
 .app[data-motion=on] .v-science-petri{animation:v-lab-glass 17s -6s ease-in-out infinite alternate-reverse}
-.app[data-motion=on] .v-city-office-lights{animation:v-office-night 13s var(--phase,0s) ease-in-out infinite alternate}
-.app[data-motion=on] .v-city-metro-new{animation:v-metro-ride 28s linear infinite}
-.app[data-motion=on] .v-city-flight-new{animation:v-city-overflight 45s -10s linear infinite}
 @keyframes v-lagoon-tide{from{transform:translate(-18px,4px)}to{transform:translate(22px,-6px)}}
 @keyframes v-coastal-palm{from{transform:rotate(-1.2deg)}to{transform:rotate(1.8deg)}}
 @keyframes v-parasol-breeze{from{transform:rotate(-1deg)}to{transform:rotate(1.5deg)}}
@@ -330,9 +328,6 @@ input[type=file]::file-selector-button{background:var(--soft);color:var(--fg);bo
 @keyframes v-lab-glass{from{opacity:.7}to{opacity:1}}
 @keyframes v-lab-bubble{0%{transform:translateY(8px);opacity:0}25%,60%{opacity:.75}100%{transform:translateY(-48px);opacity:0}}
 @keyframes v-lab-helix{from{transform:scaleX(.78) translateY(-6px)}to{transform:scaleX(1.04) translateY(6px)}}
-@keyframes v-office-night{from{opacity:.45}to{opacity:.95}}
-@keyframes v-metro-ride{to{transform:translateX(1840px)}}
-@keyframes v-city-overflight{from{transform:translate(-30px,20px)}to{transform:translate(1800px,-20px)}}
 .app[data-motion=on] .v-mystic-astrolabe{animation:v-astrolabe-turn 65s linear infinite;transform-origin:0 0}
 .app[data-motion=on] .v-mystic-geode-left{animation:v-crystal-light 12s ease-in-out infinite alternate}
 .app[data-motion=on] .v-mystic-geode-right{animation:v-crystal-light 15s -7s ease-in-out infinite alternate-reverse}
@@ -506,15 +501,15 @@ footer{padding-right:150px}
 .service-search-field{margin:0 0 8px}.service-search-field input{min-height:44px}.ecosystem-field{margin-bottom:14px}#service-count{margin:4px 0 14px;font-size:10px}#apps-dialog .dialog-head{position:sticky;top:0;background:var(--bg);z-index:2}#service-empty{padding:12px 0 20px}
 
 /* Full-bleed landscape with independently fitted foreground subjects. */
-.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military]) .theme-art {
+.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military],[data-theme=radioactive],[data-theme=city],[data-theme=magical]) .theme-art {
   mask-image: radial-gradient(ellipse 43% 58% at 50% 40%,#0002 0%,#0005 52%,#000 100%);
 }
-.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military]) .wash {
+.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military],[data-theme=radioactive],[data-theme=city],[data-theme=magical]) .wash {
   background: radial-gradient(ellipse at 6% 66%,var(--scene-haze),transparent 62%),linear-gradient(174deg,var(--bg) 31%,var(--scene-haze))!important;
 }
-.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military])[data-motion-intensity=subtle] .scene { opacity: .55; }
+.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military],[data-theme=radioactive],[data-theme=city],[data-theme=magical])[data-motion-intensity=subtle] .scene { opacity: .55; }
 @media(max-width:650px) {
-  .app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military]) .theme-art { opacity:.82; }
+  .app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military],[data-theme=radioactive],[data-theme=city],[data-theme=magical]) .theme-art { opacity:.82; }
   .theme-art .subject-left { transform-box:view-box; transform-origin:left bottom; transform:translate(-4px,-32vh) scale(1.65); }
   .theme-art .subject-right { transform-box:view-box; transform-origin:right bottom; transform:translateY(-31vh) scale(1.34); }
 }

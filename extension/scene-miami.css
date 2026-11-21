@@ -8,3 +8,7 @@
 @keyframes miami-tide { from { transform:translateX(-12px); } to { transform:translateX(16px); } }
 @keyframes miami-chrome { 0%,18% { opacity:0;stroke-dashoffset:20; } 35%,53% { opacity:.8; } 68%,100% { opacity:0;stroke-dashoffset:-100; } }
 .theme[data-theme-choice=miami] .theme-sample { background:linear-gradient(145deg,#415669,#d69296 57%,#94bdb8)!important; }
+.app[data-motion=on] .miami-lanes { animation:miami-drive 2.8s linear infinite; }
+.app[data-motion=on] .miami-spokes { animation:miami-wheel 2.8s linear infinite; }
+@keyframes miami-drive { to { stroke-dashoffset:71; } }
+@keyframes miami-wheel { to { transform:rotate(360deg); } }

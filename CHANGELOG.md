@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.6.0 — 2026-11-21
+
+- Redraw Radioactive, City Skyline and Magical around a reactor crew, an elevated railway and a moon atlas.
+- Add a moving ridge convoy to Military, rolling wheels and storefront details to Miami, and an unfurling silk ribbon to Le Rouge.
+
 ## 2.5.0 — 2026-11-21
 
 - Draw Miami, Le Rouge and the new Military theme in responsive SVG with a separate light and dark palette for each.

@@ -7,3 +7,5 @@
 @keyframes rouge-swing { from { transform:rotate(-2.2deg); } to { transform:rotate(2.2deg); } }
 @keyframes rouge-amber { from { opacity:.45; } to { opacity:1; } }
 .theme[data-theme-choice=lerouge] .theme-sample { background:linear-gradient(135deg,#482533,#a9576a 55%,#d9c0a1)!important; }
+.app[data-motion=on] .rouge-ribbon { animation:rouge-unfurl 4.6s -.7s ease-in-out infinite alternate; }
+@keyframes rouge-unfurl { to { d:path("M18 300C63 284 76 325 99 329S151 362 142 390C139 365 110 354 90 347S59 307 18 305Z"); } }

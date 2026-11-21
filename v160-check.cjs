@@ -1,7 +1,7 @@
 // Integrated catalog, picker and artwork checks using synthetic hardware only.
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert/strict');
 const meta={location:{hostname:'localhost'},URL};vm.runInNewContext(fs.readFileSync('extension/shared.js','utf8'),meta);
-const changed=['ocean','spring','midnight','cosmic','amber','ice','colorful','sunset','library','office','science','scary','snow','blackhole','coralreef','hawaii','aztec','desert','cave','emerald','retro','radioactive','shadow','fjord','miami','military'];
+const changed=['ocean','spring','midnight','cosmic','amber','ice','colorful','sunset','library','office','science','scary','snow','blackhole','coralreef','hawaii','aztec','desert','cave','emerald','retro','radioactive','shadow','fjord','miami','military','lerouge','magical','city'];
 const capture=process.env.GR_CAPTURE_PREVIEWS==='1';
 let context,checks=0;const check=async(label,fn)=>{await fn();console.log('PASS '+label);checks++;};
 (async()=>{
@@ -22,7 +22,7 @@ let context,checks=0;const check=async(label,fn)=>{await fn();console.log('PASS 
   await page.locator('#theme-search').fill('');await page.locator('#theme-collection').selectOption('Coastal Escapes');assert.equal(await page.locator('[data-theme-choice]:visible').count(),6);await page.locator('#theme-search').fill('no-such-theme');assert.equal(await page.locator('[data-theme-choice]:visible').count(),0);assert.equal(await page.locator('#theme-empty').isVisible(),true);
   await page.locator('#theme-search').fill('');await page.locator('#theme-collection').selectOption('');assert.equal(await page.locator('[data-theme-choice]:visible').count(),54);assert.equal(await page.locator('#theme-empty').isVisible(),false);await page.getByRole('button',{name:'Close customization'}).click();await page.waitForTimeout(250);await page.reload();await page.locator('.app[data-theme=blackhole]').waitFor();
  });
- await check('Twenty-six detailed scenes render in both appearances with bounded visible motion',async()=>{
+ await check('Detailed scenes render in both appearances with bounded visible motion',async()=>{
   fs.mkdirSync('docs/v160',{recursive:true});
   for(const theme of changed)for(const appearance of ['dark','light']){
    await prefs({theme,appearance,animations:true});await page.waitForTimeout(capture?1200:100);

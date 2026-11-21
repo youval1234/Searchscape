@@ -250,45 +250,6 @@
 
     const flange=(y)=>ellipse(1430,y,116,26,a,'opacity=".42"')+ellipse(1430,y-5,116,26,'url(#s-reactor-metal)',`stroke="${g}" stroke-opacity=".28"`)+
       Array.from({length:8},(_,i)=>{const t=i*Math.PI/4;return circle(1430+Math.cos(t)*100,y-5+Math.sin(t)*19,3,g,'opacity=".45"');}).join('');
-    scenes.radioactive=()=>`<defs><linearGradient id="s-reactor-metal" x2="1" y2=".1"><stop stop-color="${a}" stop-opacity=".55"/><stop offset=".25" stop-color="${f}" stop-opacity=".12"/><stop offset=".55" stop-color="${b}" stop-opacity=".35"/><stop offset="1" stop-color="${g}" stop-opacity=".28"/></linearGradient><linearGradient id="s-reactor-glass" x2="1" y2="1"><stop stop-color="${g}" stop-opacity=".3"/><stop offset=".35" stop-color="${f}" stop-opacity=".035"/><stop offset="1" stop-color="${g}" stop-opacity=".25"/></linearGradient><linearGradient id="s-reactor-core" x2="1" y2="0"><stop stop-color="#6b9b55" stop-opacity=".2"/><stop offset=".48" stop-color="#d4e89d" stop-opacity=".8"/><stop offset="1" stop-color="#78b758" stop-opacity=".35"/></linearGradient>${glow('s-reactor-glow','#b1cf74')}<clipPath id="s-reactor-chamber">${rect(1346,354,168,326,b,'rx="32"')}</clipPath></defs>`+
-      circle(1450,515,350,'url(#s-reactor-glow)')+circle(52,897,270,'url(#s-reactor-glow)')+
-      placed(142,283,group('s-reactor-gauge',
-        circle(0,0,106,'url(#s-reactor-metal)',`stroke="${a}" stroke-opacity=".5" stroke-width="2"`)+
-        circle(0,0,91,b,'opacity=".6"')+circle(0,0,83,'none',`stroke="${g}" stroke-opacity=".25"`)+
-        Array.from({length:17},(_,i)=>line('M0-72V-62',i>12?'#c3a664':g,i%4?1:2,.5,`transform="rotate(${-122+i*15.25})"`)).join('')+
-        path('M-63 47A79 79 0 0 1 56-55','none',`stroke="${g}" stroke-width="3" opacity=".28"`)+
-        group('s-reactor-needle',line('M-10 7 59-40',g,2,.8)+circle(0,0,7,a,'opacity=".9"')+circle(0,0,3,g,'opacity=".8"'))+
-        rect(-37,44,74,13,g,'rx="3" opacity=".18"')+line('M-21 50H-12M-5 50H4M11 50H20',g,2,.65)
-      ))+
-      group('s-reactor-pipes',
-        line('M1308 405H1268V710H1328M1552 395H1592V763H1514',a,13,.48)+
-        line('M1308 405H1268V710H1328M1552 395H1592V763H1514',g,2,.27)+
-        line('M0 756H88V891H216V1020',a,20,.45)+
-        line('M0 752H88V887H216',g,2,.28)+
-        line('M0 756H88V891H216V1020',g,4,.4,'stroke-dasharray="10 90" class="s-reactor-coolant"')+
-        [[29,756],[88,815],[150,891],[216,957]].map(([x,y],i)=>rect(x-9,y-16,i%2?18:26,i%2?32:20,'url(#s-reactor-metal)','rx="3"')).join(''))+
-      group('s-reactor-vessel',
-        rect(1340,338,180,366,'url(#s-reactor-glass)','rx="40"')+
-        `<g clip-path="url(#s-reactor-chamber)">`+
-          group('s-reactor-corelight',[-44,0,44].map((x,i)=>rect(1430+x-12,378-i%2*12,24,284+i%2*20,'url(#s-reactor-core)','rx="12"')).join(''))+
-          [[1387,612],[1436,554],[1482,641],[1455,465],[1404,409]].map(([x,y],i)=>placed(x,y,circle(0,0,2+i%2,g,`class="s-reactor-bubble" style="--s-phase:-${i*1.7}s" opacity=".7"`))).join('')+
-          line('M1362 397V628M1371 388V651',f,2,.2)+
-        '</g>'+
-        flange(344)+flange(701)+
-        rect(1396,277,68,43,'url(#s-reactor-metal)','rx="7"')+line('M1430 277V246H1503',a,10,.55)+
-        path('M1342 709H1518L1548 758H1312Z','url(#s-reactor-metal)')+
-        line('M1347 758V914M1512 758V914M1328 917H1530',a,7,.48)+
-        [1352,1507].map(x=>line(`M${x} 384V660`,a,7,.4)).join('')+
-        group('s-reactor-containment',
-          ellipse(1430,443,93,19,'none',`stroke="${g}" stroke-width="1.2" stroke-opacity=".4" stroke-dasharray="25 11"`)+
-          ellipse(1430,583,93,19,'none',`stroke="${g}" stroke-width="1.2" stroke-opacity=".4" stroke-dasharray="25 11"`)
-        ))+
-      placed(89,891,group('s-reactor-valve',circle(0,0,34,'none',`stroke="${g}" stroke-width="5" opacity=".5"`)+line('M-24-24 24 24M-24 24 24-24',g,3,.55)+circle(0,0,6,a,'opacity=".8"')))+
-      group('s-reactor-hazard-plate',rect(18,600,176,67,a,'rx="5" opacity=".2"')+
-        Array.from({length:8},(_,i)=>path(`M${20+i*22} 600h10l-12 15h-10Z`,g,'opacity=".4"')).join('')+
-        circle(107,639,6,g,'opacity=".65"')+
-        [0,120,240].map(n=>path('M-4-12-9-30A31 31 0 0 1 9-30L4-12Z',g,`transform="translate(107 639) rotate(${n})" opacity=".5"`)).join(''))+
-      group('s-reactor-steam',path('M-100 995Q130 882 360 1000M1290 996Q1460 916 1680 980',g,'opacity=".1"'));
     return scenes;
   });
 })();

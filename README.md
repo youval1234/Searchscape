@@ -9,9 +9,12 @@
 ## Make your browser feel like yours
 
 - **54 animated themes** in nine collections, each with light and dark palettes. Search themes, choose an accent, add a local photo, and select from 12 fonts.
-- **Military** frames an alpine field camp with two tanks, two soldiers at a map table and a pennant stirring in the wind. Find it in **Customize → Architecture & Futures**. [Animated preview](docs/v250/military-motion.webp)
-- **Le Rouge** pairs an ivory couture mask and a gently moving crimson gown with a boutique window display. [Animated preview](docs/v250/lerouge-motion.webp)
-- **GTA VI · Miami** frames the bay with a coral coupe, swaying palms and a pastel Art Deco hotel. Find it in **Customize → Coastal Escapes**. [Animated preview](docs/v250/miami-motion.webp)
+- **Radioactive**. Two workers in sealed yellow suits pass a glowing capsule beside a ribbed reactor. The capsule lights the transfer while the dial and green contours move inside the reactor bay. [Animated preview](docs/v260/radioactive-motion.webp)
+- **City Skyline**. A coral commuter train crosses an arched viaduct beneath stepped copper towers, brick rooftops and water tanks. [Animated preview](docs/v260/city-motion.webp)
+- **Magical**. A jeweled brass orrery turns above an open atlas as a folded-paper owl glides over castle turrets. [Animated preview](docs/v260/magical-motion.webp)
+- **GTA VI · Miami**. Chrome wheels roll past lane markings along a palm-lined Art Deco hotel with a scalloped awning. [Animated preview](docs/v260/miami-motion.webp)
+- **Le Rouge**. A loose silk ribbon unfurls from a masked couture gown across from an antique mirror and handbag display. [Animated preview](docs/v260/lerouge-motion.webp)
+- **Military**. A tank crosses the ridge behind a parked vehicle with strapped stowage. Two soldiers study a folded map beside a field radio and a turning dish. [Animated preview](docs/v260/military-motion.webp)
 - **Six search options:** Google, DuckDuckGo, Brave Search, Bing, Ecosia, and a configurable SearXNG instance. This controls Searchscape searches; your address-bar engine stays in Brave settings.
 - **Up to 60 shortcuts** with drag-to-reorder, touch grips, keyboard movement, custom names and icons, and Personal/Work/Study groups. Ordering saves automatically.
 - **110 service links in nine ecosystems:** Google, Microsoft, Apple, Proton, Amazon, Adobe, Zoho, Meta, and Yahoo. Switch services independently of your search engine, or search the selected collection by app name. SharePoint, To Do, Forms, Planner, Loop, Copilot and other work apps are included; work/school or admin access may be needed. Bundled icons work without a cached favicon. [Service catalog](docs/services.md)
@@ -35,7 +38,7 @@ For a cleaner address on regular new tabs, turn on **Customize → New tabs → 
 
 **Upgrading from v2.3.1 or earlier? Export your settings before replacing files.** v2.3.2 adds a fixed extension ID, so Brave treats it as a new identity. Follow the [one-time migration guide](docs/browser-sync.md#upgrade-from-v231-or-earlier-without-losing-settings) to preserve your settings.
 
-1. Download **Searchscape-v2.5.0.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
+1. Download **Searchscape-v2.6.0.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
 2. Open `brave://extensions`, enable **Developer mode**, and choose **Load unpacked**.
 3. Select the extracted folder containing `manifest.json`, then open a new tab. Brave may ask you to confirm the new-tab change.
 

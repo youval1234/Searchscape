@@ -63,15 +63,3 @@
 @keyframes s-retro-scan{0%{transform:translateY(-20px);opacity:0}15%,80%{opacity:.6}100%{transform:translateY(155px);opacity:0}}
 @keyframes s-retro-tape{from{transform:translate(-7px,5px)}to{transform:translate(8px,-6px)}}
 @keyframes s-retro-bars{from{transform:translateX(-7px);opacity:.6}to{transform:translateX(8px);opacity:1}}
-.app[data-motion=on] .s-reactor-needle{animation:s-reactor-meter 12s ease-in-out infinite;transform-origin:0 0}
-.app[data-motion=on] .s-reactor-corelight{animation:s-reactor-light 10s ease-in-out infinite alternate}
-.app[data-motion=on] .s-reactor-coolant{animation:s-reactor-coolant 9s linear infinite}
-.app[data-motion=on] .s-reactor-bubble{animation:s-reactor-bubble 12s var(--s-phase,0s) ease-in-out infinite}
-.app[data-motion=on] .s-reactor-containment{animation:s-reactor-containment 17s linear infinite}
-.app[data-motion=on] .s-reactor-steam{animation:s-reactor-steam 26s ease-in-out infinite alternate}
-@keyframes s-reactor-meter{0%,100%{transform:rotate(-8deg)}28%{transform:rotate(4deg)}46%{transform:rotate(-2deg)}72%{transform:rotate(10deg)}}
-@keyframes s-reactor-light{from{opacity:.55}to{opacity:.95}}
-@keyframes s-reactor-coolant{to{stroke-dashoffset:-400}}
-@keyframes s-reactor-bubble{0%{transform:translateY(8px);opacity:0}25%,65%{opacity:.6}100%{transform:translateY(-48px);opacity:0}}
-@keyframes s-reactor-containment{to{stroke-dashoffset:-288}}
-@keyframes s-reactor-steam{from{transform:translate(-18px,10px)}to{transform:translate(23px,-9px)}}

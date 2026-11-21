@@ -13,6 +13,8 @@
         <path d="m140 17 18 2 63-12 2 5-67 15-18-2Z" fill="var(--field-shade)"/>
         <path d="m86 7 5-5 18-1 4 6Z" fill="var(--field-shade)"/>
         <path d="m76 14-5-30" stroke="var(--field-shade)" stroke-width="1.5"/>
+        <g transform="translate(53 26) rotate(-4)"><rect width="33" height="12" rx="5" fill="#99947a" stroke="var(--field-shade)" stroke-width="1.5"/><path d="M8 0v12m16-12v12" stroke="#585e4d" stroke-width="3"/><path d="m2 6 4-2m22 3 4-2" stroke="#c7bb96" fill="none"/></g>
+        <path d="m36 63 9-2m131-2 14 1m-20-27 4-3 10 3" fill="none" stroke="var(--field-mark)" stroke-width="1.5"/>
         <path d="m113 18 10-1-5 7-8 1Z" fill="var(--field-mark)"/>
         <path d="M54 50h26l-4 10H49Zm31-1h24l-3 10H81Zm28-1h27l-4 10h-27Z" fill="var(--field-hull)" stroke="var(--field-shade)" stroke-width=".9"/>
         <path d="M18 52h24m123-11 17-2" fill="none" stroke="var(--field-mark)" stroke-width="2" opacity=".8"/>`;
@@ -39,7 +41,8 @@
         <path d="M0 729q166-74 375-44t420 33q202 1 410-67t395 12v337H0Z" fill="var(--field-ground)"/>
         <path d="M0 880q213-85 392-55t401 51q-218-2-411-28T0 909Z" fill="var(--field-path)" opacity=".77"/>`)}
       ${plate('left',`
-        <g transform="translate(248 344) scale(.63)" opacity=".60"><use href="#field-tank"/></g>
+        <path d="M0 407q146-26 276-16t144 8v9q-93-8-153-9t-267 18Z" fill="var(--field-path)"/>
+        <g transform="translate(0 344)"><g class="field-convoy"><use href="#field-tank" transform="scale(.59)"/></g></g>
         <path d="M-10 488q143-38 337-6l69 16q-241-13-406 11Z" fill="var(--field-path)"/>
         <ellipse cx="168" cy="474" rx="145" ry="9" fill="var(--field-shade)" opacity=".30"/>
         <g transform="translate(7 332) scale(1.48)"><use href="#field-tank"/></g>
@@ -51,12 +54,15 @@
         <path d="m275 311 33 97 112-11-61-89Z" fill="var(--field-lit)"/>
         <path d="m226 415 49-83 18 84Z" fill="var(--field-shade)"/><path d="m275 332 8 80-25 3Z" fill="var(--field-track)"/>
         <path d="m274 309-59 131m146-132 56 119" stroke="var(--field-shade)" stroke-width="1.6" fill="none"/>
+        <g transform="translate(334 309)"><path d="m-2 0 4-24 4 25Z" fill="var(--field-shade)"/><g class="field-dish"><path d="M-19-35q3 24 24 17l12-5Z" fill="var(--field-mark)" stroke="var(--field-shade)" stroke-width="2"/><path d="m-9-32 9-8 3 12" fill="none" stroke="var(--field-shade)" stroke-width="2"/></g></g>
         <path d="M371 334V169" stroke="var(--field-shade)" stroke-width="3"/>
         <g transform="translate(371 173)"><path class="field-pennant" d="M0 0Q-15 3-28-3T-59-1Q-46 11-32 8T0 14Z" fill="#c18162"/></g>
         ${soldier(159,373,1,'point')}<g transform="translate(550 0) scale(-1 1)">${soldier(275,376,.96,'rest')}</g>
         <path d="m196 420 38-9 31 6-40 12Z" fill="var(--field-lit)"/><path d="m197 420 28 8 39-11v5l-39 12-28-9Z" fill="var(--field-shade)"/>
         <path d="m202 425-2 41m28-36 2 40m29-48 4 33" stroke="var(--field-shade)" stroke-width="3"/>
         <path d="m201 420 23-6 15 1-7 3 5 2-13 5Z" fill="#d8c6a2"/>
+        <path d="m208 420 7-3 3 2 7-3 3 1m-9-2 3 8" stroke="#9e906a" stroke-width="1.4" fill="none"/>
+        <g transform="translate(347 413)"><rect width="26" height="19" rx="2" fill="var(--field-track)"/><path d="m20 0 4-21M3 12h9m-9 3h9" stroke="var(--field-lit)" stroke-width="1.5"/><rect x="4" y="4" width="13" height="4" fill="#9eb29a"/><circle cx="20" cy="12" r="2.5" fill="var(--field-mark)"/></g>
         <rect x="332" y="433" width="56" height="31" rx="3" fill="var(--field-shade)"/><path d="M340 436v24m39-24v24m-26-17h12" stroke="var(--field-lit)" stroke-width="3"/>
       `)}`};
   });

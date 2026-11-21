@@ -15,21 +15,30 @@
         <ellipse class="rouge-lamplight" cx="173" cy="215" rx="112" ry="146" fill="url(#r-light)"/>
         <path d="M34 481Q164 456 311 478v19q-131 28-277 3Z" fill="var(--r-plinth)"/><ellipse cx="173" cy="480" rx="139" ry="14" fill="var(--r-shelf)"/>
         <g transform="translate(165 0)">
+          <path d="M-37 235Q-67 261-72 319T-126 425Q-75 414-49 386L-17 297 36 379Q69 410 116 415Q76 370 69 313T38 234Z" fill="#6f3049"/>
+          <path d="M-44 249q-22 57-28 85m115-84q22 59 24 86" fill="none" stroke="#b06875" stroke-width="2.3"/>
           <g class="rouge-train">
             <path d="M-21 294Q-37 329-48 365T-100 440Q-118 463-148 469Q-94 492-36 475Q-5 491 26 477Q92 488 157 471Q106 456 77 413Q54 381 42 335L20 294Z" fill="url(#r-gown)"/>
             <path d="M-19 307Q-26 390-109 465Q-79 469-53 452Q-28 416-10 332ZM2 314Q-15 432-46 472Q-22 469-8 451Q7 391 9 319ZM15 310Q26 419 64 471Q102 478 130 471Q70 457 39 377Z" fill="#632d43" opacity=".76"/>
             <path d="M-24 332Q-51 415-87 437M4 338Q-1 421-18 457M24 346Q47 431 86 458" fill="none" stroke="#d78584" stroke-width="2.6" opacity=".75"/>
           </g>
           <path d="M-10 199V225L-42 239Q-38 255-25 273L-22 299Q-3 307 20 297L24 272Q42 246 41 237L10 225V199Z" fill="url(#r-gown)"/>
+          <g fill="url(#r-pearl)" stroke="#986875" stroke-width="1.8">
+            <path d="m-40 237 8 11-13 32-24 18-6-5 20-22Zm79-1-6 12 24 19 24-7 3-7-24 5Z"/>
+            <path d="m-67 291-9-1-9 8-7 2 1 3 10-1-4 5 4 1 12-10Zm146-36 10-6 11-1 4 3-12 1 10 3-2 3-14-1-6 4Z" fill="#ab606c"/>
+          </g>
           <path d="M-15 225Q-45 202-67 207Q-63 231-41 247L-23 250Q-43 235-47 223Q-26 229-8 244ZM15 225Q45 202 67 207Q63 231 41 247L23 250Q43 235 47 223Q26 229 8 244Z" fill="url(#r-pearl)"/>
           <g fill="none" stroke="#e5c6aa" stroke-width="3.6" stroke-linecap="round">${[0,1,2].map(i=>`<path d="M-24 ${248+i*11}Q-20 ${257+i*10} 0 ${261+i*10}Q20 ${257+i*10} 24 ${248+i*11}"/>`).join('')}</g>
           <path d="M-13 165Q-30 157-27 135Q-41 153-23 172L-19 186Q-15 204 0 214Q14 203 19 184L23 170Q41 151 27 132Q30 152 12 164Q4 158-2 164Z" fill="url(#r-pearl)"/>
           <path d="M-15 181l12 4-3 4-7-3Zm30 0-12 4 3 4 7-3Z" fill="#78515b"/><path d="m0 166 4 9-4 7-4-7Z" fill="#a84559"/>
+          <path d="m0 244 5 6-5 8-5-8Z" fill="#efb49c" stroke="#7f3e53"/>
+          <path class="rouge-ribbon" d="M18 300C65 305 49 350 88 358S134 393 113 414C126 391 97 379 79 373S49 323 18 305Z" fill="#c87683" stroke="#dba19d" stroke-width="1.5"/>
           <path d="m-24 296 24 5 23-6-2 6-21 6-23-5Z" fill="#cbab89"/>
         </g>`)}
       ${plate('right',`
         <path d="M155 468V257q0-85 99-104q68-14 166 1v314Z" fill="var(--r-alcove)"/>
         <path d="M171 459V255q1-69 87-86q69-14 161-1" fill="none" stroke="var(--r-line)" stroke-width="2"/>
+        <g transform="translate(347 247)"><ellipse rx="37" ry="58" fill="var(--r-plinth)" stroke="#bd9885" stroke-width="2.5"/><ellipse rx="31" ry="51" fill="var(--r-alcove)" stroke="var(--r-line)"/><path d="m-22 18 32-49m-25 52 30-46" fill="none" stroke="#dabab0" stroke-width="2" opacity=".55"/><path d="m0 58 0 13m-15 3q15-7 30 0" fill="none" stroke="#bd9885" stroke-width="3"/></g>
         <path d="M137 391h283v17H137Zm50 57h233v15H187Z" fill="var(--r-shelf)"/>
         <g transform="translate(236 337)">
           <path d="M-21 5v-15q0-25 19-25t20 25V4" fill="none" stroke="#c6aa89" stroke-width="6"/>

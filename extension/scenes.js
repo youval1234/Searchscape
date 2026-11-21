@@ -306,30 +306,6 @@
       line('M-100 930C48 704 277 856 215 681S19 671 85 553M1350 1060C1260 867 1512 811 1446 665S1582 544 1690 628',g,1.5,.35))+
     caption(1305,475,'✧  AS ABOVE, SO BELOW  ✧',10,a,'opacity=".5" letter-spacing="1"');
 
-  const magicalScene=()=>`<defs><linearGradient id="magic-pages" x2=".8" y2="1"><stop stop-color="#efdba2"/><stop offset="1" stop-color="${a}"/></linearGradient>
-    <linearGradient id="magic-door" x2="0" y2="1"><stop stop-color="${g}" stop-opacity=".7"/><stop offset="1" stop-color="${b}" stop-opacity=".2"/></linearGradient>
-    <radialGradient id="magic-radiance"><stop stop-color="#e5ca8b" stop-opacity=".25"/><stop offset="1" stop-color="#e5ca8b" stop-opacity="0"/></radialGradient></defs>`+
-    circle(1430,510,350,'url(#magic-radiance)')+circle(85,760,330,'url(#magic-radiance)')+
-    `<g transform="translate(1420 600)">`+group('v-magical-doorway',
-      path('M-106 185V-150Q-107-260 0-315Q107-260 106-150V185Z','url(#magic-door)','opacity=".5"')+
-      line('M-120 185V-150Q-121-269 0-335Q121-269 120-150V185M-105 185V-150Q-106-260 0-315Q106-260 105-150V185','#d9b679',3,.65)+
-      line('M-88 140V-145Q-89-236 0-289Q89-236 88-145V140',f,1,.3)+
-      [-120,120].map(x=>line(`M${x-8} -100h16M${x-8} 10h16M${x-10} 120h20`,'#d9b679',2,.55)).join('')+
-      Array.from({length:6},(_,i)=>path(`M${-110-i*10} ${185+i*22}h${220+i*20}l12 12H${-122-i*10}Z`,g,`opacity="${.32-i*.03}"`)).join('')+
-      group('v-magical-curtain',line('M-35-210Q-62-78-32 38M7-245Q35-120 4 80M43-203Q19-65 39 7',g,2,.6,'stroke-dasharray="11 25"'))+
-      path('M0-232 7-210 30-203 7-195 0-173-7-195-30-203-7-210Z',f,'opacity=".7" class="v-magical-seal"')
-    )+'</g>'+
-    `<g transform="translate(100 822) rotate(-9)">`+group('v-magical-book',
-      path('M-142-21Q-68-57 15-20Q86-69 174-40L160 91Q79 66 12 108Q-65 76-135 103Z',a,'opacity=".7"')+
-      path('M-135-36Q-65-70 12-32Q92-80 169-55L154 75Q79 54 12 95Q-60 62-130 89Z','url(#magic-pages)','opacity=".75"')+
-      path('M12-32Q22 22 12 95L154 75 169-55Q92-80 12-32Z',f,'opacity=".08"')+
-      line('M12-32Q22 22 12 95M-132 96Q-60 66 12 103Q79 62 158 82',f,1,.4)+
-      [0,1,2,3,4].map(i=>line(`M-112 ${-18+i*18}q46-18 103 7M39 ${-20+i*18}q46-23 105-17`,a,1.5,.5)).join('')+
-      path('M45 84 40 123 54 113 67 124 69 76Z','#be7f73','opacity=".8"')
-    )+'</g>'+
-    group('v-magical-script',line('M118 762C297 704 160 560 81 590S12 502 194 397','#ddbf7d',1.5,.5,'stroke-dasharray="2 9"')+
-      [[100,643],[214,692],[76,550],[194,397]].map(([x,y],i)=>`<g transform="translate(${x} ${y})">${path('M0-6 2-2 6 0 2 2 0 6-2 2-6 0-2-2Z','#f1d6a1',`class="v-magical-spark" style="--phase:-${i*1.7}s"`)}</g>`).join(''));
-
   const noirScene=()=>`<defs><linearGradient id="noir-beam" x2=".3" y2="1"><stop stop-color="${f}" stop-opacity=".19"/><stop offset="1" stop-color="${f}" stop-opacity="0"/></linearGradient>
     <radialGradient id="noir-lamp-glow"><stop stop-color="${f}" stop-opacity=".24"/><stop offset="1" stop-color="${f}" stop-opacity="0"/></radialGradient></defs>`+
     group('v-noir-shutters',Array.from({length:8},(_,i)=>path(`M-100 ${100+i*85} 500 ${370+i*85}v21L-100 ${121+i*85}Z`,f,'opacity=".045"')).join(''))+
@@ -431,24 +407,6 @@
       line('M-103-40Q-42-80 51-52',f,2,.35)
     )+'</g>';
 
-  const cityScene=()=>`<defs><linearGradient id="city-facade" x2="1" y2="1"><stop stop-color="${g}" stop-opacity=".5"/><stop offset="1" stop-color="${a}" stop-opacity=".2"/></linearGradient>
-    <linearGradient id="city-river" x2="0" y2="1"><stop stop-color="${g}" stop-opacity=".05"/><stop offset="1" stop-color="${g}" stop-opacity=".22"/></linearGradient></defs>`+
-    group('v-city-distant-new',Array.from({length:17},(_,i)=>{const x=i*102-30,h=50+i*37%130;return rect(x,935-h,74,h,a,'opacity=".12"')+line(`M${x+8} ${935-h+15}v${h-20}`,g,1,.15);}).join(''))+
-    group('v-city-architecture',
-      path('M-25 960V439L91 404 159 447V960ZM1240 960V560L1325 523 1390 554V960ZM1416 960V385L1480 308 1543 385V960Z','url(#city-facade)',`stroke="${a}" stroke-opacity=".25"`)+
-      path('M91 404 159 447V960H91ZM1325 523 1390 554V960H1325ZM1480 308 1543 385V960H1480Z',b,'opacity=".2"')+
-      line('M91 404V960M1325 523V960M1480 308V960M1480 308V265',g,1,.4)+
-      Array.from({length:16},(_,i)=>line(`M-20 ${465+i*30}H155M1420 ${425+i*32}H1540`,a,1,.3)).join('')+
-      rect(188,634,79,326,'url(#city-facade)',`stroke="${a}" stroke-opacity=".25"`)+path('M181 634H273L261 616H193Z',a,'opacity=".4"')+
-      rect(16,377,35,36,a,'opacity=".3"')+line('M34 377V343M17 357H52',g,1,.4)+
-      [0,1,2,3,4,5].map(i=>group('v-city-office-lights',Array.from({length:8},(_,j)=>rect(i<3?4+i*24:1430+(i-3)*27,i<3?482+j*48:444+j*51,7,13,j%3===i%3?'#daca9f':g,`opacity="${j%3===i%3?.55:.15}"`)).join(''),`style="--phase:-${i*1.91}s"`)).join('')+
-      Array.from({length:8},(_,i)=>line(`M199 ${661+i*34}h54M1253 ${603+i*36}h57`,g,2,.25)).join(''))+
-    path('M0 966Q390 921 730 970T1600 956V1000H0Z','url(#city-river)')+
-    group('v-city-bridge',line('M1040 981H1620M1280 981V851M1540 981V851M1040 971Q1280 949 1280 860Q1410 996 1540 860Q1570 944 1630 956',a,2,.6)+
-      Array.from({length:13},(_,i)=>{const x=1090+i*39,y=x<1280?963-(x-1090)*.31:x<1540?885+Math.sin((x-1280)/260*Math.PI)*58:930;return line(`M${x} ${y}V980`,a,1,.35);}).join(''))+
-    group('v-city-metro-new',rect(-155,953,130,15,g,'rx="6" opacity=".7"')+Array.from({length:7},(_,i)=>rect(-143+i*15,957,9,5,f,'rx="1" opacity=".55"')).join(''))+
-    group('v-city-flight-new',line('M-30 193H4M-14 181V206',a,2,.5)+circle(4,193,2,g,'opacity=".7"'));
-
   Object.assign(scenes,{
     paper:()=>group('v-paper-sheet',rect(35,125,220,320,g,'rx="6" opacity=".32"')+line('M60 180H210M60 215H190M60 250H215M60 285H165',a,2,.38))+group('v-paper-fold',path('M1330 690 1550 760 1380 910 1400 800Z',g,'opacity=".42"')+line('M1330 690 1400 800 1550 760',a,2,.5))+group('v-pencil',line('M85 820 200 630',a,6,.5)+path('M82 825 84 807 94 814Z',a,'opacity=".6"')),
     sage:sageScene,
@@ -470,7 +428,6 @@
       )+'</g>', 'opacity=".82"'),
     futuristic:()=>group('v-circuit',line('M0 210H100L165 275V480H60M1600 500H1490L1430 560V800H1570M0 910H150L230 990',a,2,.5)+[ [100,210],[60,480],[1490,500],[1570,800] ].map(([x,y])=>circle(x,y,5,g,'class="v-spark"')).join(''))+orbit(1400,210,circle(0,0,115,'none',`stroke="${a}" stroke-width="3" stroke-dasharray="100 40 6 30" opacity=".6"`),'v-orbit',22)+group('v-scanline',rect(0,0,1600,2,g,'opacity=".22"')),
     mystic:mysticScene,
-    magical:magicalScene,
     rustic:()=>rect(0,0,1600,1000,'url(#wood-grain)','opacity=".35"')+group('v-rustic-light',path('M1250 0H1430L1600 760V1000L1350 750Z',g,'opacity=".26"')+line('M1330 0 1600 770',f,8,.1))+group('v-hanging-herbs',line('M90 0V170M135 0V220M180 0V145',a,3,.5)+[90,135,180].map((x,i)=>path(`M${x} ${140+i*18}q-60 30-10 90q60-50 10-90`,g,'opacity=".35"')).join('')),
     solar:solarScene,
     spring:()=>flowerBed('left')+flowerBed('right')+group('v-butterfly-flight',`<g transform="translate(1350 330)"><g class="v-butterfly-wings">${path('M0 0C-60-70-90 20 0 10C70-80 100 30 0 0',g,'opacity=".65"')}</g></g>`)+hills(),
@@ -494,7 +451,6 @@
     office:()=>group('v-office-window',rect(1320,115,250,350,g,'rx="6" opacity=".2"')+line('M1320 290H1570M1445 115V465',a,5,.35))+group('v-office-cloud',cloud(1350,200,.6),'opacity=".3"')+group('v-office-desk',line('M0 870H285M25 870V1000M250 870V1000M1300 900H1600',a,7,.45)+rect(35,690,205,135,g,'rx="9" opacity=".28"')+line('M138 825V865',a,6,.6))+group('v-office-chart',line('M60 790 100 750 135 765 185 715 220 740',a,3,.7,'pathLength="1"'))+group('v-coffee',path('M1385 800H1460L1450 885H1400Z',g,'opacity=".5"')+line('M1460 815q50 0 15 40',a,4,.6))+group('v-coffee-steam',line('M1410 780q-25-25 0-50t0-50M1440 775q-20-20 0-45',g,3,.55)),
     science:scienceScene,
     nature:()=>hills()+group('v-nature-back',[0,1,2,3,4,5,6,7,8,9,10].map(i=>pine(i*170-50,810+(i%3)*25,.9+(i%4)*.2)).join(''),'opacity=".3"')+group('v-nature-front',pine(70,610,1.6)+pine(1500,650,1.6),'opacity=".43"')+group('v-bird-flight',line('M50 280q20-20 40 0 20-20 40 0M110 310q15-15 30 0 15-15 30 0',a,3,.55))+dust('v-fireflies',16,'#b6c875'),
-    city:cityScene,
     rainbow:rainbowScene,
     lunar:lunarScene,
     sakura:()=>hills()+group('v-sakura-tree-left',path('M0 1000Q160 750 130 460Q150 220 350 60M130 465Q-10 280-100 250M170 300Q280 230 420 230M100 720Q240 600 320 550','none',`stroke="${a}" stroke-width="19" opacity=".48"`)+Array.from({length:52},(_,i)=>{const x=(i*67%460)-65,y=55+(i*89%400);return flower(x,y,.6+(i%4)*.22,i%3?'#e69dbd':g);}).join(''),'opacity=".65"')+group('v-sakura-tree-right',path('M1600 1000Q1420 790 1490 500Q1480 340 1320 210M1490 510Q1610 390 1650 300M1450 390Q1360 430 1280 400','none',`stroke="${a}" stroke-width="16" opacity=".45"`)+Array.from({length:39},(_,i)=>flower(1270+(i*71%400),210+(i*59%320),.6+(i%4)*.2,i%3?'#e69dbd':g)).join(''),'opacity=".6"')+group('v-sakura-petal-bed',path('M0 970Q220 910 420 990M1220 990Q1430 920 1600 975','none','stroke="#e69dbd" stroke-width="13" opacity=".3"')),
@@ -538,6 +494,6 @@
 
   const defs=`<defs><linearGradient id="sun-glow"><stop stop-color="#ffe2a0"/><stop offset="1" stop-color="${a}"/></linearGradient><linearGradient id="planet-colors" x2="1" y2="1"><stop stop-color="${g}"/><stop offset="1" stop-color="${a}"/></linearGradient><linearGradient id="aurora-colors"><stop stop-color="${a}"/><stop offset=".5" stop-color="${g}"/><stop offset="1" stop-color="#8c7bce"/></linearGradient><linearGradient id="sunset-colors" x2="0" y2="1"><stop stop-color="#f9c590"/><stop offset="1" stop-color="#cf6a95"/></linearGradient><linearGradient id="moon-colors"><stop stop-color="#f0f3ff"/><stop offset="1" stop-color="#8995af"/></linearGradient><linearGradient id="star-tail"><stop stop-color="${f}" stop-opacity="0"/><stop offset="1" stop-color="${f}"/></linearGradient><pattern id="wood-grain" width="260" height="200" patternUnits="userSpaceOnUse"><path d="M0 0H260M0 198H260M10 70Q160 20 250 90M10 90Q160 60 250 110M20 130Q130 180 240 140" fill="none" stroke="${a}" stroke-opacity=".25"/></pattern></defs>`;
   globalThis.SearchscapeScenes={render:id=>{
-    if(['miami','lerouge','military'].includes(id) && scenes[id]) return `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-scene="${id}">${scenes[id]()}</svg>`;
+    if(['miami','lerouge','military','radioactive','city','magical'].includes(id) && scenes[id]) return `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-scene="${id}">${scenes[id]()}</svg>`;
     return `<svg viewBox="0 0 1600 1000" preserveAspectRatio="none" aria-hidden="true" data-scene="${Object.hasOwn(scenes,id)?id:'paper'}">${defs}<defs>${extraDefs}</defs>${(scenes[id]||scenes.paper)()}</svg>`;}};
 })();

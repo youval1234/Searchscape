@@ -1,0 +1,49 @@
+.app[data-theme=radioactive] {
+  --studio-ground:#bfcbb8; --studio-metal:#86978d; --studio-shadow:#536c66; --studio-edge:#65796f; --scene-haze:#dbe3c2;
+}
+.app[data-theme=radioactive][data-appearance=dark] {
+  --studio-ground:#213732; --studio-metal:#66837a; --studio-shadow:#354c49; --studio-edge:#80917b; --scene-haze:#263e35;
+}
+.app[data-theme=city] {
+  --studio-ground:#bdd0d4; --studio-shadow:#617486; --city-far:#afb9c1; --city-glass:#aed2d7; --city-stone:#8e8a9c; --city-brick:#b89087; --scene-haze:#e1c6bf;
+}
+.app[data-theme=city][data-appearance=dark] {
+  --studio-ground:#263e50; --studio-shadow:#3d5065; --city-far:#45586a; --city-glass:#89acba; --city-stone:#756e85; --city-brick:#906e76; --scene-haze:#413f58;
+}
+.app[data-theme=magical] {
+  --studio-ground:#cfbfcd; --mg-niche:#b7a8ba; --mg-line:#a08195; --mg-cover:#80596f; --scene-haze:#e2cfd6;
+}
+.app[data-theme=magical][data-appearance=dark] {
+  --studio-ground:#302b44; --mg-niche:#473c58; --mg-line:#8e7785; --mg-cover:#67506c; --scene-haze:#42364f;
+}
+.app[data-motion=on] .rx-lift, .app[data-motion=on] .rx-receive { transform-origin:20px 57px; animation:rx-handoff 8s ease-in-out infinite; }
+.app[data-motion=on] .rx-receive { animation-name:rx-catch; }
+.app[data-motion=on] .rx-glow { animation:rx-luminous 3.5s -1.5s ease-in-out infinite alternate; }
+.app[data-motion=on][data-motion-intensity=vivid] .rx-needle { transform-origin:374px 291px; animation:rx-meter 4s ease-in-out infinite alternate; }
+.app[data-motion=on][data-motion-intensity=vivid] .rx-rings { animation:rx-contours 4s ease-in-out infinite; }
+/* The capsule follows the tongs to the tray, rides down, then comes back. */
+.rx-sample { transform:translate(209px,296px) rotate(-23deg); }
+.app[data-motion=on] .rx-sample { animation:rx-transfer 8s ease-in-out infinite; }
+@keyframes rx-transfer {
+  0%,100% {transform:translate(204px,276px) rotate(-25deg)}
+  31%,72% {transform:translate(208px,318px) rotate(-10deg)}
+  49%,55% {transform:translate(205px,335px) rotate(1deg)}
+}
+@keyframes rx-handoff { 0%,49%,55%,100% {transform:rotate(-10deg)} 31%,72% {transform:rotate(12deg)} }
+@keyframes rx-catch { 0%,49%,55%,100% {transform:rotate(5deg)} 31%,72% {transform:rotate(-7deg)} }
+@keyframes rx-luminous { from {opacity:.55} to {opacity:1} }
+@keyframes rx-meter { from {transform:rotate(-14deg)} to {transform:rotate(18deg)} }
+@keyframes rx-contours { from {transform:translateY(9px);opacity:0} 35%,70% {opacity:.8} to {transform:translateY(-16px);opacity:0} }
+.ct-train { transform:translateX(80px); }
+.app[data-motion=on] .ct-train { animation:ct-commute 16s -5s linear infinite; }
+.app[data-motion=on][data-motion-intensity=vivid] .ct-water { animation:ct-ripples 6s ease-in-out infinite alternate; }
+@keyframes ct-commute { from {transform:translateX(-156px)} to {transform:translateX(424px)} }
+@keyframes ct-ripples { from {transform:translateX(-12px);opacity:.45} to {transform:translateX(15px);opacity:.95} }
+.app[data-motion=on] .mg-orbit { animation:mg-sidereal 22s -4s linear infinite; }
+.app[data-motion=on] .mg-familiar { animation:mg-flight 6s -1s ease-in-out infinite alternate; }
+.app[data-motion=on][data-motion-intensity=vivid] .mg-trail { animation:mg-ink 3s linear infinite; }
+.app[data-motion=on][data-motion-intensity=vivid] .mg-moon { animation:mg-hover 4s ease-in-out infinite alternate; }
+@keyframes mg-sidereal { to {transform:rotate(360deg)} }
+@keyframes mg-flight { from {transform:translate(-15px,8px) rotate(-7deg)} to {transform:translate(17px,-9px) rotate(5deg)} }
+@keyframes mg-ink { to {stroke-dashoffset:-24} }
+@keyframes mg-hover { from {transform:translateY(3px) rotate(-4deg)} to {transform:translateY(-4px) rotate(4deg)} }

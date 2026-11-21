@@ -5,3 +5,8 @@
 @keyframes field-wind { to { d:path("M0 0Q-15-4-28 2T-59 1Q-46 6-32 13T0 14Z"); } }
 @keyframes field-mist { from { transform:translateX(-19px);opacity:.43; } to { transform:translateX(25px);opacity:.74; } }
 .theme[data-theme-choice=military] .theme-sample { background:linear-gradient(140deg,#374b42,#86977b 58%,#d0b798)!important; }
+.field-convoy { transform:translateX(232px); opacity:.75; }
+.app[data-motion=on] .field-convoy { animation:field-crossing 27s -16s linear infinite; }
+.app[data-motion=on][data-motion-intensity=vivid] .field-dish { transform-origin:0 -20px; animation:field-dish 7s ease-in-out infinite alternate; }
+@keyframes field-crossing { from { transform:translateX(-140px); } to { transform:translateX(425px); } }
+@keyframes field-dish { from { transform:rotate(-8deg); } to { transform:rotate(11deg); } }
