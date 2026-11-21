@@ -1,7 +1,7 @@
 // Integrated catalog, picker and artwork checks using synthetic hardware only.
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert/strict');
 const meta={location:{hostname:'localhost'},URL};vm.runInNewContext(fs.readFileSync('extension/shared.js','utf8'),meta);
-const changed=['ocean','spring','midnight','cosmic','amber','ice','colorful','sunset','library','office','science','scary','snow','blackhole','coralreef','hawaii','aztec','desert','cave','emerald','retro','radioactive','shadow','fjord','miami'];
+const changed=['ocean','spring','midnight','cosmic','amber','ice','colorful','sunset','library','office','science','scary','snow','blackhole','coralreef','hawaii','aztec','desert','cave','emerald','retro','radioactive','shadow','fjord','miami','military'];
 const capture=process.env.GR_CAPTURE_PREVIEWS==='1';
 let context,checks=0;const check=async(label,fn)=>{await fn();console.log('PASS '+label);checks++;};
 (async()=>{
@@ -12,17 +12,17 @@ let context,checks=0;const check=async(label,fn)=>{await fn();console.log('PASS 
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&/attribute.*d:|Expected.*number|Failed to load resource/.test(m.text()))errors.push(m.text());});
  await page.goto('https://www.google.com/');await page.frameLocator('#hardware-frame').locator('#cpu-value').filter({hasText:'25%'}).waitFor();
  const prefs=async patch=>{if(patch.theme)patch.accent=meta.Searchscape.themes.find(t=>t.id===patch.theme).accent;await worker.evaluate(async patch=>{const s=(await chrome.storage.local.get('stillSettings')).stillSettings;await chrome.storage.local.set({stillSettings:{...s,...patch}});},patch);if(patch.theme)await page.waitForFunction(id=>document.querySelector('#still-home').shadowRoot.querySelector('.theme-art svg')?.dataset.scene===id,patch.theme);};
- await check('Fifty-three unique themes, nine ordered collections and twelve new worlds are available',async()=>{
-  assert.equal(meta.Searchscape.themes.length,53);assert.equal(new Set(meta.Searchscape.themes.map(t=>t.id)).size,53);assert.equal(new Set(meta.Searchscape.themes.map(t=>t.group)).size,9);assert.equal(await page.locator('[data-theme-choice]').count(),53);
+ await check('Fifty-four unique themes, nine ordered collections and twelve new worlds are available',async()=>{
+  assert.equal(meta.Searchscape.themes.length,54);assert.equal(new Set(meta.Searchscape.themes.map(t=>t.id)).size,54);assert.equal(new Set(meta.Searchscape.themes.map(t=>t.group)).size,9);assert.equal(await page.locator('[data-theme-choice]').count(),54);
   for(const id of changed)assert.ok(meta.Searchscape.themes.some(t=>t.id===id));
-  for(const t of meta.Searchscape.themes){assert.equal(t.light.length,6);assert.equal(t.dark.length,6);await prefs({theme:t.id});assert.equal(await page.locator('.theme-art svg').getAttribute('data-scene'),t.id);}
+  for(const t of meta.Searchscape.themes){assert.equal(t.light.length,6);assert.equal(t.dark.length,6);await prefs({theme:t.id});assert.equal(await page.locator('.theme-art > svg').getAttribute('data-scene'),t.id);}
  });
  await check('Theme search, collection filters, empty results and selection persistence work together',async()=>{
   await page.getByRole('button',{name:'Customize',exact:true}).click();await page.locator('#theme-search').fill('BLACK HOLE');assert.equal(await page.locator('[data-theme-choice]:visible').count(),1);assert.equal(await page.locator('[data-theme-heading]:visible').count(),1);await page.getByRole('button',{name:'Black Hole',exact:true}).click();assert.equal(await page.locator('.app').getAttribute('data-theme'),'blackhole');
   await page.locator('#theme-search').fill('');await page.locator('#theme-collection').selectOption('Coastal Escapes');assert.equal(await page.locator('[data-theme-choice]:visible').count(),6);await page.locator('#theme-search').fill('no-such-theme');assert.equal(await page.locator('[data-theme-choice]:visible').count(),0);assert.equal(await page.locator('#theme-empty').isVisible(),true);
-  await page.locator('#theme-search').fill('');await page.locator('#theme-collection').selectOption('');assert.equal(await page.locator('[data-theme-choice]:visible').count(),53);assert.equal(await page.locator('#theme-empty').isVisible(),false);await page.getByRole('button',{name:'Close customization'}).click();await page.waitForTimeout(250);await page.reload();await page.locator('.app[data-theme=blackhole]').waitFor();
+  await page.locator('#theme-search').fill('');await page.locator('#theme-collection').selectOption('');assert.equal(await page.locator('[data-theme-choice]:visible').count(),54);assert.equal(await page.locator('#theme-empty').isVisible(),false);await page.getByRole('button',{name:'Close customization'}).click();await page.waitForTimeout(250);await page.reload();await page.locator('.app[data-theme=blackhole]').waitFor();
  });
- await check('Twenty-five detailed scenes render in both appearances with bounded visible motion',async()=>{
+ await check('Twenty-six detailed scenes render in both appearances with bounded visible motion',async()=>{
   fs.mkdirSync('docs/v160',{recursive:true});
   for(const theme of changed)for(const appearance of ['dark','light']){
    await prefs({theme,appearance,animations:true});await page.waitForTimeout(capture?1200:100);

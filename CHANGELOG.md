@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.0 — 2026-11-21
+
+- Draw Miami, Le Rouge and the new Military theme in responsive SVG with a separate light and dark palette for each.
+- Add a mountain field camp with two tanks, soldiers, a radio tent and a windblown pennant to Architecture & Futures.
+- Keep animation near the edges and respect the motion settings.
+
 ## 2.4.2 — 2026-11-19
 
 - Repaint Le Rouge as a couture department store with a horned porcelain mannequin, an ivory display bust and original lighting, fabric and moth animations.

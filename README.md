@@ -8,9 +8,10 @@
 
 ## Make your browser feel like yours
 
-- **53 animated themes** in nine collections, each with light and dark palettes. Search themes, choose an accent, add a local photo, and select from 12 fonts.
-- **Le Rouge** opens onto a crimson couture salon with porcelain mannequins, drifting silk moths and warm light on polished marble. [See the theme](docs/v242/lerouge-dark.png).
-- **GTA VI · Miami** adds a painted Vice City boulevard with a coral supercar, glowing hotel marquees, a patrolling helicopter and traffic reflected on wet asphalt. Find it in **Customize → Coastal Escapes**.
+- **54 animated themes** in nine collections, each with light and dark palettes. Search themes, choose an accent, add a local photo, and select from 12 fonts.
+- **Military** frames an alpine field camp with two tanks, two soldiers at a map table and a pennant stirring in the wind. Find it in **Customize → Architecture & Futures**. [Animated preview](docs/v250/military-motion.webp)
+- **Le Rouge** pairs an ivory couture mask and a gently moving crimson gown with a boutique window display. [Animated preview](docs/v250/lerouge-motion.webp)
+- **GTA VI · Miami** frames the bay with a coral coupe, swaying palms and a pastel Art Deco hotel. Find it in **Customize → Coastal Escapes**. [Animated preview](docs/v250/miami-motion.webp)
 - **Six search options:** Google, DuckDuckGo, Brave Search, Bing, Ecosia, and a configurable SearXNG instance. This controls Searchscape searches; your address-bar engine stays in Brave settings.
 - **Up to 60 shortcuts** with drag-to-reorder, touch grips, keyboard movement, custom names and icons, and Personal/Work/Study groups. Ordering saves automatically.
 - **110 service links in nine ecosystems:** Google, Microsoft, Apple, Proton, Amazon, Adobe, Zoho, Meta, and Yahoo. Switch services independently of your search engine, or search the selected collection by app name. SharePoint, To Do, Forms, Planner, Loop, Copilot and other work apps are included; work/school or admin access may be needed. Bundled icons work without a cached favicon. [Service catalog](docs/services.md)
@@ -34,7 +35,7 @@ For a cleaner address on regular new tabs, turn on **Customize → New tabs → 
 
 **Upgrading from v2.3.1 or earlier? Export your settings before replacing files.** v2.3.2 adds a fixed extension ID, so Brave treats it as a new identity. Follow the [one-time migration guide](docs/browser-sync.md#upgrade-from-v231-or-earlier-without-losing-settings) to preserve your settings.
 
-1. Download **Searchscape-v2.4.2.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
+1. Download **Searchscape-v2.5.0.zip** from [Releases](https://github.com/youval1234/Searchscape/releases/latest) and extract it into a permanent folder.
 2. Open `brave://extensions`, enable **Developer mode**, and choose **Load unpacked**.
 3. Select the extracted folder containing `manifest.json`, then open a new tab. Brave may ask you to confirm the new-tab change.
 

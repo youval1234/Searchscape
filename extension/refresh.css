@@ -5,6 +5,7 @@
 @import url("scene-rouge.css");
 @import url("scene-fashion.css");
 @import url("scene-miami.css");
+@import url("scene-military.css");
 :host{font-family:var(--gr-font,'GR Manrope'),'Segoe UI Variable','Segoe UI',sans-serif;font-synthesis:none}
 .brand{gap:11px;letter-spacing:-.65px;font-size:20px;font-weight:700}
 .brand-name{white-space:nowrap}.brand-name strong{font-weight:600;color:var(--accent)}
@@ -503,3 +504,17 @@ footer{padding-right:150px}
 .private-settings{padding:14px;margin:12px 0 18px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}.private-settings h3{margin-bottom:12px}.private-settings .button{width:100%;font-size:11px}.private-settings .toggle{align-items:flex-start;gap:12px}.private-settings .toggle input{flex-shrink:0}
 
 .service-search-field{margin:0 0 8px}.service-search-field input{min-height:44px}.ecosystem-field{margin-bottom:14px}#service-count{margin:4px 0 14px;font-size:10px}#apps-dialog .dialog-head{position:sticky;top:0;background:var(--bg);z-index:2}#service-empty{padding:12px 0 20px}
+
+/* Full-bleed landscape with independently fitted foreground subjects. */
+.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military]) .theme-art {
+  mask-image: radial-gradient(ellipse 43% 58% at 50% 40%,#0002 0%,#0005 52%,#000 100%);
+}
+.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military]) .wash {
+  background: radial-gradient(ellipse at 6% 66%,var(--scene-haze),transparent 62%),linear-gradient(174deg,var(--bg) 31%,var(--scene-haze))!important;
+}
+.app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military])[data-motion-intensity=subtle] .scene { opacity: .55; }
+@media(max-width:650px) {
+  .app:is([data-theme=miami],[data-theme=lerouge],[data-theme=military]) .theme-art { opacity:.82; }
+  .theme-art .subject-left { transform-box:view-box; transform-origin:left bottom; transform:translate(-4px,-32vh) scale(1.65); }
+  .theme-art .subject-right { transform-box:view-box; transform-origin:right bottom; transform:translateY(-31vh) scale(1.34); }
+}

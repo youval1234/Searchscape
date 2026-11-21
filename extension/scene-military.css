@@ -1,0 +1,7 @@
+.app[data-theme=military] { --field-far:#c4d1c5; --field-ground:#b3c0ac; --field-path:#a0af99; --field-hull:#75866a; --field-lit:#a2ae8c; --field-shade:#495e53; --field-track:#344841; --field-mark:#d6cbb0; --field-mist:#e3e8d9; --scene-haze:#d5ddc7; }
+.app[data-theme=military][data-appearance=dark] { --field-far:#304641; --field-ground:#2a4038; --field-path:#3c5043; --field-hull:#687c64; --field-lit:#91a184; --field-shade:#415a4d; --field-track:#20372f; --field-mark:#cbc5a3; --field-mist:#5b7165; --scene-haze:#415847; }
+.app[data-motion=on] .field-pennant { animation: field-wind 3.8s ease-in-out infinite alternate; }
+.app[data-motion=on][data-motion-intensity=vivid] .field-mist { animation: field-mist 15s -5s ease-in-out infinite alternate; }
+@keyframes field-wind { to { d:path("M0 0Q-15-4-28 2T-59 1Q-46 6-32 13T0 14Z"); } }
+@keyframes field-mist { from { transform:translateX(-19px);opacity:.43; } to { transform:translateX(25px);opacity:.74; } }
+.theme[data-theme-choice=military] .theme-sample { background:linear-gradient(140deg,#374b42,#86977b 58%,#d0b798)!important; }

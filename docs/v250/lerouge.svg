@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" data-scene="lerouge"><title>Le Rouge</title><style>:root { --r-alcove:#ddc7be; --r-line:#c19988; --r-floor:#e6d3c9; --r-plinth:#a77d7e; --r-shelf:#cab09b; --scene-haze:#e2c6bf; }
+@media(prefers-color-scheme:dark){:root { --r-alcove:#3d222d; --r-line:#80595c; --r-floor:#291820; --r-plinth:#62404a; --r-shelf:#9c746d; --scene-haze:#50313b; }}
+:root .rouge-train { transform-origin:0 297px; animation:rouge-silk 5.5s -2s ease-in-out infinite alternate; }
+:root .rouge-pendant { transform-origin:0 0; animation:rouge-swing 6.5s ease-in-out infinite alternate; }
+:root .rouge-lamplight { animation:rouge-amber 9s -4s ease-in-out infinite alternate; }
+@keyframes rouge-silk { from { transform:skewX(-1.5deg) scaleY(.995); } to { transform:skewX(2.4deg) scaleY(1.01); } }
+@keyframes rouge-swing { from { transform:rotate(-2.2deg); } to { transform:rotate(2.2deg); } }
+@keyframes rouge-amber { from { opacity:.45; } to { opacity:1; } }
+
+:root{--paper:#edddd3}@media(prefers-color-scheme:dark){:root{--paper:#160b0d}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style><defs><linearGradient id="backdrop" x2=".12" y2="1"><stop stop-color="var(--paper)"/><stop offset="1" stop-color="var(--scene-haze)"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#backdrop)"/>
+      <defs>
+        <linearGradient id="r-gown" x2="1" y2=".6"><stop stop-color="#693247"/><stop offset=".42" stop-color="#ba5869"/><stop offset=".65" stop-color="#934055"/><stop offset="1" stop-color="#642c42"/></linearGradient>
+        <linearGradient id="r-pearl" x2=".85" y2="1"><stop stop-color="#f3dfc4"/><stop offset=".54" stop-color="#d6bda9"/><stop offset="1" stop-color="#b09188"/></linearGradient>
+        <radialGradient id="r-light"><stop stop-color="#eab995" stop-opacity=".48"/><stop offset="1" stop-color="#dbab90" stop-opacity="0"/></radialGradient>
+      </defs>
+      <svg width="100%" height="100%" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMax slice"><path d="M0 808Q400 788 800 805T1600 786V1000H0Z" fill="var(--r-floor)"/>
+        <path d="M0 885Q360 835 725 841M1314 838l286 20" fill="none" stroke="var(--r-line)" opacity=".48" stroke-width="2"/></svg>
+      <svg class="subject-left" x="0" y="17%" width="32%" height="75%" viewBox="0 0 420 510" preserveAspectRatio="xMinYMax meet">
+        <path d="M-5 492V200a151 151 0 0 1 302 0v292Z" fill="var(--r-alcove)"/>
+        <path d="M9 489V200a137 137 0 0 1 274 0v289" fill="none" stroke="var(--r-line)" stroke-width="2"/>
+        <ellipse class="rouge-lamplight" cx="173" cy="215" rx="112" ry="146" fill="url(#r-light)"/>
+        <path d="M34 481Q164 456 311 478v19q-131 28-277 3Z" fill="var(--r-plinth)"/><ellipse cx="173" cy="480" rx="139" ry="14" fill="var(--r-shelf)"/>
+        <g transform="translate(165 0)">
+          <g class="rouge-train">
+            <path d="M-21 294Q-37 329-48 365T-100 440Q-118 463-148 469Q-94 492-36 475Q-5 491 26 477Q92 488 157 471Q106 456 77 413Q54 381 42 335L20 294Z" fill="url(#r-gown)"/>
+            <path d="M-19 307Q-26 390-109 465Q-79 469-53 452Q-28 416-10 332ZM2 314Q-15 432-46 472Q-22 469-8 451Q7 391 9 319ZM15 310Q26 419 64 471Q102 478 130 471Q70 457 39 377Z" fill="#632d43" opacity=".76"/>
+            <path d="M-24 332Q-51 415-87 437M4 338Q-1 421-18 457M24 346Q47 431 86 458" fill="none" stroke="#d78584" stroke-width="2.6" opacity=".75"/>
+          </g>
+          <path d="M-10 199V225L-42 239Q-38 255-25 273L-22 299Q-3 307 20 297L24 272Q42 246 41 237L10 225V199Z" fill="url(#r-gown)"/>
+          <path d="M-15 225Q-45 202-67 207Q-63 231-41 247L-23 250Q-43 235-47 223Q-26 229-8 244ZM15 225Q45 202 67 207Q63 231 41 247L23 250Q43 235 47 223Q26 229 8 244Z" fill="url(#r-pearl)"/>
+          <g fill="none" stroke="#e5c6aa" stroke-width="3.6" stroke-linecap="round"><path d="M-24 248Q-20 257 0 261Q20 257 24 248"/><path d="M-24 259Q-20 267 0 271Q20 267 24 259"/><path d="M-24 270Q-20 277 0 281Q20 277 24 270"/></g>
+          <path d="M-13 165Q-30 157-27 135Q-41 153-23 172L-19 186Q-15 204 0 214Q14 203 19 184L23 170Q41 151 27 132Q30 152 12 164Q4 158-2 164Z" fill="url(#r-pearl)"/>
+          <path d="M-15 181l12 4-3 4-7-3Zm30 0-12 4 3 4 7-3Z" fill="#78515b"/><path d="m0 166 4 9-4 7-4-7Z" fill="#a84559"/>
+          <path d="m-24 296 24 5 23-6-2 6-21 6-23-5Z" fill="#cbab89"/>
+        </g></svg>
+      <svg class="subject-right" x="68%" y="17%" width="32%" height="75%" viewBox="0 0 420 510" preserveAspectRatio="xMaxYMax meet">
+        <path d="M155 468V257q0-85 99-104q68-14 166 1v314Z" fill="var(--r-alcove)"/>
+        <path d="M171 459V255q1-69 87-86q69-14 161-1" fill="none" stroke="var(--r-line)" stroke-width="2"/>
+        <path d="M137 391h283v17H137Zm50 57h233v15H187Z" fill="var(--r-shelf)"/>
+        <g transform="translate(236 337)">
+          <path d="M-21 5v-15q0-25 19-25t20 25V4" fill="none" stroke="#c6aa89" stroke-width="6"/>
+          <path d="m-43 1 82-4 11 52q-42 9-99 2Z" fill="url(#r-gown)"/>
+          <path d="m-42 2 80-3-33 26-11 2Z" fill="#ba6571"/>
+          <rect x="-7" y="16" width="14" height="12" rx="3" fill="#d8bb8d"/>
+        </g>
+        <path d="M303 390v-37l19-15h48l21 16v36Z" fill="var(--r-plinth)"/><path d="M329 341v-13q0-12 15-12t15 12v12" fill="none" stroke="var(--r-line)" stroke-width="4"/>
+        <g transform="translate(248 76)"><g class="rouge-pendant">
+          <path d="M0 0v106" stroke="var(--r-line)" stroke-width="2"/><path d="M-33 123q4-21 33-23q29 2 33 23Z" fill="var(--r-plinth)"/><ellipse cy="123" rx="33" ry="5" fill="#e3c297"/>
+          <ellipse class="rouge-lamplight" cy="178" rx="66" ry="56" fill="url(#r-light)"/>
+        </g></g></svg></svg>

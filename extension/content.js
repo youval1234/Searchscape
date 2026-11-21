@@ -120,7 +120,7 @@
   let settings, mode = 'all', activeTab='home', classic = false, saveQueue = Promise.resolve(), noteTimer, clockTimer, saveTimer;
   let saveWaiters = [], shortcutDrag = null;
   const repoURL = 'https://github.com/youval1234/Searchscape';
-  const version = preview ? '2.4.2' : chrome.runtime.getManifest().version;
+  const version = preview ? '2.5.0' : chrome.runtime.getManifest().version;
   const dateFormatter = new Intl.DateTimeFormat('en', {weekday:'long',month:'long',day:'numeric'});
   const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone.replaceAll('_',' ').replaceAll('/',' / ');
   const hiddenSiblings = new Map();
@@ -425,7 +425,7 @@
     $('#home-card').value=settings.homeCard;$('#daily-title').textContent=settings.homeCard==='hardware'?'System activity':'Daily focus';$('#hardware-status').hidden=settings.homeCard!=='hardware';
  $('#name').value = settings.name; $('#accent').value = settings.accent;
     $$('[data-setting]').forEach(el => el.checked = settings[el.dataset.setting]);
-    const themeEmblems={paper:'▱',sage:'❧',ocean:'≈',rose:'❀',futuristic:'⌘',mystic:'☽',magical:'✧',rustic:'▥',solar:'☀',spring:'✿',summer:'☼',autumn:'♧',winter:'❄',midnight:'⋆',aurora:'〰',cosmic:'◉',noir:'◧',amber:'♦',ice:'◇',flowers:'❁',fantasy:'♜',code:'{ }',cloudy:'☁',scary:'☾',colorful:'●',storm:'ϟ',sunset:'◒',math:'∑',library:'▤',office:'▣',science:'⚛',nature:'♧',city:'▥',rainbow:'⌒',lunar:'◐',sakura:'✿',fire:'♨',magma:'▲',snow:'❄',blackhole:'◉',coralreef:'❋',hawaii:'✺',aztec:'▰',desert:'◭',cave:'⌁',emerald:'◇',retro:'▣',radioactive:'☢',shadow:'◐',fjord:'∿',lerouge:'♜',fashion:'✂',miami:'VI'};
+    const themeEmblems={paper:'▱',sage:'❧',ocean:'≈',rose:'❀',futuristic:'⌘',mystic:'☽',magical:'✧',rustic:'▥',solar:'☀',spring:'✿',summer:'☼',autumn:'♧',winter:'❄',midnight:'⋆',aurora:'〰',cosmic:'◉',noir:'◧',amber:'♦',ice:'◇',flowers:'❁',fantasy:'♜',code:'{ }',cloudy:'☁',scary:'☾',colorful:'●',storm:'ϟ',sunset:'◒',math:'∑',library:'▤',office:'▣',science:'⚛',nature:'♧',city:'▥',rainbow:'⌒',lunar:'◐',sakura:'✿',fire:'♨',magma:'▲',snow:'❄',blackhole:'◉',coralreef:'❋',hawaii:'✺',aztec:'▰',desert:'◭',cave:'⌁',emerald:'◇',retro:'▣',radioactive:'☢',shadow:'◐',fjord:'∿',lerouge:'♜',fashion:'✂',miami:'VI',military:'✈'};
     $$('[data-theme-choice]').forEach(el=>{const t=themeById(el.dataset.themeChoice),p=dark?t.dark:t.light;el.setAttribute('aria-pressed',String(t.id===settings.theme));el.style.background=p[0];el.style.color=p[1];el.style.borderColor=t.id===settings.theme?settings.accent:p[3];const sample=el.querySelector('.theme-sample');sample.style.setProperty('--sample',p[0]);sample.style.setProperty('--sample-soft',p[4]);sample.style.setProperty('--sample-fg',p[1]);if(!sample.firstElementChild){const emblem=document.createElement('span');emblem.className='theme-emblem';emblem.setAttribute('aria-hidden','true');emblem.textContent=themeEmblems[t.id]||'✧';sample.append(emblem);}});
     $$('[data-appearance-choice]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.appearanceChoice===settings.appearance)));
     $$('[data-accent]').forEach(el => el.setAttribute('aria-pressed',String(el.dataset.accent === settings.accent)));

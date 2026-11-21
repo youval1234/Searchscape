@@ -1,64 +1,46 @@
-// All placements use the painted shop window's original pixel coordinates.
 (() => {
   'use strict';
-
-  function pendantLight(x, y, size, delay) {
-    return `<g transform="translate(${x} ${y}) scale(${size})">
-      <g class="rouge-lamplight" style="--phase:${delay}s">
-        <ellipse rx="48" ry="13" fill="url(#rouge-amber)"/>
-        <path d="M-42 0 Q-75 97 -124 176 Q0 204 126 176 Q65 82 42 0Z" fill="url(#rouge-cone)"/>
-      </g>
-    </g>`;
-  }
-
-  function jewel(x, y, size, delay) {
-    return `<g transform="translate(${x} ${y}) scale(${size})">
-      <g class="rouge-facet" style="--phase:${delay}s">
-        <circle r="11" fill="url(#rouge-amber)"/>
-        <path d="M0-9 1-1 6 0 1 1 0 9 -1 1 -6 0 -1-1Z" fill="#fff0c9"/>
-      </g>
-    </g>`;
-  }
-
-  function silkMoth(x, y, size, delay, period) {
-    return `<g transform="translate(${x} ${y}) scale(${size})">
-      <g class="rouge-moth" style="--phase:${delay}s;--period:${period}s">
-        <g class="rouge-wings">
-          <path d="M0 1Q-6-9-20-8Q-16-1-10 0Q-13 4-10 8Q-2 8 0 2Q3 8 10 7Q12 4 9 1Q17-2 19-10Q7-10 0 1Z" fill="url(#rouge-velvet)" stroke="#e6a287" stroke-width=".65"/>
-          <path d="M-16-6 -3 1 -9 5M15-7 3 1 8 4" fill="none" stroke="#f5c2a0" stroke-width=".6"/>
-        </g>
-        <path d="M0-2v7m0-7-3-3m3 3 2-4" stroke="#d5a067" stroke-width="1.2"/>
-      </g>
-    </g>`;
-  }
-
-  const silkFolds = [
-    'M288 351C220 430 203 525 158 576',
-    'M300 382C268 502 255 594 209 704S160 815 117 852',
-    'M312 535C303 653 335 755 417 826',
-    'M1331 385C1273 408 1247 462 1242 482',
-    'M1386 596C1422 676 1352 738 1306 768'
-  ];
-
-  (globalThis.SearchscapeScenePacks ??= []).push(() => ({
-    lerouge: () => `<g transform="scale(${1600/1586} ${1000/992})">
+  (globalThis.SearchscapeScenePacks ??= []).push(({plate}) => ({
+    lerouge: () => `
       <defs>
-        <radialGradient id="rouge-amber"><stop stop-color="#fff1bf"/><stop offset=".3" stop-color="#ffbc78" stop-opacity=".65"/><stop offset="1" stop-color="#e4703f" stop-opacity="0"/></radialGradient>
-        <radialGradient id="rouge-cone" cy="0" r="1"><stop stop-color="#ffc693" stop-opacity=".55"/><stop offset=".6" stop-color="#f4a25c" stop-opacity=".1"/><stop offset="1" stop-color="#e7a269" stop-opacity="0"/></radialGradient>
-        <linearGradient id="rouge-velvet" x2="0" y2="1"><stop stop-color="#ee6b69"/><stop offset=".45" stop-color="#902339"/><stop offset="1" stop-color="#391321"/></linearGradient>
+        <linearGradient id="r-gown" x2="1" y2=".6"><stop stop-color="#693247"/><stop offset=".42" stop-color="#ba5869"/><stop offset=".65" stop-color="#934055"/><stop offset="1" stop-color="#642c42"/></linearGradient>
+        <linearGradient id="r-pearl" x2=".85" y2="1"><stop stop-color="#f3dfc4"/><stop offset=".54" stop-color="#d6bda9"/><stop offset="1" stop-color="#b09188"/></linearGradient>
+        <radialGradient id="r-light"><stop stop-color="#eab995" stop-opacity=".48"/><stop offset="1" stop-color="#dbab90" stop-opacity="0"/></radialGradient>
       </defs>
-      ${pendantLight(1347,148,1,-4)}${pendantLight(1284,216,.65,-8)}
-      <g class="rouge-marble">
-        <ellipse cx="1340" cy="930" rx="32" ry="8" fill="url(#rouge-amber)"/>
-        <ellipse cx="1339" cy="947" rx="20" ry="4" fill="url(#rouge-amber)"/>
-      </g>
-      ${silkFolds.map((d,i)=>`<path class="rouge-silk" d="${d}" pathLength="100" fill="none" stroke="#ffd0a3" stroke-width="1.6" stroke-linecap="round" style="--phase:-${i*2.5}s"/>`).join('')}
-      ${[[194,118,.8],[337,138,.68],[232,151,.5],[297,222,.87],[1473,205,.65],[1535,444,.66]].map(([x,y,s],i)=>jewel(x,y,s,-i*1.83)).join('')}
-      ${silkMoth(94,371,.72,-1,18)}${silkMoth(370,298,.48,-9,23)}${silkMoth(1240,385,.58,-5,20)}
-      ${Array.from({length:18},(_,i)=>{
-        const x=i%2 ? 1170+i*17 : 92+i*18;
-        return `<circle class="rouge-dust" cx="${x}" cy="${209+i*73%450}" r="${1+i%3*.4}" fill="#ffe1b6" style="--phase:-${i*1.3}s;--period:${8+i%5}s"/>`;
-      }).join('')}
-    </g>`
+      ${plate('land',`<path d="M0 808Q400 788 800 805T1600 786V1000H0Z" fill="var(--r-floor)"/>
+        <path d="M0 885Q360 835 725 841M1314 838l286 20" fill="none" stroke="var(--r-line)" opacity=".48" stroke-width="2"/>`)}
+      ${plate('left',`
+        <path d="M-5 492V200a151 151 0 0 1 302 0v292Z" fill="var(--r-alcove)"/>
+        <path d="M9 489V200a137 137 0 0 1 274 0v289" fill="none" stroke="var(--r-line)" stroke-width="2"/>
+        <ellipse class="rouge-lamplight" cx="173" cy="215" rx="112" ry="146" fill="url(#r-light)"/>
+        <path d="M34 481Q164 456 311 478v19q-131 28-277 3Z" fill="var(--r-plinth)"/><ellipse cx="173" cy="480" rx="139" ry="14" fill="var(--r-shelf)"/>
+        <g transform="translate(165 0)">
+          <g class="rouge-train">
+            <path d="M-21 294Q-37 329-48 365T-100 440Q-118 463-148 469Q-94 492-36 475Q-5 491 26 477Q92 488 157 471Q106 456 77 413Q54 381 42 335L20 294Z" fill="url(#r-gown)"/>
+            <path d="M-19 307Q-26 390-109 465Q-79 469-53 452Q-28 416-10 332ZM2 314Q-15 432-46 472Q-22 469-8 451Q7 391 9 319ZM15 310Q26 419 64 471Q102 478 130 471Q70 457 39 377Z" fill="#632d43" opacity=".76"/>
+            <path d="M-24 332Q-51 415-87 437M4 338Q-1 421-18 457M24 346Q47 431 86 458" fill="none" stroke="#d78584" stroke-width="2.6" opacity=".75"/>
+          </g>
+          <path d="M-10 199V225L-42 239Q-38 255-25 273L-22 299Q-3 307 20 297L24 272Q42 246 41 237L10 225V199Z" fill="url(#r-gown)"/>
+          <path d="M-15 225Q-45 202-67 207Q-63 231-41 247L-23 250Q-43 235-47 223Q-26 229-8 244ZM15 225Q45 202 67 207Q63 231 41 247L23 250Q43 235 47 223Q26 229 8 244Z" fill="url(#r-pearl)"/>
+          <g fill="none" stroke="#e5c6aa" stroke-width="3.6" stroke-linecap="round">${[0,1,2].map(i=>`<path d="M-24 ${248+i*11}Q-20 ${257+i*10} 0 ${261+i*10}Q20 ${257+i*10} 24 ${248+i*11}"/>`).join('')}</g>
+          <path d="M-13 165Q-30 157-27 135Q-41 153-23 172L-19 186Q-15 204 0 214Q14 203 19 184L23 170Q41 151 27 132Q30 152 12 164Q4 158-2 164Z" fill="url(#r-pearl)"/>
+          <path d="M-15 181l12 4-3 4-7-3Zm30 0-12 4 3 4 7-3Z" fill="#78515b"/><path d="m0 166 4 9-4 7-4-7Z" fill="#a84559"/>
+          <path d="m-24 296 24 5 23-6-2 6-21 6-23-5Z" fill="#cbab89"/>
+        </g>`)}
+      ${plate('right',`
+        <path d="M155 468V257q0-85 99-104q68-14 166 1v314Z" fill="var(--r-alcove)"/>
+        <path d="M171 459V255q1-69 87-86q69-14 161-1" fill="none" stroke="var(--r-line)" stroke-width="2"/>
+        <path d="M137 391h283v17H137Zm50 57h233v15H187Z" fill="var(--r-shelf)"/>
+        <g transform="translate(236 337)">
+          <path d="M-21 5v-15q0-25 19-25t20 25V4" fill="none" stroke="#c6aa89" stroke-width="6"/>
+          <path d="m-43 1 82-4 11 52q-42 9-99 2Z" fill="url(#r-gown)"/>
+          <path d="m-42 2 80-3-33 26-11 2Z" fill="#ba6571"/>
+          <rect x="-7" y="16" width="14" height="12" rx="3" fill="#d8bb8d"/>
+        </g>
+        <path d="M303 390v-37l19-15h48l21 16v36Z" fill="var(--r-plinth)"/><path d="M329 341v-13q0-12 15-12t15 12v12" fill="none" stroke="var(--r-line)" stroke-width="4"/>
+        <g transform="translate(248 76)"><g class="rouge-pendant">
+          <path d="M0 0v106" stroke="var(--r-line)" stroke-width="2"/><path d="M-33 123q4-21 33-23q29 2 33 23Z" fill="var(--r-plinth)"/><ellipse cy="123" rx="33" ry="5" fill="#e3c297"/>
+          <ellipse class="rouge-lamplight" cy="178" rx="66" ry="56" fill="url(#r-light)"/>
+        </g></g>`)}`
   }));
 })();

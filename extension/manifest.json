@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Searchscape",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "description": "Your personal homepage with themes, shortcuts and your choice of search engine.",
   "permissions": [
     "storage",
@@ -52,8 +52,7 @@
         "scene-rouge.css",
         "scene-fashion.css",
         "scene-miami.css",
-        "miami-boulevard.webp",
-        "rouge-atelier.webp"
+        "scene-military.css"
       ],
       "matches": [
         "https://www.google.com/*",
@@ -99,6 +98,7 @@
         "scene-rouge.js",
         "scene-fashion.js",
         "scene-miami.js",
+        "scene-military.js",
         "scenes.js",
         "content.js"
       ],

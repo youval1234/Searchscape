@@ -1,62 +1,49 @@
-// Motion overlays share the painted boulevard's coordinates (1586 × 992).
 (() => {
   'use strict';
-
-  function tailLights() {
-    return `<g class="miami-brakes">
-      ${[[20,730],[63,729],[278,727],[320,727]].map(([x,y]) =>
-        `<circle cx="${x}" cy="${y}" r="32" fill="url(#miami-lamp)"/>`).join('')}
-      <ellipse cx="46" cy="950" rx="75" ry="17" fill="url(#miami-spill)"/>
-      <ellipse cx="288" cy="959" rx="69" ry="20" fill="url(#miami-spill)"/>
-    </g>`;
-  }
-
-  function ripples() {
-    // Narrow, perspective-flattened rings catch the reflected neon in puddles.
-    return [[34,922],[168,970],[345,935],[493,963],[607,902],[1015,928],
-      [1125,887],[1290,961],[1450,919],[1528,981]].map(([x,y],i) =>
-      `<g transform="translate(${x} ${y})"><ellipse class="miami-ripple" rx="${17+i%3*6}" ry="2.4"
-        fill="none" stroke="${i%2?'#ffb4bc':'#aaf5e4'}" stroke-width="1" style="--phase:-${i*1.91}s"/></g>`).join('');
-  }
-
-  function traffic() {
-    return `<g transform="translate(807 821)"><g class="miami-traffic">
-      <ellipse cy="6" rx="13" ry="2" fill="url(#miami-headlamp)"/>
-      <path d="M-9 1 -8-2 -5-3 -3-6 3-6 6-3 8-2 9 1 7 3H-7Z" fill="#432843"/>
-      <path d="M-4-3 -2-5H2L4-3Z" fill="#e4a5b5"/>
-      <path d="M-8-1h4m8 0h4" stroke="#ffebba" stroke-width="1.8"/>
-      <circle cx="-6" cy="-1" r="5" fill="url(#miami-headlamp)"/><circle cx="6" cy="-1" r="5" fill="url(#miami-headlamp)"/>
-    </g></g>`;
-  }
-
-  function helicopter() {
-    return `<g class="miami-flight"><g class="miami-helicopter">
-      <path d="M-27-4 -13-2 -5-7 5-8 12-5 18 1 17 4 8 6 -3 6 -11 1 -26-1 -30-8 -28-9Z" fill="#342740"/>
-      <path d="M3-7 10-4 14 0 5-1Z" fill="#c396ab"/>
-      <path d="M0-8v-4m-4 18 -1 4m13-4 1 4m-19 0h24l3-2" fill="none" stroke="#38293f" stroke-width="1.4"/>
-      <path class="miami-rotor" d="M-24-12h48" stroke="#453448" stroke-width="1.8"/>
-      <circle class="miami-beacon" cx="-27" cy="-4" r="1.7" fill="#fff1bd"/>
-    </g></g>`;
-  }
-
-  function petals() {
-    return [[30,189],[80,220],[65,390],[130,484],[82,533],[120,413]].map(([x,y],i) =>
-      `<g transform="translate(${x} ${y})"><g class="miami-petal" style="--phase:-${i*2.7}s">
-        <path d="M-3 0Q-2-5 3-4Q5 1 0 3Z" fill="${i%2?'#ff5197':'#f892a6'}"/></g></g>`).join('');
-  }
-
-  (globalThis.SearchscapeScenePacks ??= []).push(() => ({
-    miami: () => `<g transform="scale(${1600/1586} ${1000/992})">
+  (globalThis.SearchscapeScenePacks ??= []).push(({plate}) => ({
+    miami: () => `
       <defs>
-        <radialGradient id="miami-lamp"><stop stop-color="#ffefd5"/><stop offset=".32" stop-color="#ff795c" stop-opacity=".95"/><stop offset=".59" stop-color="#ff273d" stop-opacity=".78"/><stop offset="1" stop-color="#fa1545" stop-opacity="0"/></radialGradient>
-        <radialGradient id="miami-spill"><stop stop-color="#ff344b" stop-opacity=".88"/><stop offset="1" stop-color="#ff5364" stop-opacity="0"/></radialGradient>
-        <radialGradient id="miami-headlamp"><stop stop-color="#fff9cf"/><stop offset="1" stop-color="#ffd981" stop-opacity="0"/></radialGradient>
+        <linearGradient id="m-car" x2=".2" y2="1"><stop stop-color="#ffd1a5"/><stop offset=".38" stop-color="#e98c80"/><stop offset="1" stop-color="#a95268"/></linearGradient>
+        <linearGradient id="m-glass" x2="1" y2="1"><stop stop-color="#95ccc4"/><stop offset="1" stop-color="#47687a"/></linearGradient>
+        <linearGradient id="m-hotel" x2="1" y2=".6"><stop stop-color="var(--m-stucco)"/><stop offset="1" stop-color="var(--m-shadow)"/></linearGradient>
+        <path id="m-frond" d="M0 0Q31-49 86-29Q65-33 53-22L50-26 37-15 35-19 23-8 22-12Z"/>
+        <g id="m-palm"><path d="M-7 0Q-9-84 19-163L25-163Q2-80 6 0Z" fill="var(--m-palm)"/><g transform="translate(22 -162)"><g class="miami-leaves" fill="var(--m-palm)">
+          <use href="#m-frond"/><use href="#m-frond" transform="rotate(28)"/><use href="#m-frond" transform="rotate(62) scale(.85)"/><use href="#m-frond" transform="scale(-1 1) rotate(4)"/><use href="#m-frond" transform="scale(-1 1) rotate(44)"/><use href="#m-frond" transform="rotate(-39) scale(.8)"/>
+        </g></g></g>
+        <g id="m-wheel"><circle r="21" fill="#373b50"/><circle r="13" fill="#98abb2"/><circle r="8" fill="#46596a"/><path d="M-8-4 1-10 8-6" fill="none" stroke="#f4d4be" stroke-width="2.5"/></g>
       </defs>
-      <g class="miami-marquee" fill="none" stroke="#fff1fe" stroke-linecap="round">
-        <path d="M165 520Q401 555 442 591" stroke-width="1.8"/>
-        <path d="M1389 331Q1396 294 1495 281M1534 272l52-36M1303 432l78-71" stroke-width="2.1"/>
-      </g>
-      ${tailLights()}${ripples()}${traffic()}${helicopter()}${petals()}
-    </g>`
+      ${plate('land',`<path d="M0 709Q290 666 558 714T1112 722Q1382 685 1600 701V1000H0Z" fill="var(--m-bay)"/>
+        <path d="M0 790Q247 748 453 777T945 790Q1225 751 1600 764" fill="none" stroke="var(--m-foam)" stroke-width="2" opacity=".45"/>
+        <g class="miami-tide" fill="none" stroke="var(--m-foam)" stroke-linecap="round" opacity=".62"><path d="M58 808q88-10 158-4m800 12q95-7 166-3m132 28q80-8 163-4" stroke-width="3"/><path d="M115 827q70-5 108-3m1090 36q52-5 99-3" stroke-width="2"/></g>
+        <path d="M0 885Q280 819 522 888Q224 864 0 948Z" fill="var(--m-pavement)"/>`)}
+      ${plate('left',`
+        <circle cx="127" cy="214" r="59" fill="#efa887" opacity=".63"/>
+        <g fill="var(--m-distant)"><path d="M0 402V310h25v-19h21v19h17v92m4 0V336h35v-12h17v78m6 0V300h35v102m7 0v-64h31v64Z"/></g>
+        <use href="#m-palm" transform="translate(73 406) scale(1.28)"/><use href="#m-palm" transform="translate(191 398) scale(.64)"/>
+        <g transform="translate(30 408)">
+          <ellipse cx="157" cy="82" rx="156" ry="11" fill="var(--m-pavement)"/>
+          <path d="M9 43Q25 27 77 24L116 0Q128-6 175-5L214 23Q275 24 303 43L300 63Q297 70 278 71H19Q4 67 9 43Z" fill="url(#m-car)"/>
+          <path d="M89 23 119 3Q135-1 152 0L153 21Z M159 0h15l32 22-46-1Z" fill="url(#m-glass)"/>
+          <path d="M20 44Q84 31 205 29L287 39Q219 34 118 39Z" fill="#ffccad"/>
+          <path d="M12 61Q166 64 300 48L298 64Q181 81 16 71Z" fill="#9c5063"/>
+          <path d="M62 43Q87 36 103 64M213 61Q222 28 250 34" fill="none" stroke="#b75e6a" stroke-width="3"/>
+          <use href="#m-wheel" x="76" y="67"/><use href="#m-wheel" x="238" y="61"/>
+          <path d="M12 46l25-5-5 9-20 3Z" fill="#bb4b5a"/><path d="m267 38 27 3-1 6-27-2Z" fill="#ffe1ab"/>
+          <path d="m118 28 2 27 68-3 11-23m-71 5h12" fill="none" stroke="#aa6870" stroke-width="1.7"/>
+          <path class="miami-glint" d="M20 46Q121 27 210 30" fill="none" stroke="#ffe8c8" stroke-width="3" pathLength="100"/>
+        </g>`)}
+      ${plate('right',`
+        <g fill="var(--m-distant)"><path d="M124 423V280h37v143m8 0V321h34v102m9 0V256h48v167Z"/></g>
+        <path d="M73 461V306Q73 283 97 279l116-12v-27l84-7v-24l66-7 57 6v253Z" fill="url(#m-hotel)"/>
+        <path d="m298 234 64-8 58 5v230h-58V252l-64 5Z" fill="var(--m-shadow)"/>
+        <g fill="none" stroke-linecap="round">
+          <path d="m83 306 131-14m-131 26 131-14m8-36 66-7m20-34 45-6" stroke="#f6b09f" stroke-width="4"/>
+          <path d="M100 343l89-8m-89 29 89-8m-89 30 89-8m90-71v102m13-104v102m13-103v103" stroke="var(--m-glass)" stroke-width="8"/>
+        </g>
+        <path d="M195 459v-42q0-13 13-15l38-3q12-1 12 11v49Z" fill="var(--m-glass)"/>
+        <rect x="208" y="249" width="29" height="129" rx="13" fill="var(--m-palm)" stroke="#df9d96" stroke-width="2"/>
+        <g class="miami-marquee" fill="#ffd9be" font-family="sans-serif" font-size="14" text-anchor="middle">${[...'OCEAN'].map((c,i)=>`<text x="222.5" y="${272+21*i}">${c}</text>`).join('')}</g>
+        <use href="#m-palm" transform="translate(383 474) scale(-.78 .78)"/>
+        <path d="M58 466h362" fill="none" stroke="var(--m-shadow)" stroke-width="4"/>`)}`
   }));
 })();

@@ -1,5 +1,9 @@
-# Searchscape v2.4.2
+# Searchscape v2.5.0
 
-Le Rouge opens after hours on a horned porcelain mannequin in a crimson gown. Across the aisle, brass pendant lamps illuminate a silk-wrapped torso and shelves of oxblood handbags. Silk moths flutter through the display, highlights travel along the gown's folds, and lamplight reflects in the marble floor.
+Three animated SVG scenes frame the search page, with individually scaled subjects and palettes for light and dark appearances.
 
-Choose **Customize → Fantasy & Mystery → Le Rouge**. Existing Le Rouge selections pick up the design on update. The art is bundled for offline use and supports light, dark, portrait layouts and reduced motion.
+- **Military** features two tanks, a pair of soldiers at a field map, a canvas tent and a moving signal pennant. Select it under **Customize → Architecture & Futures**.
+- **GTA VI · Miami** pairs a coral coupe and swaying palms with a stepped Ocean Drive hotel and a quiet bay.
+- **Le Rouge** pairs a sculptural ivory mask and burgundy gown with a softly lit handbag display. The train moves gently at the hem.
+
+[Military preview](https://github.com/youval1234/Searchscape/blob/v2.5.0/docs/v250/military-motion.webp) · [Le Rouge preview](https://github.com/youval1234/Searchscape/blob/v2.5.0/docs/v250/lerouge-motion.webp) · [Miami preview](https://github.com/youval1234/Searchscape/blob/v2.5.0/docs/v250/miami-motion.webp)

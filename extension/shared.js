@@ -52,6 +52,7 @@
     {"id":"fashion","name":"Fashion","group":"Color & Style","world":"fashion","accent":"#a17e86","light":["#f6f0e9","#44363e","#89757e","#ddcfd2","#ebe0df","#c6b2b2"],"dark":["#211c25","#f5eae7","#bea8b4","#51404e","#352a38","#a2879b"]},
     {"id":"aztec","name":"Aztec","world":"aztec","accent":"#ac8450","light":["#f0e8da","#3f3930","#81705f","#d4c3a7","#e2d3bd","#bba16d"],"dark":["#1d2020","#f0e5cf","#bfae91","#514c3e","#2f332f","#ad9463"],"group":"Architecture & Futures"},
     {"id":"futuristic","name":"Futuristic","group":"Architecture & Futures","world":"future","accent":"#008c9e","light":["#eaf7f8","#143c49","#4b7783","#b5dce5","#d6eff3","#50c2d4"],"dark":["#07151f","#dcfaff","#92c3ce","#164557","#0d2d3b","#00c9e2"]},
+    {"id":"military","name":"Military","group":"Architecture & Futures","world":"military","accent":"#bb6937","light":["#f2eee1","#253329","#536251","#c7c5ad","#e3e4d3","#667e68"],"dark":["#182321","#eef0d9","#bdcbbb","#475c4f","#263631","#d69a61"]},
     {"id":"city","name":"City Skyline","group":"Architecture & Futures","world":"city","accent":"#8098bf","light":["#eef2f7","#35455e","#7b8ca3","#cbd6e4","#dfe7ef","#afc3d9"],"dark":["#142131","#edf2ff","#b0bdd3","#3c506c","#293c55","#87a8cb"]},
     {"id":"radioactive","name":"Radioactive","world":"radioactive","accent":"#779b45","light":["#f0f3df","#3a4c2d","#7d8b62","#d1dbb7","#e2e8c9","#b7cc7c"],"dark":["#18251e","#eef8d0","#b5c593","#435d39","#2d402c","#9fbc59"],"group":"Architecture & Futures"},
   ];
