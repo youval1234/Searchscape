@@ -12,7 +12,7 @@
 - **Radioactive**. Two workers in sealed yellow suits pass a glowing capsule beside a ribbed reactor. The capsule lights the transfer while the dial and green contours move inside the reactor bay. [Animated preview](docs/v261/radioactive-detail.webp)
 - **City Skyline**. A coral commuter train crosses an arched viaduct beneath stepped copper towers, brick rooftops and water tanks. [Animated preview](docs/v260/city-motion.webp)
 - **Magical**. A jeweled brass orrery turns above an open atlas as a folded-paper owl glides over castle turrets. [Animated preview](docs/v260/magical-motion.webp)
-- **GTA VI · Miami**. A coral coupe cruises past a palm-lined Ocean Drive hotel with curved balconies, a glowing glass lobby and a sidewalk café. [Animated preview](docs/v261/miami-detail.webp)
+- **GTA VI · Miami**. A hot-pink coupe with a neon underglow cruises a palm-lined boulevard as a striped sun sets over the bay. A neon Art Deco hotel lights up, light trails stream past and a helicopter crosses the skyline. Golden-hour pastels in light mode, neon dusk in dark mode. [Animated preview](docs/miami-neon/miami-motion.webp)
 - **Le Rouge**. A loose silk ribbon unfurls from a masked couture gown across from an antique mirror and handbag display. [Animated preview](docs/v260/lerouge-motion.webp)
 - **Military**. A tank crosses the ridge behind a parked vehicle with strapped stowage. Two soldiers study a folded map beside a field radio and a turning dish. [Animated preview](docs/v260/military-motion.webp)
 - **Six search options:** Google, DuckDuckGo, Brave Search, Bing, Ecosia, and a configurable SearXNG instance. This controls Searchscape searches; your address-bar engine stays in Brave settings.

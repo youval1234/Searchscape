@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Redraw GTA VI · Miami as a neon dusk: a striped setting sun with a glowing halo and a broken reflection on the bay, a lit skyline, and palm silhouettes with finer fronds.
+- Replace the coupe with a low hot-pink sports car with a sunset side stripe, a rear wing, spinning rims, a cyan underglow and a headlight beam in dark mode.
+- Rebuild the hotel as a streamline Art Deco front with eyebrow ledges, a stepped crown, a flickering neon OCEAN fin and a lit lobby.
+- Add light trails on the boulevard and a helicopter crossing the skyline. Light mode keeps a golden-hour pastel palette.
+- Give the car its own stretch of road, so it does not float on phones. Animation stays within the existing limit of eight running animations and honours pause, Subtle, off and reduced motion.
+
 ## 2.6.1 — 2026-11-21
 
 - Redraw the Radioactive crew’s respirators and gloved grips. The capsule stays on the carrying tool through the handoff.

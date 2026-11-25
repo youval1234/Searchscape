@@ -58,7 +58,7 @@ let context;
     assert.equal(artwork.external,0);
     assert.equal(new Set(artwork.ids).size,artwork.ids.length);
     assert.equal(artwork.features,true);
-    assert.ok(artwork.active>0&&artwork.active<=8);
+    assert.ok(artwork.active>0&&artwork.active<=8,JSON.stringify(artwork));
     if(process.env.GR_CAPTURE_PREVIEWS==='1'){
       fs.mkdirSync(path.join(__dirname,'docs/v250'),{recursive:true});
       await page.evaluate(()=>document.fonts.ready);
