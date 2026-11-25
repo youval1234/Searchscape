@@ -1,5 +1,6 @@
-# Searchscape v2.6.1
+# Searchscape v2.6.2
 
-- **Radioactive** has curved visors, dark rubber face seals and angled filter cartridges. Gloved hands grip the tongs and support the tray as the capsule passes between workers. [Watch the handoff](https://github.com/youval1234/Searchscape/blob/v2.6.1/docs/v261/radioactive-detail.webp)
-- **GTA VI · Miami** has a redesigned Ocean Drive hotel with corner balconies, a fanlight over the entrance, a sidewalk café and a brass luggage cart. [See the hotel](https://github.com/youval1234/Searchscape/blob/v2.6.1/docs/v261/miami-detail.webp)
-- **Customize** now uses monochrome picker symbols for Radioactive, Magical, City Skyline, Miami, Le Rouge and Military. [See the six icons](https://github.com/youval1234/Searchscape/blob/v2.6.1/docs/v261/picker-icons.png)
+- **GTA VI · Miami** is redrawn as a neon dusk over the bay. A striped sun sets behind a lit skyline and its reflection breaks up on the water. Palm silhouettes sway in front. [Watch it move](https://github.com/youval1234/Searchscape/blob/v2.6.2/docs/miami-neon/miami-motion.webp)
+- A low hot-pink sports car with a sunset stripe, spinning rims and a cyan underglow cruises the boulevard. In dark mode its headlight cuts across the road. Light trails stream past and a helicopter crosses the skyline.
+- The hotel is a streamline Art Deco front with eyebrow ledges in cyan neon, lit ribbon windows and a vertical OCEAN sign that flickers now and then.
+- Light mode keeps golden-hour pastels. On phones the car now has its own stretch of road. [Desktop](https://github.com/youval1234/Searchscape/blob/v2.6.2/docs/miami-neon/desktop-dark.png) · [Phone](https://github.com/youval1234/Searchscape/blob/v2.6.2/docs/miami-neon/phone-dark.png)

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.6.2 — 2026-11-25
 
 - Redraw GTA VI · Miami as a neon dusk: a striped setting sun with a glowing halo and a broken reflection on the bay, a lit skyline, and palm silhouettes with finer fronds.
 - Replace the coupe with a low hot-pink sports car with a sunset side stripe, a rear wing, spinning rims, a cyan underglow and a headlight beam in dark mode.

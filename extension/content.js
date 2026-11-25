@@ -135,7 +135,7 @@
     return `<span class="theme-emblem" aria-hidden="true">${icon}</span>`;
   }
 
-  const version = preview ? '2.6.1' : chrome.runtime.getManifest().version;
+  const version = preview ? '2.6.2' : chrome.runtime.getManifest().version;
   const dateFormatter = new Intl.DateTimeFormat('en', {weekday:'long',month:'long',day:'numeric'});
   const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone.replaceAll('_',' ').replaceAll('/',' / ');
   const hiddenSiblings = new Map();
