@@ -1,16 +1,37 @@
-.app[data-theme=miami] { --m-bay:#c7ddd7; --m-pavement:#b2c4c4; --m-foam:#f3ebda; --m-palm:#477276; --m-distant:#c6b6bd; --m-stucco:#f0c9bc; --m-shadow:#bc9ca6; --m-glass:#728f9d; --scene-haze:#eed6cf; }
-.app[data-theme=miami][data-appearance=dark] { --m-bay:#263c49; --m-pavement:#394352; --m-foam:#699b9c; --m-palm:#385761; --m-distant:#544657; --m-stucco:#926c76; --m-shadow:#624f64; --m-glass:#4a6877; --scene-haze:#604153; }
-.app[data-motion=on] .miami-leaves { animation: miami-breeze 6s ease-in-out infinite alternate; }
-.app[data-motion=on] .miami-tide { animation: miami-tide 9s ease-in-out infinite alternate; }
+/* GTA VI · Miami: golden-hour pastels in light mode, a neon dusk in dark mode. */
+.app[data-theme=miami] {
+  --m-glow:#ff8fb6; --m-glow2:#ffbf86; --m-sun1:#ffe58f; --m-sun2:#ff9b6a; --m-sun3:#ff5c93; --m-cloud:#fff1e4;
+  --m-sea1:#5cc8cb; --m-sea2:#2d8ea6; --m-foam:#f6fff8; --m-distant:#d59bb9; --m-window:#fff6dd; --m-window-o:.45;
+  --m-palm:#285f66; --m-palm-ring:#173f45; --m-road:#d8b6c6; --m-lane:#fff4e6;
+  --m-neon-pink:#ff4f9a; --m-neon-cyan:#15b5c3; --m-glow-o:.14; --m-sign:#ff4f9a;
+  --m-stucco:#fde3dc; --m-trim:#fffaf5; --m-shadow:#e4a9b9; --m-glass:#82d3d7; --m-lit:#fff0c8;
+  --m-chrome:#e6dcef; --m-rim:#ffe9b5; --m-car-shadow:#7c4d77; --m-underglow-o:.25; --m-beam-o:0;
+  --scene-haze:#ffd7c8;
+}
+.app[data-theme=miami][data-appearance=dark] {
+  --m-glow:#d4308a; --m-glow2:#ff7b4d; --m-sun1:#ffd86b; --m-sun2:#ff7a59; --m-sun3:#ff2f86; --m-cloud:#5a1f5f;
+  --m-sea1:#2b1a4f; --m-sea2:#120d29; --m-foam:#7f6bc4; --m-distant:#251440; --m-window:#ffcf7a; --m-window-o:.85;
+  --m-palm:#140b25; --m-palm-ring:#2c1b45; --m-road:#140f27; --m-lane:#8c79c9;
+  --m-neon-pink:#ff4fa8; --m-neon-cyan:#3ff0ff; --m-glow-o:.42; --m-sign:#ffe6f4;
+  --m-stucco:#3a2a5c; --m-trim:#55437f; --m-shadow:#221838; --m-glass:#1b2547; --m-lit:#ffc98a;
+  --m-chrome:#b9afcf; --m-rim:#ffb27a; --m-car-shadow:#05030b; --m-underglow-o:.9; --m-beam-o:1;
+  --scene-haze:#3c1a4c;
+}
 .miami-glint { opacity:0; }
+.app[data-motion=on] .miami-leaves { animation:miami-breeze 6s var(--sway,0s) ease-in-out infinite alternate; }
+.app[data-motion=on] .miami-tide { animation:miami-tide 9s ease-in-out infinite alternate; }
+.app[data-motion=on] .miami-traffic { animation:miami-drive 7s linear infinite; }
+.app[data-motion=on] .miami-spokes { animation:miami-wheel .9s linear infinite; }
+.app[data-motion=on] .miami-halo { animation:miami-halo 8s ease-in-out infinite alternate; }
+.app[data-motion=on] .miami-heli { animation:miami-heli 52s -14s linear infinite; }
+.app[data-motion=on] .miami-marquee { animation:miami-flicker 9s 2s steps(1,end) infinite; }
 .app[data-motion=on][data-motion-intensity=vivid] .miami-glint { stroke-dasharray:16 110; animation:miami-chrome 11s -3s ease-in-out infinite; }
-@keyframes miami-breeze { from { transform:rotate(-3deg); } to { transform:rotate(5deg); } }
-@keyframes miami-tide { from { transform:translateX(-12px); } to { transform:translateX(16px); } }
-@keyframes miami-chrome { 0%,18% { opacity:0;stroke-dashoffset:20; } 35%,53% { opacity:.8; } 68%,100% { opacity:0;stroke-dashoffset:-100; } }
-.theme[data-theme-choice=miami] .theme-sample { background:linear-gradient(145deg,#415669,#d69296 57%,#94bdb8)!important; }
-.app[data-motion=on] .miami-lanes { animation:miami-drive 2.8s linear infinite; }
-.app[data-motion=on] .miami-spokes { animation:miami-wheel 2.8s linear infinite; }
-@keyframes miami-drive { to { stroke-dashoffset:71; } }
+@keyframes miami-breeze { from { transform:rotate(-3deg); } to { transform:rotate(4deg); } }
+@keyframes miami-tide { from { transform:translateX(-10px); opacity:.75; } to { transform:translateX(12px); opacity:1; } }
+@keyframes miami-drive { to { stroke-dashoffset:800; } }
 @keyframes miami-wheel { to { transform:rotate(360deg); } }
-.app[data-motion=on][data-motion-intensity=vivid] .miami-canopy-light { animation:miami-lobby-glow 5s -1s ease-in-out infinite alternate; }
-@keyframes miami-lobby-glow { from {opacity:.55} to {opacity:1} }
+@keyframes miami-halo { from { opacity:.7; } to { opacity:1; } }
+@keyframes miami-heli { from { transform:translateX(0); } to { transform:translateX(1920px); } }
+@keyframes miami-flicker { 0%,88%,90.5%,93%,100% { opacity:1; } 89%,92% { opacity:.35; } }
+@keyframes miami-chrome { 0%,18% { opacity:0;stroke-dashoffset:20; } 35%,53% { opacity:.8; } 68%,100% { opacity:0;stroke-dashoffset:-100; } }
+.theme[data-theme-choice=miami] .theme-sample { background:linear-gradient(160deg,#2a1748,#ff4f9a 50%,#ffb36b 74%,#23c4cf)!important; }
